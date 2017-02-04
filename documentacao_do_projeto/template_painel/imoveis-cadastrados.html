@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kananda Negócios Imobiliários</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Estilo -->
+        <link href="css/estilo.css" rel="stylesheet">
+
+        <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
+        <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand font-bold" href="index.html">Kananda Negócios Imobiliários</a>
+                </div>
+                <ul class="nav navbar-right top-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> Joab Torres Alencar <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="cadastrar-usuario.html"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="login.html"> <span class="glyphicon glyphicon-off"></span> Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li class="active">
+                            <a href="index.html"><span class="glyphicon glyphicon-home"></span> Inicial</a>
+                        </li>
+                        <li>
+                            <a href="imoveis-mais-visitados.html"><span class="glyphicon glyphicon-star"></span> Imóveis mais Visitados</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#imoveis"> <span class="glyphicon glyphicon-home"></span> IMÓVEIS <b class="caret"></b></a>
+                            <ul id="imoveis" class="collapse">
+                                <li>
+                                    <a href="cadastrar-novo-imovel.html"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Imóvel</a>
+                                </li>
+                                <li>
+                                    <a href="imoveis-cadastrados.html"><span class="glyphicon glyphicon-list"></span> Exibir Imóvel Cadastrados</a>
+                                </li>
+                                <li>
+                                    <a href="pesquisar-imoveis.html"><span class="glyphicon glyphicon-search"></span> Pesquisar Imóveis</a>
+                                </li>
+                                <li>
+                                    <a href="imoveis-ocultos.html"><span class="glyphicon glyphicon-list"></span> Imóveis Ocultos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><span class="glyphicon glyphicon-user"></span> USUÁRIOS <b class="caret"></b></a>
+                            <ul id="usuarios" class="collapse">
+                                <li>
+                                    <a href="cadastrar-usuario.html"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Usuário</a>
+                                </li>
+                                <li>
+                                    <a href="usuarios-cadastrados.html"><span class="glyphicon glyphicon-list"></span> Exibir Usuários Cadastrados</a>
+                                </li>
+                                <li>
+                                    <a href="pesquisar-usuarios.html"><span class="glyphicon glyphicon-search"></span> Pesquisar usuários</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#configuracoes"><span class=" glyphicon glyphicon-cog"></span> CONFIGURAÇÕES <b class="caret"></b></a>
+                            <ul id="configuracoes" class="collapse">
+                                <li>
+                                    <a href="configuracoes-gerais.html"><span class=" glyphicon glyphicon-wrench"></span> Configurações Gerais</a>
+                                </li>
+                                <li>
+                                    <a href="configuracoes-slideshow.html"><span class="glyphicon glyphicon-picture"></span> Configurações Slideshow</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+
+            <div id="page-wrapper">
+                <section class="container-fluid">
+                    <div class="row">
+                        <header class="col-md-12" id="container-breadcrumb">
+                            <h1 class="page-header">Imóveis Cadastrados</h1>
+                            <ol class="breadcrumb">
+                                <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
+                                <li class="active"><span class="glyphicon glyphicon-list"></span> Imóveis Cadastrados</li>
+                            </ol>
+                        </header><!--fim container-breadcrumb-->
+                        <article id="container-imoveis">
+                            <!-- IMOVEL -->
+                            <section class="col-md-4">
+                                <article class="thumbnail">
+                                    <header class="dest-img">
+                                        <a href="">
+                                            <img src="imagens/casa.jpg" class="img-responsive" alt="Imóvel Kananda"> 
+                                            <p class="text-center title-nome">Casa - Venda - Cod 101 	
+                                                <br>
+                                                <span class="title-endereco">Bela Vista, Itaituba - PA</span>
+                                            </p>
+                                        </a>
+                                    </header>
+                                    <footer class="caption">
+                                        <ul class="list-unstyled">
+                                            <li><span class="ic-qua"></span> Quartos: 1</li>
+                                            <li><span class="ic-ba"></span> Banheiros: 2</li>
+                                            <li><span class="ic-gar"></span> Garagem: 4</li>
+                                            <li><hr></li>
+                                            <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> 30 visualizações</li>
+                                            <li><hr></li>
+                                            <li><a href="#" class="btn btn-success btn-block">Editar</a></li>
+                                            <li><hr></li>
+                                            <li><a href="#" class="btn btn-danger btn-block">Excluir</a></li>
+                                            <li><hr></li>
+                                            <li><a href="#">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
+                                        </ul>
+                                    </footer>
+                                </article>
+                            </section><!-- FIM IMOVEL -->
+
+                            <div class="col-xs-12">
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                        <!--fim container-imoveis-->
+                    </div> 
+                    <!--fim row-->
+
+                    <footer class="row clear" id="container-footer">
+                        <div class="col-xs-12">
+                            <p class="text-right">&copy; Desenvolvido por Joab Torres Alencar.</p>
+                        </div>
+                    </footer><!--fim footer e row -->
+
+                </section>
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+        <script src="js/jquery.js"></script>
+        <!-- Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/painel_admin.js"></script>
+    </body>
+</html>

@@ -1,0 +1,248 @@
+@charset "UTF-8";
+@font-face{
+    font-family: "dosis-medium";
+    src: url(../fonts/dosis-medium.ttf);
+}
+body{
+    font-family: "dosis-medium";
+    font-size: 14pt!important;
+}
+a:hover{cursor: pointer;}
+/*
+        CLASSES GLOBAIS
+*/
+.ocultar{display: none;}
+.clear{	clear: both;}
+.font-bold{font-weight:bold;}
+.bg-branco{background: white;padding: 0.625em 0;}
+.bg-azul{background: #0A87CC;padding: 0.625em 0;}
+#paginacao a{font-size: 12pt;}
+.float-right{float: right;}
+.float-lef{float: left;}
+.img-responsive{width: 100%;}
+.img-center{display: block; margin:0 auto;}
+/*
+        HEADER
+*/
+#header{border-bottom: 5px solid #005F7D;
+        background-image:-moz-linear-gradient(50% 0% -180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%); 
+        background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(255,255,255)),color-stop(0.98, rgb(246,246,246)),color-stop(0.99, rgb(246,246,246)));
+        background-image:-webkit-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+        background-image:-o-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+        background-image:-ms-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+        background-image:linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+
+}
+#header img{
+    min-width: 200px;
+    height: auto;
+    max-width: 240px;
+}
+#header .navbar{
+    border-radius: 0;
+    margin-bottom:0;
+    padding-bottom: 10px;
+}
+.navbar-default{
+    background: none;
+    border: none;
+}
+.navbar-default .navbar-nav>li>a, .dropdown-menu>li>a{
+    color: #585656;
+    font-size: 11pt;
+    text-transform: uppercase;
+}
+.navbar-default .navbar-nav>li>a:hover, .dropdown-menu>li>a:hover, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover,.navbar-default .dropdown-menu>li>a:hover {color: #fff;background-color: #0a87cc; font-size: 11pt;}
+.navbar-default .navbar-toggle .icon-bar{background: white;}
+.navbar-default .navbar-toggle{background:#005F7D;}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{background:#01A3D8;}
+
+/*
+        FOOTER
+*/
+footer#rodape{
+    background-image:-moz-linear-gradient(50% 0% -180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%); 
+    background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(255,255,255)),color-stop(0.98, rgb(246,246,246)),color-stop(0.99, rgb(246,246,246)));
+    background-image:-webkit-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+    background-image:-o-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+    background-image:-ms-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+    background-image:linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(246,246,246) 98%,rgb(246,246,246) 99%);
+
+    border-top: 10px solid #005F7D;
+}
+/*
+        CONTAINER
+*/
+
+.container-slide {
+    margin: 0 0;
+    margin-bottom: 1.875em;
+    padding-left: 0;
+    padding-right: 0;
+}
+.title{
+    margin-bottom:0px;
+}
+.subl-title{
+    padding: 3px;
+    width: 40%;
+    border-radius: 100px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    background: #005F7D;
+}
+.carousel-control.right, .carousel-control.left{
+    background: none!important;
+}
+.list-imoveis{padding: 0 5em;}
+.thumbnail{background: none;padding:0; overflow: hidden; transition: all 0.3s ease 0s;}
+.thumbnail:hover{box-shadow: 0 0px 10px rgba(0,0,0, .5); }
+.thumbnail img:hover {transform: scale(1.05);}
+.thumbnail img {transition: all 0.3s ease 0s;}
+.thumbnail  .dest-img{padding: 0.625em 0;background: #01A3D8;border-bottom:10px solid #005F7D;}
+.thumbnail  .dest-img a{color: white;}
+.thumbnail  .dest-img a:hover{text-decoration:none;}
+.thumbnail .caption a{color: #005F7D; font-weight: bold; display: block;}
+.thumbnail .caption a:hover{color: #005F7D; text-decoration:none;}
+.thumbnail .dest-img .title-nome{font-weight:bold; margin-top: 10px;}
+.thumbnail .dest-img .title-endereco{font-weight: normal;}
+.ic-qua, .ic-ba, .ic-gar, .ic-larg, .ic-comp, .ic-are{width: 18px;height: 16px; display:inline-block;}
+.ic-larg{background: url(../imagens/icones.png) -3px -3px no-repeat;}
+.ic-comp{background: url(../imagens/icones.png) -3px -21px no-repeat;}
+.ic-are{background: url(../imagens/icones.png) -3px -39px no-repeat;}
+
+.ic-qua{background: url(../imagens/icones.png) -26px -3px no-repeat;}
+.ic-ba{background: url(../imagens/icones.png) -26px -21px no-repeat;}
+.ic-gar{background: url(../imagens/icones.png) -26px -39px no-repeat;}
+.ic-mais{width: 25px;height: 25px; display:inline-block; background: #01A3D8; text-align: center; color: white;}
+.thumbnail hr{margin: 5px 0;}
+.thumbnail img{min-width: 100px; max-width:350px; height: auto;}
+.thumbnail .caption{color: #242415;}
+
+
+.title-destaque{
+    padding-left: 5em;
+    padding-right: 5em;
+    margin: 1.5em 0;
+    color: white;
+    border-top: 4px solid #005F7D;
+    border-bottom: 4px solid #005F7D;
+}
+.title-destaque small{color:#DDDDDD;}
+.list-servicos{font-size: 19px;}
+.list-servicos img{max-width: 300px;}
+.list-servicos .item-white, .list-servicos .item-blue{ border-top:3px solid #005F7D; border-bottom:  3px solid #005F7D; padding: 0.6em 5em;}
+.list-servicos .item-blue {background: #20B8FF; color:white;}
+.list-servicos .item-white h3, .list-servicos .item-blue h3{margin-top:2em;}
+.list-container { padding: 0.6em 5em;}
+
+.slide-imovel .carousel{margin: 0;}
+.slide-imovel .carousel .carousel-caption{
+    position: relative;
+}
+.slide-imovel .carousel{
+    background: white;
+}
+.slide-imovel .carousel-inner img{
+    width: auto;
+    max-height:478px;
+}
+.slide-imovel .carousel .carousel-indicators .active{width:auto; height: auto; background:none; border: 5px solid white;}
+.slide-imovel .carousel .carousel-indicators li{
+    border: none;
+    text-indent: 0;
+    width: auto;
+    display: inline-block;
+    -moz-border-radius:0;
+    -webkit-border-radius:0;
+    border-radius:0;
+}
+.list-descricao-imovel{border: 2px solid #337ab7;border-top:none;}
+.list-descricao-imovel .tab-content{margin: 0.3125em 1em;}
+.list-descricao-imovel ul.nav{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.slide-imovel .carousel-indicators {
+    position: relative;
+    bottom: 10px;
+    left: 0;
+    z-index: 15;
+    width: auto;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: center;
+    list-style: none;
+    padding-top: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0px;
+}
+.list-descricao-imovel ul.nav li a{color: white;}
+.list-descricao-imovel ul.nav li.active a{color: black;}
+.list-descricao-imovel ul.nav li:hover a{background: white; color: black;}
+
+.mapa #view-mapa, #mapa_imovel, #view-mapa-imoveis, #mapa_contato{
+    width: 100%;
+    height: 230px;
+    vertical-align: middle;
+    margin-bottom: 6px;
+}
+
+
+/** 
+        Página Mapa
+*/
+.infoBox { background-color: #FFF; width: 300px;  font-family: Arial, Helvetica, sans-serif; font-size: 14px; border: 2px solid #3fa7d8; border-radius: 3px; margin-top: 10px; padding: 10px} 
+.infoBox p { padding: 0 15px }
+.infoBox:before { border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #3fa7d8; top: -10px; content: ""; height: 0; position: absolute; width: 0; left: 138px }
+
+#view-mapa-imoveis{
+    height: 500px;
+    display: block;
+    clear: both;
+}
+
+#mapa_imovel{
+    height: 300px;
+    margin-bottom: 0!important;
+}
+#filtreMapa {
+    color: white;
+    border-radius: 10px;   
+    margin-top: -50px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+#filtreMapa .form-control{
+    font-size: 13pt;
+    padding: 2px 0;
+}
+#filtreMapa .btn-group{
+    display: block;
+    width: 100%;
+}
+
+
+.form-contato .input-group-addon:first-child, .form-contato .input-group .form-control:last-child, .form-contato .input-group-addon:last-child, .form-contato .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .form-contato .input-group-btn:first-child>.btn:not(:first-child), .form-contato .input-group-btn:last-child>.btn, .form-contato .input-group-btn:last-child>.btn-group>.btn, .form-contato .input-group-btn:last-child>.dropdown-toggle, .form-contato textarea.form-control, .form-contato button, .form-contato  input[type=button], input[type=reset], .form-contato input[type=submit]{border: 3px solid #01A3D8;}
+.form-contato .input-group-addon:first-child{border-right: none;    background-color: #01A3D8; color: white;}
+.form-contato .input-group{margin: 10px 0;}
+/*
+        Medias
+*/
+@media (min-width: 768px){
+    .navbar-right{margin-top: 1.3em;margin-right: 1.875em;}
+    .menu-rodape{ line-height: 95px;}
+}
+@media(max-width:1070px){
+    .navbar-header{width: 100%;}
+}
+@media (max-width: 900px){
+    #view-mapa-imoveis{height: 400px}
+    #filtreMapa{margin:-1em 2em 1em 2em;}
+    .list-servicos .item-white, .list-servicos .item-blue{padding: 0.6em 2em;}
+    .list-container { padding: 0.6em 2em;}
+    .navbar-toggle{width: 90%}
+    .navbar-toggle .icon-bar{margin: auto}
+}

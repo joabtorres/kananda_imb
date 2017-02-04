@@ -1,0 +1,388 @@
+<!-- PARA EVITA QUE USUÁRIO VEJA A LISTA DE ARQUIVOS -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kananda Negócios Imobiliários</title>
+        <!-- CHAMANDO CSS DO BOOTSTRAP -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/estilo.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container-fluid" id="container-site">
+            <!-- Cabeçalho do site[PARTE ESTÁTICA] -->
+            <header class="row bg-branco" id="header">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <a href="index.html"><img src="imagens/logo.png" class="img-responsive img-center" alt="Kananda Negócios Imobiliários"/></a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-principal-kananda">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="menu-principal-kananda">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.html">INÍCIO <span class="sr-only">(current)</span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">COMPRAR <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="imovei-casa.html">Apartamento</a></li>
+                                        <li><a  href="imovei-casa.html">Área Portuaria</a></li>
+                                        <li><a  href="imovei-casa.html">Casa</a></li>
+                                        <li><a  href="imovei-casa.html">Prédio Comercial</a></li>
+                                        <li><a  href="imovei-casa.html">Terreno</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">ALUGAR <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="imovei-casa.html">Apartamento</a></li>
+                                        <li><a  href="imovei-casa.html">Área Portuaria</a></li>
+                                        <li><a  href="imovei-casa.html">Casa</a></li>
+                                        <li><a  href="imovei-casa.html">Prédio Comercial</a></li>
+                                        <li><a  href="imovei-casa.html">Terreno</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="mapa.html">Mapa</a></li>
+                                <li><a href="servicos.html">Serviços</a></li>
+                                <li><a href="sobre.html">Sobre</a></li>
+                                <li><a href="contato.html">Contato</a></li>
+                                <li class="active"><a data-toggle="modal" data-target="#buscarImovel">Pesquisar Imóvel</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </header>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="buscarImovel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog  modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            PESQUISAR IMÓVEIS
+                        </div>
+                        <div class="modal-body">
+                            <section class="panel panel-primary">
+                                <header class="panel-heading"><strong class="font-bold">PESQUISAR IMÓVEIS</strong></header>
+                                <article class="panel-body">
+                                    <div class="row"> <!-- buscar rápida -->
+                                        <div class="col-md-12">
+                                            <h3 class="font-bold">Busca Rápida</h3>
+                                            <form method='post' role="form">
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="cReferencia" name="tReferencia" placeholder="Código do Imóvel">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-primary" name="tBuscar" id="cBuscar" type="submit"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+                                                        </span>
+                                                    </div><!-- /input-group -->
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>  <!-- fim buscar rápida -->
+                                    <hr>
+
+                                    <div class="row"><!-- buscar avançada -->
+                                        <div class="col-md-12">
+                                            <h3 class="font-bold">Busca Avançada</h3>
+                                            <p class="bg-danger btn-lg ocultar aviso-de-busca">Aviso: <small>Caso deseje fazer uma busca avançada remova o 'código do imóvel' informado a acima.</small></p>
+                                            <form action="<?= RAIZ . 'pesquisa' ?>" method='post' role="form">                
+                                                <div class="form-group col-md-4">
+                                                    <label for="cSelecionaImovel">Imóvel: </label>
+                                                    <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control itemPesquisa">
+                                                        <option value="Casa">Casa</option>
+                                                        <option value="Terreno">Terreno</option>
+                                                        <option value="Ponto Comercial">Ponto Comercial</option>
+                                                        <option value="Sala / Loja Comercial">Sala / Loja Comercial</option>
+                                                        <option value="Loteamento">Loteamento</option>
+                                                        <option value="Galpão / Barração">Galpão / Barração</option>
+                                                        <option value="Apartamento">Apartamento</option>
+                                                        <option value="Kitnet">Kitnet</option>
+                                                        <option value="Sítio / Chácara">Sítio / Chácara</option>
+                                                        <option value="Lote / Fazenda">Lote / Fazenda</option>
+                                                        <option value="Área Portuária">Área Portuária</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4"> 
+                                                    <label for="cFinalidade">Finalidade: </label>
+                                                    <select name="tFinalidade" id="cFinalidade" class="form-control itemPesquisa">
+                                                        <option value="Todos" selected class="ca">Todas</option>
+                                                        <option value="Venda" class="ca">Venda</option>
+                                                        <option value="Aluguel" class="ca">Aluguel</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4 cCategoria"> 
+                                                    <label for="cCategoria">Categoria: </label>
+                                                    <select name="tCategoria" id="cCategoria" class="form-control itemPesquisa">
+                                                        <option value="Todos" class="ca te pc slc ap kit sch ap lof lot todos" selected>Todas</option>
+                                                        <option value="Térreo" class="pc ca kit">Térreo</option>
+                                                        <option value="Sobrado" class="ca">Sobrado</option>
+                                                        <option value="Urbano(a)" class="te sch">Urbano(a)</option>
+                                                        <option value="Rural" class="te sch lof">Rural</option>
+                                                        <option value="Comercial">Comercial</option>
+                                                        <option value="Residencial" class="ca te kit">Residencial</option>
+                                                        <option value="Condomínio" class="ca te ap">Condomínio</option>
+                                                        <option value="Lotes" class="lot">Lotes</option>
+                                                        <option value="Edifício" class="pc slc ap kit">Edifício</option>
+                                                        <option value="Shopping" class="slc">Shopping</option>
+                                                        <option value="Loteamento" class="te">Loteamento</option>
+                                                        <option value="Industrial">Industrial</option>
+                                                        <option value="Porto" class="ap">Porto</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- 
+                                                QUARTO, SUITES, GARAGEM
+                                                -->
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cSelecionaQntQuarto">Quarto (s): </label>
+                                                    <select name="tSelecionaQntQuarto" id="cSelecionaQntQuarto" class="itemPesquisa form-control">
+                                                        <option value="" selected>Todos</option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cBanheiro">Banheiro (s): </label>
+                                                    <select name="tSelecionaQntSuites" id="cBanheiro" class="itemPesquisa form-control">
+                                                        <option value="" selected>Todos</option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cSelecionaQntSuites">Suite (s): </label>
+                                                    <select name="tSelecionaQntSuites" id="cSelecionaQntSuites" class="itemPesquisa form-control">
+                                                        <option value="" selected>Todos</option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cSelecionaqntGaragem">Garagem: </label>
+                                                    <select name="tSelecionaqntGaragem" id="cSelecionaqntGaragem" class="itemPesquisa form-control">
+                                                        <option value="" selected>Todos</option>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+                                                <!-- 
+                                                QUARTO, SUITES, GARAGEM
+                                                -->
+
+                                                <!--
+                                                INICIO Largura, Comprimento
+                                                -->
+
+                                                <div class="form-group col-md-6 o"> <!-- INCLUIR O CAMPO QUE COMEÇA OCULTO, COM A CLASSE "o"-->
+                                                    <label for="cLargura">Largura: </label>
+                                                    <input type="text" class="form-control itemPesquisa" id="cLargura" name="tLargura" placeholder="Ex: 5 metros">
+
+                                                </div>
+                                                <div class="form-group col-md-6 o"> <!-- INCLUIR O CAMPO QUE COMEÇA OCULTO, COM A CLASSE "o"-->
+                                                    <label for="cComprimento">Comprimento: </label> 
+                                                    <input type="text" class="form-control itemPesquisa" id="cComprimento" name="tComprimento" placeholder="Ex: 10 metros">
+                                                </div>
+                                                <!-- --------------------------
+                                                FIM Largura, Comprimento
+                                             ---------------------------- -->
+                                                <div class="form-group col-md-12">
+                                                    <label for="cSelecionaBairro">Bairro: </label>
+                                                    <select name="tSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
+                                                        <option value="Todos" selected>Qualquer Bairro</option>
+                                                        <option value="Bela vista">Bela vista</option>
+                                                        <option value="Boa Esperança">Boa Esperança</option>
+                                                        <option value="Bom Jardim">Bom Jardim</option>
+                                                        <option value="Bom Remédio">Bom Remédio</option>
+                                                        <option value="Centro">Centro</option>
+                                                        <option value="Floresta">Floresta</option>
+                                                        <option value="Jardim Aeroporto">Jardim Aeroporto</option>
+                                                        <option value="Jardim América">Jardim América</option>
+                                                        <option value="Jardim Das Araras">Jardim Das Araras</option>
+                                                        <option value="Jardim Tapajós">Jardim Tapajós</option>
+                                                        <option value="Liberdade">Liberdade</option>
+                                                        <option value="Maria Madalena">Maria Madalena</option>
+                                                        <option value="Nova Itaituba">Nova Itaituba</option>
+                                                        <option value="Novo Paraíso">Novo Paraíso</option>
+                                                        <option value="Perpétuo Socorro">Perpétuo Socorro</option>
+                                                        <option value="Piracanã">Piracanã</option>
+                                                        <option value="Residencial Vale Do Piracanã">Residencial Vale Do Piracanã</option>
+                                                        <option value="Residencial Viva Itaituba">Residencial Viva Itaituba</option>
+                                                        <option value="Residencial Wirland Freire">Residencial Wirland Freire</option>  
+                                                        <option value="Santo Antõnio">Santo Antõnio</option>  
+                                                        <option value="São Francisco">São Francisco</option>  
+                                                        <option value="SÃO JOSÉ">São José</option>  
+                                                        <option value="Vale do Tapajós">Vale do Tapajós</option>  
+                                                        <option value="Valmirlândia">Valmirlândia</option>  
+                                                        <option value="Vitória-Régie">Vitória-Régie</option>
+                                                        <option value="Zona Rural">Zona Rural</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <hr>
+                                                    <button type="submit" name="tBuscar" id="cBuscar02" class="btn btn-primary float-right"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>         
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div><!-- fim buscar avançada -->
+                                </article>
+                            </section>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <section class="row">
+                <article class="col-xs-12 bg-azul title-destaque">
+                    <h2><strong>Sobre</strong><br><small>
+                            Quem nós somos.</small></h2>
+                </article>
+            </section>
+
+            <!-- CHAMADA PARA O SOBRE-->
+            <section class="row">
+                <!-- sobre -->
+                <article class="col-xs-12 list-container">
+                    <img src="holder.js/100px400"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - sobre "  alt="Kananda Negócios Imobiliários - Sobre ">
+                    <!--<img src="/uploads/sobre/banner-sobre-kananda-imobiliaria.jpg"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - sobre "  alt="Kananda Negócios Imobiliários - Sobre ">;-->
+                    <h3 >Histórico</h3>
+                    <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo, deram início ao seu primeiro projeto, o Loteamento Novo Paraíso. A fase inicial foi um sucesso com 450 lotes, todos vendidos.</p>
+                    <p class="text-justify">
+                        Visando atender a carência de moradias no município, em novembro de 2009, iniciaram as obras de um novo empreendimento, um projeto residencial, a venda de imóveis através do programa minha casa minha vida.
+                    </p>
+                    <p class="text-justify">
+                        Já com melhor estrutura, em janeiro de 2010, firmaram parceria com a Caixa Econômica Federal para financiamento e venda de imóveis, e, em março de 2010, foram entregues as primeiras unidades construídas, deixando seus clientes felizes pela conquista da casa própria.
+                    </p>
+                    <p class="text-justify">
+                        Em 2011 a empresa Gusmão Empreendimentos passou a atuar somente no planejamento e execução das obras residenciais, pois as vendas ficaram na responsabilidade de uma nova empresa que nasceu da parceria entre os irmãos Queila Gusmão e Gutemberg Gusmão: a Kananda Negócios Imobiliários, que, em janeiro de 2011 fixou-se como Credenciada Caixa, onde passou a ofertar os produtos e serviços do Caixa Aqui Negocial.
+                    </p>
+                    <p class="text-justify">
+                        No ano de 2012, a Kananda inicia o projeto de vendas da segunda fase do Loteamento Novo Paraíso, o lançamento dessa nova etapa, se deu pela grande satisfação e confiança dos clientes que compraram lotes na etapa anterior, além da eminente demanda de clientes interessados em adquirir lotes.
+                    </p>
+                    <p class="text-justify">
+                        Em 2013, a Kananda firmou um novo e importante contrato, a legalização do Loteamento Campo Belo. Contrato audacioso, pois seria a primeira legalização de Loteamentos a nível estadual, já que este loteamento apresentava em seu projeto mais de cinco mil lotes.
+                    </p>
+                    <p class="text-justify">
+                        A legalização do Loteamento Campo Belo foi concluída com êxito em junho de 2014, e propiciou o lançamento das vendas em outubro daquele ano, onde, a Kananda participou coordenando uma das três equipes de venda, e por seu sucesso nas mesmas, hoje tem a exclusividade de vendas deste empreendimento.
+                    </p>
+                    <p class="text-justify">
+                        No Ano de 2015 a kananda realizou mais uma conquista para melhor atender seus clientes e parceiros: adquiriu sua sede Própria. 
+                    </p>
+                    <p class="text-justify">
+                        Nesse ano de 2016 implementou um novo projeto, pois está disponibilizando um novo canal de acesso na web, o site www.kananda.imb.br.
+                    </p>
+                    <p class="text-justify">
+                        Desta forma, a Kananda Negócios Imobiliários vem cada vez mais se solidificando no mercado imobiliário local. Isso se deve pela implementação de suas ações empresariais inovadoras, sua busca constante de parcerias, pela excelência na realização dos serviços e projetos em que participa.
+                    </p>
+
+                    <h3 ><strong>Propósitos empresariais</strong></h3>
+                    <h5 ><strong>Missão</strong></h5>
+                    <p class="text-justify">
+                        Promover Negócios Imobiliários com eficácia e profissionalismo, de forma a superar as expectativas de nossos clientes e parceiros, por meio da excelência, credibilidade e inovação.
+                    </p>
+                    <h5 ><strong>Visão</strong></h5>
+                    <p class="text-justify">
+                        Ser reconhecida no município de Itaituba e região como referência na prestação de Negócios Imobiliários até 2020.
+                    </p>
+                    <h5 ><strong>Princípios e Valores</strong></h5>
+                    <ul>
+                        <li class="text-justify">Ética;</li>
+                        <li class="text-justify">Transparência;</li>
+                        <li class="text-justify">Valorização;</li>
+                        <li class="text-justify">Respeito;</li>
+                        <li class="text-justify">Profissionalismo;</li>
+                        <li class="text-justify">Parceria;</li>
+                        <li class="text-justify">Comprometimento;</li>
+                        <li class="text-justify">Segurança;</li>
+                    </ul>
+                    <h5 ><strong>SLOGAN</strong></h5>
+                    <p>Uma Relação de Confiança!</p>
+                </article>				
+            </section><!-- FIM DO SOBRE-->
+
+
+
+
+            <!-- Rodapé do site[PARTE ESTÁTICA] -->
+            <footer class="row" id="rodape">
+                <section class="col-xs-12">
+                    <article class="col-md-3 col-lg-3">
+                        <h3><strong>Sobre</strong></h3>
+                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo e uma ... <a href="sobre.html">continua lendo &raquo;</a> </p>
+                    </article>
+                    <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
+                        <h3><strong>Contato</strong></h3>
+                        <ul class="list-unstyled">
+                            <li>Rua 4ª  (Quarta), nº 361 - Floresta</li>
+                            <li>Cep: 68181-300</li>
+                            <li>Itaituba / PA</li>
+                            <li><strong>Fone:</strong> (093) 3518-0367</li>
+                            <li><strong>E-mail:</strong> contato@kananda.imb.br</li>
+                        </ul>
+                    </article>
+                    <article class="col-md-3 col-lg-3">
+                        <h3><strong>Horário de atendimento</strong></h3>
+                        <ul class="list-unstyled">
+                            <li>Nósso horário de antendimento:</li>
+                            <li><br/></li>
+                            <li><strong>Segunda a Sexta</strong></li>
+                            <li>08:00h as 12:30h | 14:30h as 18:00h</li>
+                        </ul>
+                    </article>
+                    <div class="col-xs-12">
+                        <hr>
+                        <p class="text-center">
+                            &copy; 2008-2017 - Kananda.imb.br | Todos os direitos reservados <br/>
+                            É proibida a reprodução total ou parcial de qualquer conteúdo deste site.</p>
+                    </div>
+                </section>
+            </footer><!-- FIM Rodapé do site[PARTE ESTÁTICA]-->
+        </div>
+        <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- CHAMANDO JS DO BOOTSTRAP -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- CHAMANDO JS DO GoogleMaps -->
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCg1ogHawJGuDbw7nd6qBz9yYxYPoGTWQo&sensor=false"></script>
+        <!-- CHAMANDO JS DO WEBSITE -->
+        <script src="js/website.js"></script>
+        <script src="js/holder.min.js"></script>
+    </body>
+</html>
