@@ -39,7 +39,7 @@ if (document.getElementById("view-mapa-imoveis")) {
             markerCluster.clearMarkers();
         }
 
-        $.getJSON('imoveis.json', function (pontos) {
+        $.getJSON('json/imoveis.json', function (pontos) {
 
             var latlngbounds = new google.maps.LatLngBounds();
 
@@ -50,7 +50,7 @@ if (document.getElementById("view-mapa-imoveis")) {
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(ponto.Latitude, ponto.Longitude),
                             title: "KANANDA IMOBILIÁRIA - IMÓVEL",
-                            icon: "imagens/mapa/marcado.png"
+                            icon: "../assets/imagens/mapa/marcado.png"
                         });
 
                         var myOptions = {
@@ -71,7 +71,7 @@ if (document.getElementById("view-mapa-imoveis")) {
                     }
                 }
             });
-            var mcOptions = {gridSize: 50, maxZoom: 15, imagePath: 'imagens/mapa/m'};
+            var mcOptions = {gridSize: 50, maxZoom: 15, imagePath: '../assets/imagens/mapa/m'};
 
             markerCluster = new MarkerClusterer(map, markers, mcOptions);
             map.fitBounds(latlngbounds);
@@ -176,7 +176,7 @@ if (document.getElementById("mapa_contato")) {
         var marker = new google.maps.Marker({
             position: myLocation,
             title: "Localização dos imoveis da Kananda Imobiliaria!",
-            icon: "imagens/marcado.png"
+            icon: "../assets/imagens/marcado.png"
         });
         var map = new google.maps.Map(document.getElementById("mapa_contato"),
                 mapOptions);
@@ -204,7 +204,7 @@ if (document.getElementById("view-mapa")) {
                 position: new google.maps.LatLng(latitude_imovel, longitude_imovel),
                 title: "Cliente!",
                 zoom: 16,
-                icon: "imagens/marcado.png",
+                icon: "../assets/imagens/marcado.png",
                 map: map
             });
         }

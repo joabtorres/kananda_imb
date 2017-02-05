@@ -11,9 +11,21 @@ class Core {
         if (!empty($url) && $url != '/') {
             $url = explode('/', $url);
             array_shift($url);
+            global $painel;
+            if (isset($url[0]) && $url[0] == "painel_admin") {
+                $painel = TRUE;
+                array_shift($url);
+            } else {
+                $painel = FALSE;
+            }
 
-            $currentController = $url[0] . 'Controller';
-            array_shift($url);
+            if (isset($url[0]) && !empty($url[0])) {
+                $currentController = $url[0] . 'Controller';
+                array_shift($url);
+            } else {
+                $currentController = 'homeController';
+            }
+
 
             if (isset($url[0]) && !empty($url[0])) {
                 $currentAction = $url[0];
