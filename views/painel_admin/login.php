@@ -30,7 +30,9 @@
                                     <label for="cSenha">Senha:</label>
                                     <input type="password" name="tSenha" id="cSenha" class="form-control"/>
                                 </div>
-                                <p class="bg-danger">Usuário ou senha incorreto</p>
+                                <?php if (isset($erro) && !empty($erro)) : ?>
+                                    <p class="bg-danger"><?php echo $erro; ?></p>
+                                <?php endif; ?>
                                 <a href="#"><span class="glyphicon glyphicon-lock"></span> Esqueceu a senha?</a>
                                 <input type="submit" name="tEnviar" value="Entrar" class="float-right btn btn-primary"/>
                             </form>

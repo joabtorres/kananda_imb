@@ -12,9 +12,13 @@
 class homeController extends controller {
 
     public function index() {
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "home");
-        $this->loadTemplate($viewName, $dados);
+        if ($_SESSION['ka_usuario_ativo']) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "home");
+            $this->loadTemplate($viewName, $dados);
+        } else {
+            header("Location:  /painel_admin/login");
+        }
     }
 
 }

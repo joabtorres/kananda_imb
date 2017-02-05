@@ -29,14 +29,14 @@
                 </div>
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> Joab Torres Alencar <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <?php echo (isset($_SESSION["ka_usuario_nome"]) && !empty($_SESSION["ka_usuario_nome"])) ? ucwords(strtolower($_SESSION["ka_usuario_nome"])) : ""; ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="cadastrar-usuario.html"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
+                                <a href="<?php BASE_URL; ?>/painel_admin/usuarios/editar/<?php echo (isset($_SESSION["ka_usuario_cod"]) && !empty($_SESSION["ka_usuario_cod"])) ? $_SESSION["ka_usuario_cod"] : ""; ?>"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href=""> <span class="glyphicon glyphicon-off"></span> Sair</a>
+                                <a href="<?php BASE_URL; ?>/painel_admin/login/sair"> <span class="glyphicon glyphicon-off"></span> Sair</a>
                             </li>
                         </ul>
                     </li>
