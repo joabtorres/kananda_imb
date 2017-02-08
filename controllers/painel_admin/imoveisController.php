@@ -80,22 +80,33 @@ class imoveisController extends controller {
                     $imovel["imagens"][$i] = $this->salvar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-' . ($i + 1)], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
                 }
             }
-            if(!$imoveisModal->cadastrar($imovel)){
-                header("Locatiton: /painel_admin/imoveis/cadastrados");
+            if ($imoveisModal->cadastrar($imovel)) {
+                header("Location: /painel_admin/imoveis/cadastrados");
             }
         }
 
         $this->loadTemplate($viewName, $dados);
     }
 
-    public function cadastrados() {
+    public function cadastrados($page = array()) {
         if ($this->checkUser()) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_cadastrados");
             $imoveisModal = new Imoveis();
 
-            $dados["imoveis"] = $imoveisModal->listar();
-
+            $imovel = array();
+            $limite = 6;
+            $total_registro = $imoveisModal->quantidade_Imoveis();
+            $paginas = $total_registro / $limite;
+            $indice = 0;
+            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+            $indice = ($pagina_atual - 1) * $limite;
+            
+            $imovel['qtd'] = $indice;
+            $imovel['limite'] = $limite;
+            $dados["paginas"] = $paginas;
+            $dados["pagina_atual"] = $pagina_atual;
+            $dados["imoveis"] = $imoveisModal->listar($imovel);
             $this->loadTemplate($viewName, $dados);
         }
     }

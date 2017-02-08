@@ -58,9 +58,9 @@ class Imoveis extends model {
                 $sql->bindValue(":imagem", $imagem);
                 $sql->execute();
             }
-            
+
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -74,18 +74,45 @@ class Imoveis extends model {
         }
     }
 
-    public function listar($id = array()) {
-        $imoveis = array();
-        if (!empty($id) && isset($id)) {
-            return $imoveis;
+    public function quantidade_Imoveis($condicao = array()) {
+        $quantidade = 0;
+        if (isset($condicao) && !empty($condicao)) {
+            return $quantidade;
         } else {
-            $sql = $this->db->query("SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.logradouro_endereco,ka_imb_imovel_endereco.numero_endereco, ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco, ka_imb_imovel_endereco.complemento_endereco,ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel;");
+            $sql = $this->db->query("SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel");
             if ($sql->rowCount() > 0) {
-                $imoveis = $sql->fetchAll();
+                $sql = $sql->fetch();
+                $quantidade = $sql['qtd'];
             }
-
-            return $imoveis;
+            return $quantidade;
         }
+    }
+
+    public function listar($condicao) {
+        $imoveis = array();
+        $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.logradouro_endereco,ka_imb_imovel_endereco.numero_endereco, ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco, ka_imb_imovel_endereco.complemento_endereco,ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel ";
+        foreach ($condicao as $indice => $valor) {
+            if ($indice != "qtd" && $indice != "limite") {
+                $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+            }
+        }
+
+        if (isset($condicao['qtd'])) {
+            $sql = $sql . " ORDER BY ka_imb_imovel.cod_imovel DESC LIMIT " . $condicao['qtd'] . " , ".$condicao['limite'];
+        }
+
+        $sql = $this->db->prepare($sql);
+        foreach ($condicao as $indice => $valor) {
+            if ($indice != "qtd" && $indice != "limite") {
+                $sql->bindValue(":" . $indice, $valor);
+            }
+        }
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $imoveis = $sql->fetchAll();
+        }
+        return $imoveis;
     }
 
     public function listar_imagens($cod) {

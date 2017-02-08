@@ -84,18 +84,24 @@
                         </article>
                     </section><!-- FIM IMOVEL -->
                 <?php endforeach; ?>
-
+                <!--PAGINACAO-->
                 <div class="col-xs-12">
                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <?php
+                        echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/1'>&laquo;</a></li>";
+                        for ($p = 0; $p <= $paginas; $p++) {
+                            if ($pagina_atual == ($p+1)) {
+                                echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p+1) . "'>" . ($p+1) . "</a></li>";
+                            } else {
+                                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p+1) . "'>" . ($p+1) . "</a></li>";
+                            }
+                        }
+
+                        echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ceil($paginas) . "'>&raquo;</a></li>";
+                        ?>
                     </ul>
                 </div>
+                <!--PAGINACAO-->
             </article>
             <!--fim container-imoveis-->
         </div>
