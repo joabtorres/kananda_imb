@@ -1,6 +1,13 @@
 <?php
 
 class controller {
+    public function checkUser(){
+        if (isset($_SESSION['ka_usuario_ativo']) && $_SESSION['ka_usuario_ativo']) {
+           return true;
+        } else {
+            header("Location: /painel_admin/home");
+        }
+    }
 
     public function loadView($viewName, $viewData = array()) {
         extract($viewData);

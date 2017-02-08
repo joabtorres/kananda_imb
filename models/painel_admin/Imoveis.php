@@ -58,6 +58,10 @@ class Imoveis extends model {
                 $sql->bindValue(":imagem", $imagem);
                 $sql->execute();
             }
+            
+            return true;
+        }else{
+            return false;
         }
     }
 

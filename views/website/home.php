@@ -149,9 +149,10 @@
             </div>
             <div class="caption">
                 <ul class="list-unstyled">
+                    <li><span class="ic-are"></span> Área Total: 28 metros ²</li>
                     <li><span class="ic-larg"></span> Largura: 7 metros</li>
                     <li><span class="ic-comp"></span> Comprimeito: 4 metros</li>
-                    <li><span class="ic-are"></span> Área Total: 28 metros ²</li>
+                    
                     <li><hr></li>
                     <li><a href="<?php echo BASE_URL; ?>/imovel">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
                 </ul>
