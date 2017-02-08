@@ -9,7 +9,7 @@
 <section class="row">
     <!-- sobre -->
     <article class="col-xs-12 list-container">
-        <img src="holder.js/100px400"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - sobre "  alt="Kananda Negócios Imobiliários - Sobre ">
+        <img src="<?php echo BASE_URL;?>/assets/website/imagens/banner_sobre.jpg"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - sobre "  alt="Kananda Negócios Imobiliários - Sobre ">
         <!--<img src="/uploads/sobre/banner-sobre-kananda-imobiliaria.jpg"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - sobre "  alt="Kananda Negócios Imobiliários - Sobre ">;-->
         <h3 >Histórico</h3>
         <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo, deram início ao seu primeiro projeto, o Loteamento Novo Paraíso. A fase inicial foi um sucesso com 450 lotes, todos vendidos.</p>

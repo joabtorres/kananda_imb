@@ -1,6 +1,6 @@
 <?php
 
-class Core {
+class core {
 
     public function run() {
         $url = explode('index.php', $_SERVER['PHP_SELF']);

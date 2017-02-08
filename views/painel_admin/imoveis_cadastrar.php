@@ -4,7 +4,7 @@
             <header class="col-md-12" id="container-breadcrumb">
                 <h1 class="page-header">Cadastrar Novo Imóvel</h1>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/painel_admin/home"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
                     <li class="active"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Imóvel</li>
                 </ol>
             </header><!--fim container-breadcrumb-->
@@ -17,20 +17,20 @@
                         <article class="panel-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="cReferencia">Referência:</label>
-                                    <input type="text" name="tReferencia" id="cReferencia" class="form-control"/>
+                                    <label for="iReferencia">Referência:</label>
+                                    <input type="text" name="nReferencia" id="iReferencia" class="form-control"/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <p class="font-bold">Deseja oculta este imóvel?</p>
-                                    <label><input type="radio" name="tOcuta" value="1"/> Sim </label> 
-                                    <label><input type="radio" name="tOcuta" value="0"/> Não</label>
+                                    <label><input type="radio" name="tOcuta" value="1"/> Sim </label>
+                                    <label><input type="radio" name="tOcuta" value="0" checked="true"/> Não</label>
                                 </div>
-                            </div><!--fim row--> 
+                            </div><!--fim row-->
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="cSelecionaImovel">Tipo do Imóvel: </label>
                                     <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control itemPesquisa">
-                                        <option value="Casa">Casa</option>
+                                        <option value="Casa" >Casa</option>
                                         <option value="Terreno">Terreno</option>
                                         <option value="Ponto Comercial">Ponto Comercial</option>
                                         <option value="Sala / Loja Comercial">Sala / Loja Comercial</option>
@@ -43,19 +43,18 @@
                                         <option value="Área Portuária">Área Portuária</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4"> 
+                                <div class="form-group col-md-4">
                                     <label for="cFinalidade">Finalidade: </label>
                                     <select name="tFinalidade" id="cFinalidade" class="form-control itemPesquisa">
-                                        <option value="Todas" selected class="ca">Todas</option>
-                                        <option value="Venda" class="ca">Venda</option>
-                                        <option value="Aluguel" class="ca">Aluguel</option>
+                                        <option value="Comprar e Alugar" class="ca">Comprar e Alugar</option>
+                                        <option value="Comprar" class="ca">Comprar</option>
+                                        <option value="Alugar" class="ca">Alugar</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4 cCategoria"> 
+                                <div class="form-group col-md-4 cCategoria">
                                     <label for="cCategoria">Categoria: </label>
                                     <select name="tCategoria" id="cCategoria" class="form-control itemPesquisa">
-                                        <option value="select" disabled>Selecione</option>
-                                        <option value="Térreo (a)" class="pc ca kit">Térreo (a)</option>
+                                        <option value="Térreo (a)" class="pc ca kit" >Térreo (a)</option>
                                         <option value="Sobrado" class="ca">Sobrado</option>
                                         <option value="Urbano(a)" class="te sch">Urbano(a)</option>
                                         <option value="Rural" class="te sch lof">Rural</option>
@@ -70,7 +69,7 @@
                                         <option value="Porto ap">Porto</option>
                                     </select>
                                 </div>
-                            </div><!--fim row--> 
+                            </div><!--fim row-->
                             <div class="row">
                                 <div class="form-group col-md-3">
                                     <label for="cQuarto">Quarto (s):</label>
@@ -105,36 +104,24 @@
                                     <input type="text" name="tAreaConstruida" id="cAreaConstruida" class="form-control"/>
                                 </div>
 
-                            </div><!--fim row--> 
+                            </div><!--fim row-->
                         </article>
                     </section><!--fim do panel-->
                     <section class="panel panel-primary">
                         <header class="panel-heading"><strong class="font-bold">LOCALIZAÇÃO</strong></header>
                         <article class="panel-body">
                             <div class="row">
-                                <div class="col-md-9 form-group">
-                                    <label for="cEndereco">Endereço:</label>
-                                    <input type="text" name="tEndereco" id="cEndereco" class="form-control">
+                                <div class="col-md-6 form-group">
+                                    <label for="iLogradouro">Logradouro:</label>
+                                    <input type="text" name="nLogradouro" id="iLogradouro" class="form-control" placeholder="Exemplo: Tv. Quinze de Agosto">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label>Pesquisar Endereço:</label>
-                                    <span class="btn btn-danger btn-block form-control" id="btnEndereco"><span class="glyphicon glyphicon-search"></span> Pesquisar</span>
+                                <div class="col-md-2 form-group">
+                                    <label for="iNumero">Número:</label>
+                                    <input type="text" name="nNumero" id="iNumero" class="form-control" placeholder="Exemplo: 100 ou S/N">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="cLatitude">Latitude:</label>
-                                    <input type="text" name="tLatitude" id="cLatitude" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="cLongitude">Longitude:</label>
-                                    <input type="text" name="tLongitude" id="cLongitude" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="cComplemento">Complemento</label>
-                                    <input type="text" name="tComplemento" id="cComplemento" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="cSelecionaBairro">Bairro: </label>
-                                    <select name="tSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
+                                    <select name="nSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
                                         <option value="Todos" selected>Qualquer Bairro</option>
                                         <option value="Bela vista">Bela vista</option>
                                         <option value="Boa Esperança">Boa Esperança</option>
@@ -154,16 +141,41 @@
                                         <option value="Piracanã">Piracanã</option>
                                         <option value="Residencial Vale Do Piracanã">Residencial Vale Do Piracanã</option>
                                         <option value="Residencial Viva Itaituba">Residencial Viva Itaituba</option>
-                                        <option value="Residencial Wirland Freire">Residencial Wirland Freire</option>  
-                                        <option value="Santo Antõnio">Santo Antõnio</option>  
-                                        <option value="São Francisco">São Francisco</option>  
-                                        <option value="SÃO JOSÉ">São José</option>  
-                                        <option value="Vale do Tapajós">Vale do Tapajós</option>  
-                                        <option value="Valmirlândia">Valmirlândia</option>  
+                                        <option value="Residencial Wirland Freire">Residencial Wirland Freire</option>
+                                        <option value="Santo Antõnio">Santo Antõnio</option>
+                                        <option value="São Francisco">São Francisco</option>
+                                        <option value="SÃO JOSÉ">São José</option>
+                                        <option value="Vale do Tapajós">Vale do Tapajós</option>
+                                        <option value="Valmirlândia">Valmirlândia</option>
                                         <option value="Vitória-Régie">Vitória-Régie</option>
                                         <option value="Zona Rural">Zona Rural</option>
                                     </select>
                                 </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="iCidade">Cidade:</label>
+                                    <input type="text" name="nCidade" id="iCidade" class="form-control" placeholder="Exemplo: Itaituba">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="iComplemento">Complemento:</label>
+                                    <input type="text" name="nComplemento" id="iComplemento" class="form-control" placeholder="Exemplo: Próximo ao Mercantil Alvorada">
+                                </div>
+                                <div class="col-md-9 form-group">
+                                    <label for="cEndereco">Endereço via mapa:</label>
+                                    <input type="text" name="tEndereco" id="cEndereco" class="form-control">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Pesquisar Endereço:</label>
+                                    <span class="btn btn-danger btn-block form-control" id="btnEndereco"><span class="glyphicon glyphicon-search"></span> Pesquisar</span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cLatitude">Latitude:</label>
+                                    <input type="text" name="tLatitude" id="cLatitude" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cLongitude">Longitude:</label>
+                                    <input type="text" name="tLongitude" id="cLongitude" class="form-control">
+                                </div>
+
                                 <div class="form-group col-md-12" >
                                     <div id="viewMapa">
 
@@ -173,9 +185,13 @@
                         </article><!-- fim panel-body-->
                     </section> <!-- fim panel -->
                     <section class="panel panel-primary">
-                        <header class="panel-heading"><strong class="font-bold">DESCRIÇÃO ESPECIFICA</strong></header>
+                        <header class="panel-heading"><strong class="font-bold">COMPLEMENTARES</strong></header>
                         <article class="panel-body">
                             <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="iValor">Valor:</label>
+                                    <input type="text" name="nValor" id="iValor" class="form-control"/>
+                                </div>
                                 <div class="col-md-12 form-group">
                                     <label>Descrição: </label>
                                     <textarea id="cDescricao" name="tDescricao" class="form-group"></textarea>
@@ -187,8 +203,10 @@
                         <header class="panel-heading"><strong class="font-bold">FOTOS DO IMÓVEL</strong></header>
                         <article class="panel-body">
                             <div class="row">
+                                <div class="form-group col-md-12 container-foto"> <figure class="viewFotosDestaque" > <p class="font-bold text-center">DESTAQUE</p><img src="../../assets/painel_admin/imagens/apartamento.jpg" alt="Imóvel Kananda" id="viewImagem-100"/> <figcaption> <label for="cImagem-100" class="btn btn-primary btn-block ">Escolher arquivo</label> <input type="file" id="cImagem-100" class="ocultar" name="tImagem-100" onchange="readURL(this);"/>  </figcaption> </figure> </div>
+
                                 <div class="col-md-12 form-group">
-                                    <input type="hidden" name="qtd_fotos" value="1" id="qtd_fotos">
+                                    <input type="hidden" name="tQnt_fotos" value="1" id="iQnt_fotos">
                                     <span class="btn btn-primary btn-lg" onclick="add_imagem();">Adicionar foto</span> <strong class="font-bold">Quantidade de fotos atualmente: <span id="qnt_fotos"></span></strong>
                                 </div>
                                 <div id="fotos">
@@ -206,7 +224,7 @@
 
                 </form>
             </article><!--fim container-imoveis-->
-        </div> 
+        </div>
         <!--fim row-->
         <footer class="row clear" id="container-footer">
             <div class="col-xs-12">

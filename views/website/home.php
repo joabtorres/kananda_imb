@@ -8,19 +8,27 @@
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2" ></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3" ></li>
+                <li data-target="#carousel-example-generic" data-slide-to="4" ></li>
 
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_01.jpg" class="img-responsive" alt="...">
+                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_01.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
                 </div>
                 <div class="item">
-                    <img src="holder.js/100px440" class="img-responsive" alt="...">
+                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_02.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
                 </div>
                 <div class="item">
-                    <img src="holder.js/100px440" class="img-responsive" alt="...">
+                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_03.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
+                </div>
+                <div class="item">
+                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_04.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
+                </div>
+                <div class="item">
+                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_05.jpg" class="img-responsive"alt="Kananda Negócios Imobiliários - website">
                 </div>
             </div>
 
@@ -52,7 +60,7 @@
         <div class="thumbnail">
             <div class="dest-img">
                 <a data-toggle="modal" data-target=".bs-casa-modal">
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_casa.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Casa
                     </h4>
                 </a>
@@ -63,8 +71,8 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a >
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
+                <a data-toggle="modal" data-target=".bs-casa-modal" >
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_terreno.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Terrenos
                     </h4>
                 </a>
@@ -75,8 +83,8 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a >
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
+                <a data-toggle="modal" data-target=".bs-casa-modal">
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_empreendimento.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Empreendimentos
                     </h4>
                 </a>
@@ -87,8 +95,8 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a >
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
+                <a data-toggle="modal" data-target=".bs-casa-modal">
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_ponto_comercial.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Ponto Comercial
                     </h4>
                 </a>
