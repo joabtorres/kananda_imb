@@ -1,9 +1,9 @@
 <?php
 
 /**
- * imoveisController - [TIPO]
+ * imoveisController - [CONTROLLER REFERENTE AOS IMOVEIS]
  *
- * Descricao:
+ * Descricao: Classe responsável para controlar ações referente ao imóvel
  *
  * @author Joab Torres Alencar
  *
@@ -36,26 +36,10 @@ class imoveisController extends controller {
             $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
             $imovel['categoria'] = addslashes($_POST['tCategoria']);
             $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
-            if (isset($_POST['tQuarto']) && !empty($_POST['tQuarto'])) {
-                $imovel['quarto'] = addslashes($_POST['tQuarto']);
-            } else {
-                $imovel['quarto'] = 0;
-            }
-            if (isset($_POST['tBanheiro']) && !empty($_POST['tBanheiro'])) {
-                $imovel['banheiro'] = addslashes($_POST['tBanheiro']);
-            } else {
-                $imovel['banheiro'] = 0;
-            }
-            if (isset($_POST['tSuite']) && !empty($_POST['tSuite'])) {
-                $imovel['suite'] = addslashes($_POST['tSuite']);
-            } else {
-                $imovel['suite'] = 0;
-            }
-            if (isset($_POST['tGarage']) && !empty($_POST['tGarage'])) {
-                $imovel['garagem'] = addslashes($_POST['tGarage']);
-            } else {
-                $imovel['garagem'] = 0;
-            }
+            $imovel['quarto'] = (isset($_POST['tQuarto']) && !empty($_POST['tQuarto'])) ? addslashes($_POST['tQuarto']) : 0;
+            $imovel['banheiro'] = (isset($_POST['tBanheiro']) && !empty($_POST['tBanheiro'])) ? addslashes($_POST['tBanheiro']) : 0;
+            $imovel['suite'] = (isset($_POST['tSuite']) && !empty($_POST['tSuite'])) ? addslashes($_POST['tSuite']) : 0;
+            $imovel['garagem'] = (isset($_POST['tGarage']) && !empty($_POST['tGarage'])) ? addslashes($_POST['tGarage']) : 0;
             $imovel['largura'] = addslashes($_POST['tLargura']);
             $imovel['comprimento'] = addslashes($_POST['tComprimento']);
             $imovel['area_total'] = addslashes($_POST['tAreaTotal']);
@@ -102,33 +86,80 @@ class imoveisController extends controller {
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
             $indice = ($pagina_atual - 1) * $limite;
 
-            $imovel['qtd'] = $indice;
-            $imovel['limite'] = $limite;
+            $imovel['limite_inicio'] = $indice;
+            $imovel['limite_qtd'] = $limite;
+
             $dados["paginas"] = $paginas;
             $dados["pagina_atual"] = $pagina_atual;
-            $dados["imoveis"] = $imoveisModal->listar($imovel);
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel);
             $this->loadTemplate($viewName, $dados);
         }
     }
 
     public function editar($id = array()) {
-        if ($this->checkUser() && isset($id) && !empty($id)) {
+        $this->checkUser();
+        $imoveisModal = new Imoveis();
+        if (isset($id) && !empty($id) && $imoveisModal->listar_imovel($id)) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_editar");
-            $imoveisModal = new Imoveis();
+            $dados["imoveis"] = $imoveisModal->listar_imovel(addslashes($id));
+            $dados["imagens"] = $imoveisModal->listar_imagens(addslashes($id));
 
-            $imovel = array();
-            $imovel['cod'] = $id;
-            $dados["imoveis"] = $imoveisModal->listar($imovel);
 
-            if (isset($_FILES['tImagem-100']) && !empty($_FILES['tImagem-100'])) {
-                print_r($_FILES['tImagem-100']) ;
-                exit;
+            if (isset($_POST['nSalvar']) && !empty($_POST['nSalvar'])) {
+                $imovel = array();
+                $imovel['cod'] = addslashes($_POST['nCod']);
+                $imovel['data'] = date("Y-m-d");
+                $imovel['referencia'] = addslashes($_POST['nReferencia']);
+                $imovel['status'] = addslashes($_POST['tOcuta']);
+                $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
+                $imovel['categoria'] = addslashes($_POST['tCategoria']);
+                $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
+                $imovel['quarto'] = (isset($_POST['tQuarto']) && !empty($_POST['tQuarto'])) ? addslashes($_POST['tQuarto']) : 0;
+                $imovel['banheiro'] = (isset($_POST['tBanheiro']) && !empty($_POST['tBanheiro'])) ? addslashes($_POST['tBanheiro']) : 0;
+                $imovel['suite'] = (isset($_POST['tSuite']) && !empty($_POST['tSuite'])) ? addslashes($_POST['tSuite']) : 0;
+                $imovel['garagem'] = (isset($_POST['tGarage']) && !empty($_POST['tGarage'])) ? addslashes($_POST['tGarage']) : 0;
+                $imovel['largura'] = addslashes($_POST['tLargura']);
+                $imovel['comprimento'] = addslashes($_POST['tComprimento']);
+                $imovel['area_total'] = addslashes($_POST['tAreaTotal']);
+                $imovel['area_construida'] = addslashes($_POST['tAreaConstruida']);
+                $imovel['logradouro'] = addslashes($_POST['nLogradouro']);
+                $imovel['numero'] = addslashes($_POST['nNumero']);
+                $imovel['bairro'] = addslashes($_POST['nSelecionaBairro']);
+                $imovel['cidade'] = addslashes($_POST['nCidade']);
+                $imovel['complemento'] = addslashes($_POST['nComplemento']);
+                $imovel['latitude'] = addslashes($_POST['tLatitude']);
+                $imovel['longitude'] = addslashes($_POST['tLongitude']);
+                $imovel['complemento'] = addslashes($_POST['nComplemento']);
+                $imovel['valor'] = addslashes($_POST['nValor']);
+                $imovel['descricao'] = addslashes($_POST['tDescricao']);
+                if (isset($_FILES['tImagem-100']) && !empty($_FILES['tImagem-100']) && ($_FILES['tImagem-100']['error'] == 0)) {
+                    $imovel['imagem'] = $this->salvar_imagem(300, 170, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-100'], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
+                    if ($imovel['imagem'] && isset($_POST['nImagem-100']) && !empty($_POST['nImagem-100'])) {
+                        unlink($_POST['nImagem-100']);
+                    }
+                } else {
+                    $imovel['imagem'] = $_POST['nImagem-100'];
+                }
+                $imovel['imagens'] = array();
+                for ($i = 0; $i < addslashes($_POST["tQnt_fotos"]); $i++) {
+                    if (isset($_FILES['tImagem-' . ($i + 1)]) && !empty($_FILES['tImagem-' . ($i + 1)])) {
+                        $imovel["imagens"][$i] = $this->salvar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-' . ($i + 1)], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
+                        if ($imovel["imagens"][$i] && isset($_POST['nImagem-' . ($i + 1)]) && !empty($_POST['nImagem-' . ($i + 1)])) {
+                            unlink($_POST['nImagem-' . ($i + 1)]);
+                        }
+                    } else {
+                        $imovel["imagens"][$i] = $_POST['nImagem-' . ($i + 1)];
+                    }
+                }
+                if ($imoveisModal->salvar($imovel)) {
+                    header("Location: /painel_admin/imoveis/cadastrados");
+                }
             }
-            $this->loadTemplate($viewName, $dados);
         } else {
             header("Location: /painel_admin/home");
         }
+        $this->loadTemplate($viewName, $dados);
     }
 
     public function pesquisar() {

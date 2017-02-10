@@ -122,7 +122,6 @@
                                 <div class="form-group col-md-4">
                                     <label for="cSelecionaBairro">Bairro: </label>
                                     <select name="nSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
-                                        <option value="Todos" selected>Qualquer Bairro</option>
                                         <option value="Bela vista">Bela vista</option>
                                         <option value="Boa Esperança">Boa Esperança</option>
                                         <option value="Bom Jardim">Bom Jardim</option>
@@ -144,6 +143,7 @@
                                         <option value="Residencial Wirland Freire">Residencial Wirland Freire</option>
                                         <option value="Santo Antõnio">Santo Antõnio</option>
                                         <option value="São Francisco">São Francisco</option>
+                                        <option value="São Tome">São Tome</option>
                                         <option value="SÃO JOSÉ">São José</option>
                                         <option value="Vale do Tapajós">Vale do Tapajós</option>
                                         <option value="Valmirlândia">Valmirlândia</option>

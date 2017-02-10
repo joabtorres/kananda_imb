@@ -93,29 +93,30 @@ $(document).ready(function () {
 $(document).ready(function () {
     selecionaImovel = function () {
         var valor = $("#cSelecionaImovel").val();
-        $("#cCategoria option").addClass('ocultar');
+        console.log(valor);
+        $("#cCategoria option").css("display", "none");
         if (valor == "Casa") {
-            $(".ca").removeClass('ocultar');
+            $(".ca").css("display", "block");
         } else if (valor == 'Terreno') {
-            $(".te").removeClass('ocultar');
+            $(".te").css("display", "block");
         } else if (valor == 'Ponto Comercial') {
-            $(".pc").removeClass('ocultar');
+            $(".pc").css("display", "block");
         } else if (valor == 'Sala / Loja Comercial') {
-            $(".slc").removeClass('ocultar');
+            $(".slc").css("display", "block");
         } else if (valor == 'Loteamento') {
-            $(".lot").removeClass('ocultar');
+            $(".lot").css("display", "block");
         } else if (valor == 'Galpão / Barração') {
-            $(".gb").removeClass('ocultar');
+            $(".gb").css("display", "block");
         } else if (valor == 'Apartamento') {
-            $(".ap").removeClass('ocultar');
+            $(".ap").css("display", "block");
         } else if (valor == 'Kitnet') {
-            $(".kit").removeClass('ocultar');
+            $(".kit").css("display", "block");
         } else if (valor == 'Sítio / Chácara') {
-            $(".sch").removeClass('ocultar');
+            $(".sch").css("display", "block");
         } else if (valor == 'Lote / Fazenda') {
-            $(".lof").removeClass('ocultar');
+            $(".lof").css("display", "block");
         } else if (valor == 'Área Portuária') {
-            $(".ap").removeClass('ocultar');
+            $(".ap").css("display", "block");
         }
     };
     /**
@@ -126,9 +127,9 @@ $(document).ready(function () {
         var valor = $("#cSelecionaImovel").val();
         if (valor == 'Casa' || valor == 'Apartamento' || valor == 'Kitnet') {
             $(".o").addClass('ocultar');
-            $(".a").removeClass('ocultar');
+            $(".a").css("display", "block");
         } else {
-            $(".o").removeClass('ocultar');
+            $(".o").css("display", "block");
             $(".a").addClass('ocultar');
         }
     };
@@ -139,11 +140,11 @@ $(document).ready(function () {
         if ($(this).val() == '') {
             $("select option").removeAttr('disabled');
             $("#cBuscar02").removeAttr('disabled');
-            $('.aviso-de-busca').addClass('ocultar');
+            $('.aviso-de-busca').css("display", "none");
         } else {
             $("select option").attr('disabled', true);
             $("#cBuscar02").attr('disabled', true);
-            $('.aviso-de-busca').removeClass('ocultar');
+            $('.aviso-de-busca').css("display", "block");
         }
     });
     oculta_e_Desoculta();
