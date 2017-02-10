@@ -96,7 +96,7 @@ class imoveisController extends controller {
 
             $imovel = array();
             $limite = 6;
-            $total_registro = $imoveisModal->quantidade_Imoveis();
+            $total_registro = $imoveisModal->quantidade_imoveis();
             $paginas = $total_registro / $limite;
             $indice = 0;
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;

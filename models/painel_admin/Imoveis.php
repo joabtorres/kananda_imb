@@ -1,21 +1,23 @@
 <?php
 
 /**
- * Imoveis - [TIPO]
- *
- * Descricao:
- *
+ * Imoveis - [model]
+ * Descricao: A classe Imoveis é utilizada para conexão com o Banco de Dados, a onde são executo inserções, pesquisas, excluições e alterações
  * @author Joab Torres Alencar
- *
  * @copyright (c) 05/02/2017, Joab Torres Alencar -  Analista de Sistemas
  */
 class Imoveis extends model {
-
-    private $imoveis = array();
+    /*
+     * function cadastrar($imovel) [CADASTRAR IMOVEL]
+     * Descrição: é utilizada para efetua o cadastro do imovel 
+     * @param $imovel  - é um array contento todas as informações necessárias do imóvel
+     * @return retorna TRUE se o cadastro for concluido
+     * @author Joab Torres Alencar
+     */
 
     public function cadastrar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (referencia_imovel, status_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, valor_imovel, descricao_imovel, data_imovel, imagem_imovel)  VALUES (:referencia, :status, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :valor, :descricao, :data, :imagem)");
+        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (referencia_imovel, status_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:referencia, :status, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
         $sql->bindValue(":imovel", $imovel['imovel']);
@@ -29,17 +31,22 @@ class Imoveis extends model {
         $sql->bindValue(":comprimento", $imovel['comprimento']);
         $sql->bindValue(":area_total", $imovel['area_total']);
         $sql->bindValue(":area_construida", $imovel['area_construida']);
-        $sql->bindValue(":valor", $imovel['valor']);
-        $sql->bindValue(":descricao", $imovel['descricao']);
-        $sql->bindValue(":data", $imovel['data']);
         $sql->bindValue(":imagem", $imovel['imagem']);
+        $sql->bindValue(":data", $imovel['data']);
         $sql->execute();
 
+        //VERIFICANDO SE FOI SALVO O IMOVEL
         $sql = $this->db->prepare("SELECT COUNT(cod_imovel) FROM ka_imb_imovel WHERE cod_imovel = :cod");
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->execute();
 
         if ($sql->rowCount() > 0) {
+            //SALVANDO DESCRICAO
+            $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_descricao (cod_imovel, valor_descricao, descricao_descricao) VALUES (:cod, :valor, :descricao);");
+            $sql->bindValue(":cod", $imovel['cod']);
+            $sql->bindValue(":valor", $imovel['valor']);
+            $sql->bindValue(":descricao", $imovel['descricao']);
+            $sql->execute();
             //SALVANDO ENDEREÇO
             $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_endereco (cod_imovel, logradouro_endereco, numero_endereco, bairro_endereco, cidade_endereco, complemento_endereco, latitude_endereco, longitude_endereco) VALUES (:cod, :logradouro, :numero, :bairro, :cidade, :complemento, :latitude, :longitude)");
             $sql->bindValue(":cod", $imovel['cod']);
@@ -65,6 +72,13 @@ class Imoveis extends model {
         }
     }
 
+    /*
+     * function getCodigo() ['código do imóvel']
+     * Descricao: Recupera o último código do imóvel cadastrado
+     * @return retorna o valor do último codigo.
+     * @author Joab Torres Alencar
+     */
+
     public function getCodigo() {
         $sql = $this->db->query("SELECT cod_imovel FROM ka_imb_imovel ORDER BY cod_imovel DESC LIMIT 1");
         if ($sql->rowCount() > 0) {
@@ -74,7 +88,15 @@ class Imoveis extends model {
         }
     }
 
-    public function quantidade_Imoveis($condicao = array()) {
+    /*
+     * function quantidade_imoveis($condicao = array()) ['retorna a quantidade de imóveis]
+     * Descrição: É utilizada para retornar a quantidade  de imóveis registrados
+     * @param $condicao : São condições dos em buscar de uma categoria de imóveis especificos
+     * @return $quantidade
+     * @author Joab Torres Alencar
+     */
+
+    public function quantidade_imoveis($condicao = array()) {
         $quantidade = 0;
         if (isset($condicao) && !empty($condicao)) {
             return $quantidade;
@@ -88,6 +110,14 @@ class Imoveis extends model {
         }
     }
 
+    /*
+     * function listar($condicao) [LISTA DADOS DO IMOVEIS]
+     * Descricao: Está função tem como objetivo retorna uma lista dos imóveis
+     * @param $condicao - Informações espeficicas como critério de imoveis
+     * @return $imoveis - um array dos imóveis
+     * @autor
+     */
+
     public function listar($condicao) {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.logradouro_endereco,ka_imb_imovel_endereco.numero_endereco, ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco, ka_imb_imovel_endereco.complemento_endereco,ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel ";
@@ -98,7 +128,7 @@ class Imoveis extends model {
         }
 
         if (isset($condicao['qtd'])) {
-            $sql = $sql . " ORDER BY ka_imb_imovel.cod_imovel DESC LIMIT " . $condicao['qtd'] . " , ".$condicao['limite'];
+            $sql = $sql . " ORDER BY ka_imb_imovel.cod_imovel DESC LIMIT " . $condicao['qtd'] . " , " . $condicao['limite'];
         }
 
         $sql = $this->db->prepare($sql);
@@ -114,6 +144,14 @@ class Imoveis extends model {
         }
         return $imoveis;
     }
+
+    /*
+     * function listar_imagens($cod) [LISTA ALBUM DE IMAGENS DO IMÓVEL]
+     * Descricao: Retorna uma lista das imagens de um imóvel especifico; 
+     * @param $cod - Código do ímovel
+     * @return Array $imagens ou null
+     * @author Joab Torres Alencar
+     */
 
     public function listar_imagens($cod) {
         $sql = $this->db->prepare("SELECT imagem_imagem FROM ka_imb_imovel_imagem WHERE cod_imovel = :cod");
