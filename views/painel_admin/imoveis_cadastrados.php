@@ -90,10 +90,10 @@
                         <?php
                         echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/1'>&laquo;</a></li>";
                         for ($p = 0; $p <= $paginas; $p++) {
-                            if ($pagina_atual == ($p+1)) {
-                                echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p+1) . "'>" . ($p+1) . "</a></li>";
+                            if ($pagina_atual == ($p + 1)) {
+                                echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                             } else {
-                                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p+1) . "'>" . ($p+1) . "</a></li>";
+                                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                             }
                         }
 

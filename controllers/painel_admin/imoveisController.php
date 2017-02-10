@@ -101,13 +101,33 @@ class imoveisController extends controller {
             $indice = 0;
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
             $indice = ($pagina_atual - 1) * $limite;
-            
+
             $imovel['qtd'] = $indice;
             $imovel['limite'] = $limite;
             $dados["paginas"] = $paginas;
             $dados["pagina_atual"] = $pagina_atual;
             $dados["imoveis"] = $imoveisModal->listar($imovel);
             $this->loadTemplate($viewName, $dados);
+        }
+    }
+
+    public function editar($id = array()) {
+        if ($this->checkUser() && isset($id) && !empty($id)) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_editar");
+            $imoveisModal = new Imoveis();
+
+            $imovel = array();
+            $imovel['cod'] = $id;
+            $dados["imoveis"] = $imoveisModal->listar($imovel);
+
+            if (isset($_FILES['tImagem-100']) && !empty($_FILES['tImagem-100'])) {
+                print_r($_FILES['tImagem-100']) ;
+                exit;
+            }
+            $this->loadTemplate($viewName, $dados);
+        } else {
+            header("Location: /painel_admin/home");
         }
     }
 
