@@ -72,30 +72,6 @@ class imoveisController extends controller {
         $this->loadTemplate($viewName, $dados);
     }
 
-    public function cadastrados($page = array()) {
-        if ($this->checkUser()) {
-            $dados = array();
-            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_cadastrados");
-            $imoveisModal = new Imoveis();
-
-            $imovel = array();
-            $limite = 6;
-            $total_registro = $imoveisModal->quantidade_imoveis();
-            $paginas = $total_registro / $limite;
-            $indice = 0;
-            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-            $indice = ($pagina_atual - 1) * $limite;
-
-            $imovel['limite_inicio'] = $indice;
-            $imovel['limite_qtd'] = $limite;
-
-            $dados["paginas"] = $paginas;
-            $dados["pagina_atual"] = $pagina_atual;
-            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel);
-            $this->loadTemplate($viewName, $dados);
-        }
-    }
-
     public function editar($id = array()) {
         $this->checkUser();
         $imoveisModal = new Imoveis();
@@ -104,7 +80,6 @@ class imoveisController extends controller {
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_editar");
             $dados["imoveis"] = $imoveisModal->listar_imovel(addslashes($id));
             $dados["imagens"] = $imoveisModal->listar_imagens(addslashes($id));
-
 
             if (isset($_POST['nSalvar']) && !empty($_POST['nSalvar'])) {
                 $imovel = array();
@@ -160,6 +135,41 @@ class imoveisController extends controller {
             header("Location: /painel_admin/home");
         }
         $this->loadTemplate($viewName, $dados);
+    }
+
+    public function excluir($id) {
+        $this->checkUser();
+        if (!empty($id)) {
+            $imoveisModel = new Imoveis();
+            $imoveisModel->excluir(addslashes($id));
+            header("Location: /painel_admin/imoveis/cadastrados");
+        } else {
+            header("Location: /painel_admin/imoveis/cadastrados");
+        }
+    }
+
+    public function cadastrados($page = array()) {
+        if ($this->checkUser()) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_cadastrados");
+            $imoveisModal = new Imoveis();
+
+            $imovel = array();
+            $limite = 6;
+            $total_registro = $imoveisModal->quantidade_imoveis();
+            $paginas = $total_registro / $limite;
+            $indice = 0;
+            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+            $indice = ($pagina_atual - 1) * $limite;
+
+            $imovel['limite_inicio'] = $indice;
+            $imovel['limite_qtd'] = $limite;
+
+            $dados["paginas"] = $paginas;
+            $dados["pagina_atual"] = $pagina_atual;
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel);
+            $this->loadTemplate($viewName, $dados);
+        }
     }
 
     public function pesquisar() {

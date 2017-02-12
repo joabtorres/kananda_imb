@@ -236,4 +236,58 @@ class Imoveis extends model {
         }
     }
 
+    public function excluir($cod) {
+        $sql = $this->db->prepare('SELECT ka_imb_imovel.imagem_imovel FROM ka_imb_imovel WHERE cod_imovel = :cod');
+        $sql->bindValue(":cod", $cod);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            //exclui a imagem de destaque
+            $imagem = $sql->fetch();
+            $imagem = $imagem['imagem_imovel'];
+            $this->excluir_imagem($imagem);
+
+            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel WHERE cod_imovel = :cod");
+            $sql->bindValue(":cod", $cod);
+            $sql->execute();
+
+            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_endereco WHERE cod_imovel = :cod");
+            $sql->bindValue(":cod", $cod);
+            $sql->execute();
+
+            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_descricao WHERE cod_imovel = :cod");
+            $sql->bindValue(":cod", $cod);
+            $sql->execute();
+
+            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_visita WHERES cod_imovel = :cod");
+            $sql->bindValue(":cod", $cod);
+            $sql->execute();
+
+            $imagens = $this->listar_imagens($cod);
+            if (count($imagens) > 0) {
+                foreach ($imagens as $imagem) {
+                    $this->excluir_imagem($imagem['imagem_imagem']);
+                }
+                $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_imagem WHERE  cod_imovel = :cod");
+                $sql->bindValue(":cod", $cod);
+                $sql->execute();
+            }
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    private function excluir_imagem($imagem) {
+        if (file_exists($imagem)) {
+            unlink($imagem);
+            $nome_imagem = explode("/", $imagem);
+            $nome_imagem = end($nome_imagem);
+            $diretorio = explode("/" . $nome_imagem, $imagem);
+            $diretorio = $diretorio[0];
+            if (count(scandir($diretorio)) <= 2) {
+                rmdir($diretorio);
+            }
+        }
+    }
+
 }
