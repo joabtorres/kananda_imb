@@ -72,7 +72,7 @@
 
 
                                     <li><hr></li>
-                                    <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> 30 visualizações</li>
+                                    <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> <?php echo $imovel['quantidade_visita']?> visualizações</li>
                                     <li><hr></li>
                                     <li><a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/editar/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-success btn-block">Editar</a></li>
                                     <li><hr></li>

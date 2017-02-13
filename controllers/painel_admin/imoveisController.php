@@ -178,8 +178,9 @@ class imoveisController extends controller {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * public cadastrados($page) [LISTA IMÓVEIS]
+     * Descrição:Lista todos os imóveis cadastrados sem nenhuma restrinção
+     * @param int $page : página atual acessada
      * @author Joab Torres Alencar
      */
 

@@ -178,7 +178,7 @@ class Imoveis extends model {
 
     public function listar_imoveis($condicao) {
         $imoveis = array();
-        $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel";
+        $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel";
         foreach ($condicao as $indice => $valor) {
             if ($indice != "limite_inicio" && $indice != "limite_qtd") {
                 $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
