@@ -13,6 +13,10 @@ if (ENVIRONMENT == 'development') {
     $config['dbuser'] = 'root';
     $config['dbpass'] = '';
 } else {
-    define("BASE_URL", "http://kananda.imb.br");
+    define("BASE_URL", "http://dev.kananda.imb.br");
+    $config['dbname'] = 'endog103_kananda_dev';
+    $config['host'] = 'localhost';
+    $config['dbuser'] = 'endog103_ka_imb';
+    $config['dbpass'] = 'dK.V{zA14vAM';
 }
 ?>

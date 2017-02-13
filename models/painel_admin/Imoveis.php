@@ -203,6 +203,14 @@ class Imoveis extends model {
         return $imoveis;
     }
 
+    /*
+     * function listar_imovel($id) [LISTA SOMENTE OS DADO DE UM IMÓVEL ESPECIFICO]
+     * Descrição: Está função é utilizada para consulta os dados de um imóvel especifico;
+     * @param $id : é referente ao codigo do imóvel.
+     * @return retorna os dados da consulta caso seja verdadeiro ou retorna null
+     * @author Joab Torres Alencar
+     */
+
     public function listar_imovel($id) {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.*, ka_imb_imovel_endereco.logradouro_endereco,ka_imb_imovel_endereco.numero_endereco, ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco, ka_imb_imovel_endereco.complemento_endereco,ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco, ka_imb_imovel_descricao.valor_descricao, ka_imb_imovel_descricao.descricao_descricao FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_descricao WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_descricao.cod_imovel AND ka_imb_imovel.cod_imovel = :cod ;";
@@ -235,6 +243,14 @@ class Imoveis extends model {
             return null;
         }
     }
+
+    /*
+     * function excluir($cod) [REMOVE TODOS OS DADOS DO IMÓVEL]
+     * Descrição: Função utilizada para excluir todos os dados relacionado a um imóvel.
+     * @param $cod : é código registrado do imóvel no banco de dados
+     * @return TRUE [CASO DE SUCESSO] ou FALSE[CASO NÃO ENCONTRE O IMOVEL]
+     * @Author Joab Torres Alencar
+     */
 
     public function excluir($cod) {
         $sql = $this->db->prepare('SELECT ka_imb_imovel.imagem_imovel FROM ka_imb_imovel WHERE cod_imovel = :cod');
@@ -276,6 +292,13 @@ class Imoveis extends model {
             return FALSE;
         }
     }
+
+    /*
+     * function excluir_imagem($imagem)
+     * Descrição: Está é uma função privada utilizada para remove uma imagem e remove o diretório caso não mais nenhum arquivos salvo
+     * @param $imagem : É a url da imagem
+     * @author Joab Torres Alencar
+     */
 
     private function excluir_imagem($imagem) {
         if (file_exists($imagem)) {

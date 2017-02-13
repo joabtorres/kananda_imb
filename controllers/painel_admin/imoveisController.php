@@ -10,10 +10,21 @@
  * @copyright (c) 05/02/2017, Joab Torres Alencar -  Analista de Sistemas
  */
 class imoveisController extends controller {
+    /*
+     * public index() [TIPO]
+     * Descrição: Utilizada para controle de URL, carrega a função mais_visitados;
+     * @author Joab Torres Alencar
+     */
 
     public function index() {
         $this->mais_visitados();
     }
+
+    /*
+     * public mais_visitados() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
 
     public function mais_visitados() {
         $this->checkUser();
@@ -21,6 +32,12 @@ class imoveisController extends controller {
         $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_mais_visitados");
         $this->loadTemplate($viewName, $dados);
     }
+
+    /*
+     * public cadastrar() [CADASTRAR IMOVEL]
+     * Descrição: 
+     * @author Joab Torres Alencar
+     */
 
     public function cadastrar() {
         $this->checkUser();
@@ -71,6 +88,12 @@ class imoveisController extends controller {
 
         $this->loadTemplate($viewName, $dados);
     }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
 
     public function editar($id = array()) {
         $this->checkUser();
@@ -137,6 +160,12 @@ class imoveisController extends controller {
         $this->loadTemplate($viewName, $dados);
     }
 
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
+
     public function excluir($id) {
         $this->checkUser();
         if (!empty($id)) {
@@ -147,6 +176,12 @@ class imoveisController extends controller {
             header("Location: /painel_admin/imoveis/cadastrados");
         }
     }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
 
     public function cadastrados($page = array()) {
         if ($this->checkUser()) {
@@ -172,17 +207,35 @@ class imoveisController extends controller {
         }
     }
 
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
+
     public function pesquisar() {
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_pesquisar");
         $this->loadTemplate($viewName, $dados);
     }
 
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
+
     public function ocultos() {
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_ocultos");
         $this->loadTemplate($viewName, $dados);
     }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
 
     private function salvar_imagem($largura, $altura, $imovel) {
         $imagem = array();
@@ -221,6 +274,12 @@ class imoveisController extends controller {
             return null;
         }
     }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
 
     private function sintetizaString($str) {
         $str = preg_replace('/[áàãâä]/ui', 'a', $str);
