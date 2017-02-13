@@ -218,7 +218,7 @@
                     <section class="row">
                         <article class="col-md-12">
                             <input type="submit" class="btn btn-success" value="Salvar"/>
-                            <input type="reset" class="btn btn-danger " value="Cancelar"/>
+                            <a class="btn btn-danger" href="<?php echo BASE_URL?>/painel_admin/imoveis/cadastrados"/>Cancelar</a>
                         </article>
                     </section>
 
