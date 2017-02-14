@@ -72,7 +72,7 @@
 
 
                                     <li><hr></li>
-                                    <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> <?php echo $imovel['quantidade_visita']?> visualizações</li>
+                                    <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> <?php echo $imovel['quantidade_visita'] ?> visualizações</li>
                                     <li><hr></li>
                                     <li><a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/editar/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-success btn-block">Editar</a></li>
                                     <li><hr></li>
@@ -85,22 +85,28 @@
                     </section><!-- FIM IMOVEL -->
                 <?php endforeach; ?>
                 <!--PAGINACAO-->
-                <div class="col-xs-12">
-                    <ul class="pagination">
-                        <?php
-                        echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/1'>&laquo;</a></li>";
-                        for ($p = 0; $p <= $paginas; $p++) {
-                            if ($pagina_atual == ($p + 1)) {
-                                echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
-                            } else {
-                                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
+                <?php
+                if (count($imoveis) > 0) :
+                    ?>
+                    <div class="col-xs-12">
+                        <ul class="pagination">
+                            <?php
+                            echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/1'>&laquo;</a></li>";
+                            for ($p = 0; $p <= $paginas; $p++) {
+                                if ($pagina_atual == ($p + 1)) {
+                                    echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
+                                } else {
+                                    echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
+                                }
                             }
-                        }
 
-                        echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ceil($paginas) . "'>&raquo;</a></li>";
-                        ?>
-                    </ul>
-                </div>
+                            echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/cadastrados/" . ceil($paginas) . "'>&raquo;</a></li>";
+                            ?>
+                        </ul>
+                    </div>  
+                    <?php
+                endif;
+                ?> 
                 <!--PAGINACAO-->
             </article>
             <!--fim container-imoveis-->
@@ -129,12 +135,12 @@ foreach ($imoveis as $imovel):
                     <h4 class="modal-title">Deseja excluir este imóvel?</h4>
                 </header>
                 <article class="modal-body">
-                    
+
                     <p class="text-justify title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
                         <br>
                         <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
                     </p>
-                    
+
                 </article>
                 <footer class="modal-footer">
                     <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/excluir/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-danger">Excluir</a>

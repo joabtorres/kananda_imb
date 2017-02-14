@@ -73,12 +73,12 @@ class imoveisController extends controller {
             $imovel['descricao'] = addslashes($_POST['tDescricao']);
 
             if (isset($_FILES['tImagem-100']) && !empty($_FILES['tImagem-100'])) {
-                $imovel['imagem'] = $this->salvar_imagem(300, 170, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-100'], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
+                $imovel['imagem'] = $_FILES['tImagem-100'];
             }
             $imovel['imagens'] = array();
             for ($i = 0; $i < addslashes($_POST["tQnt_fotos"]); $i++) {
                 if (isset($_FILES['tImagem-' . ($i + 1)]) && !empty($_FILES['tImagem-' . ($i + 1)])) {
-                    $imovel["imagens"][$i] = $this->salvar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-' . ($i + 1)], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
+                    $imovel["imagens"][$i] = $_FILES['tImagem-' . ($i + 1)];
                 }
             }
             if ($imoveisModal->cadastrar($imovel)) {
@@ -132,20 +132,24 @@ class imoveisController extends controller {
                 $imovel['valor'] = addslashes($_POST['nValor']);
                 $imovel['descricao'] = addslashes($_POST['tDescricao']);
                 if (isset($_FILES['tImagem-100']) && !empty($_FILES['tImagem-100']) && ($_FILES['tImagem-100']['error'] == 0)) {
-                    $imovel['imagem'] = $this->salvar_imagem(300, 170, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-100'], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
-                    if ($imovel['imagem'] && isset($_POST['nImagem-100']) && !empty($_POST['nImagem-100'])) {
+                    $imovel['imagem'] = $_FILES['tImagem-100'];
+                    if ($imovel['imagem'] && isset($_POST['nImagem-100']) && !empty($_POST['nImagem-100']) && ($_POST['nImagem-100'] != "Array")) {
                         unlink($_POST['nImagem-100']);
+                        $nome_imagem = explode("/", $_POST['nImagem-100']);
+                        $nome_imagem = end($nome_imagem);
+                        $diretorio = explode("/" . $nome_imagem, $_POST['nImagem-100']);
+                        $diretorio = $diretorio[0];
+                        if (count(scandir($diretorio)) <= 2) {
+                            rmdir($diretorio);
+                        }
                     }
                 } else {
                     $imovel['imagem'] = $_POST['nImagem-100'];
                 }
                 $imovel['imagens'] = array();
                 for ($i = 0; $i < addslashes($_POST["tQnt_fotos"]); $i++) {
-                    if (isset($_FILES['tImagem-' . ($i + 1)]) && !empty($_FILES['tImagem-' . ($i + 1)])) {
-                        $imovel["imagens"][$i] = $this->salvar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $_FILES['tImagem-' . ($i + 1)], "referencia" => $_POST['nReferencia'], "imovel" => $_POST['tSelecionaImovel'], "finalidade" => $_POST['tFinalidade']));
-                        if ($imovel["imagens"][$i] && isset($_POST['nImagem-' . ($i + 1)]) && !empty($_POST['nImagem-' . ($i + 1)])) {
-                            unlink($_POST['nImagem-' . ($i + 1)]);
-                        }
+                    if (isset($_FILES['tImagem-' . ($i + 1)]) && !empty($_FILES['tImagem-' . ($i + 1)]) && ($_FILES['tImagem-' . ($i + 1)]['error'] == 0)) {
+                        $imovel["imagens"][$i] = $_FILES['tImagem-' . ($i + 1)];
                     } else {
                         $imovel["imagens"][$i] = $_POST['nImagem-' . ($i + 1)];
                     }
@@ -230,69 +234,6 @@ class imoveisController extends controller {
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_ocultos");
         $this->loadTemplate($viewName, $dados);
-    }
-
-    /*
-     * public index() [TIPO]
-     * Descrição:
-     * @author Joab Torres Alencar
-     */
-
-    private function salvar_imagem($largura, $altura, $imovel) {
-        $imagem = array();
-        $imagem['temp'] = $imovel['imagem']['tmp_name'];
-        $imagem['extensao'] = explode('.', $imovel['imagem']['name']);
-        $imagem['extensao'] = strtolower(end($imagem['extensao']));
-        $imovel['finalidade'] = strtolower($this->sintetizaString($imovel['finalidade']));
-        $imovel['imovel'] = strtolower($this->sintetizaString($imovel['imovel']));
-        $imagem['diretorio'] = "uploads/imovel/" . $imovel['cod'] . "_" . $imovel["referencia"];
-        $imagem['name'] = "kananda_imobiliaria_" . $imovel['imovel'] . "_" . $imovel['finalidade'] . "_" . md5(rand(10000, 90000) . time()) . "." . $imagem['extensao'];
-        if ($imagem['extensao'] == 'jpg' || $imagem['extensao'] == 'jpeg' || $imagem['extensao'] == 'png') {
-            if (!file_exists($imagem['diretorio'])) {
-                mkdir($imagem['diretorio'], 0777, TRUE);
-            }
-            list($larguraOriginal, $alturaOriginal) = getimagesize($imagem['temp']);
-            $ratio = $larguraOriginal / $alturaOriginal;
-            if ($largura / $altura > $ratio) {
-                $largura = $altura * $ratio;
-            } else {
-                $altura = $largura / $ratio;
-            }
-
-            $imagem_final = imagecreatetruecolor($largura, $altura);
-
-            if ($imagem['extensao'] == 'jpg' || $imagem['extensao'] == 'jpeg') {
-                $imagem_original = imagecreatefromjpeg($imagem['temp']);
-                imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura, $altura, $larguraOriginal, $alturaOriginal);
-                imagejpeg($imagem_final, $imagem['diretorio'] . "/" . $imagem['name'], 90);
-            } else if ($imagem['extensao'] == 'png') {
-                $imagem_original = imagecreatefrompng($imagem['temp']);
-                imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura, $altura, $larguraOriginal, $alturaOriginal);
-                imagepng($imagem_final, $imagem['diretorio'] . "/" . $imagem['name']);
-            }
-            return $imagem['diretorio'] . "/" . $imagem['name'];
-        } else {
-            return null;
-        }
-    }
-
-    /*
-     * public index() [TIPO]
-     * Descrição:
-     * @author Joab Torres Alencar
-     */
-
-    private function sintetizaString($str) {
-        $str = preg_replace('/[áàãâä]/ui', 'a', $str);
-        $str = preg_replace('/[éèêë]/ui', 'e', $str);
-        $str = preg_replace('/[íìîï]/ui', 'i', $str);
-        $str = preg_replace('/[óòõôö]/ui', 'o', $str);
-        $str = preg_replace('/[úùûü]/ui', 'u', $str);
-        $str = preg_replace('/[ç]/ui', 'c', $str);
-        // $str = preg_replace('/[,(),;:|!"#$%&/=?~^><ªº-]/', '_', $str);
-        $str = preg_replace('/[^a-z0-9]/i', '_', $str);
-        $str = preg_replace('/_+/', '_', $str); // ideia do Bacco :)
-        return $str;
     }
 
 }

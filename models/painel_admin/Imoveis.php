@@ -17,7 +17,8 @@ class Imoveis extends model {
 
     public function cadastrar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (referencia_imovel, status_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:referencia, :status, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
+        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (cod_imovel, referencia_imovel, status_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:cod, :referencia, :status, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
+        $sql->bindValue(":cod", $imovel['cod']);
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
         $sql->bindValue(":imovel", $imovel['imovel']);
@@ -31,12 +32,11 @@ class Imoveis extends model {
         $sql->bindValue(":comprimento", $imovel['comprimento']);
         $sql->bindValue(":area_total", $imovel['area_total']);
         $sql->bindValue(":area_construida", $imovel['area_construida']);
-        $sql->bindValue(":imagem", $imovel['imagem']);
+        $sql->bindValue(":imagem", $this->criar_imagem(300, 170, array("cod" => $imovel['cod'], "imagem" => $imovel['imagem'], "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade'])));
         $sql->bindValue(":data", $imovel['data']);
         $sql->execute();
-
         //VERIFICANDO SE FOI SALVO O IMOVEL
-        $sql = $this->db->prepare("SELECT COUNT(cod_imovel) FROM ka_imb_imovel WHERE cod_imovel = :cod");
+        $sql = $this->db->prepare("SELECT cod_imovel FROM ka_imb_imovel WHERE cod_imovel = :cod");
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->execute();
 
@@ -62,10 +62,14 @@ class Imoveis extends model {
             foreach ($imovel['imagens'] as $imagem) {
                 $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_imagem (cod_imovel, imagem_imagem) VALUES (:cod, :imagem)");
                 $sql->bindValue(":cod", $imovel['cod']);
-                $sql->bindValue(":imagem", $imagem);
+                $sql->bindValue(":imagem", $this->criar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $imagem, "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade'])));
                 $sql->execute();
             }
-
+            //SALVANDO VISITAS
+            $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_visita (cod_imovel, quantidade_visita) VALUES (:cod, :quantidade)");
+            $sql->bindValue(":cod", $imovel['cod']);
+            $sql->bindValue(":quantidade", 0);
+            $sql->execute();
             return true;
         } else {
             return false;
@@ -88,13 +92,17 @@ class Imoveis extends model {
         $sql->bindValue(":comprimento", $imovel['comprimento']);
         $sql->bindValue(":area_total", $imovel['area_total']);
         $sql->bindValue(":area_construida", $imovel['area_construida']);
-        $sql->bindValue(":imagem", $imovel['imagem']);
+        if (is_array($imovel['imagem'])) {
+            $sql->bindValue(":imagem", $this->criar_imagem(300, 170, array("cod" => $imovel['cod'], "imagem" => $imovel['imagem'], "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade'])));
+        } else {
+            $sql->bindValue(":imagem", $imovel['imagem']);
+        }
         $sql->bindValue(":data", $imovel['data']);
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->execute();
 
         //VERIFICANDO SE FOI SALVO O IMOVEL
-        $sql = $this->db->prepare("SELECT COUNT(cod_imovel) FROM ka_imb_imovel WHERE cod_imovel = :cod");
+        $sql = $this->db->prepare("SELECT cod_imovel FROM ka_imb_imovel WHERE cod_imovel = :cod");
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->execute();
 
@@ -117,10 +125,23 @@ class Imoveis extends model {
             $sql->bindValue(":cod", $imovel['cod']);
             $sql->execute();
             //SALVANDO FOTOS
-            foreach ($imovel['imagens'] as $imagem) {
-                $sql = $this->db->prepare("UPDATE ka_imb_imovel_imagem SET imagem_imagem = :imagem WHERE cod_imovel = :cod");
-                $sql->bindValue(":imagem", $imagem);
+            $imagens = $this->listar_imagens($imovel['cod']);
+            if (count($imagens) > 0) {
+                foreach ($imagens as $imagem) {
+                    $this->excluir_imagem($imagem['imagem_imagem']);
+                }
+                $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_imagem WHERE  cod_imovel = :cod");
                 $sql->bindValue(":cod", $imovel['cod']);
+                $sql->execute();
+            }
+            foreach ($imovel['imagens'] as $imagem) {
+                $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_imagem (cod_imovel, imagem_imagem) VALUES (:cod, :imagem)");
+                $sql->bindValue(":cod", $imovel['cod']);
+                if (is_array($imagem)) {
+                    $sql->bindValue(":imagem", $this->criar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $imagem, "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade'])));
+                } else {
+                    $sql->bindValue(":imagem", $imagem);
+                }
                 $sql->execute();
             }
 
@@ -178,7 +199,7 @@ class Imoveis extends model {
 
     public function listar_imoveis($condicao) {
         $imoveis = array();
-        $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel";
+        $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel AND ka_imb_imovel_endereco.cod_imovel=ka_imb_imovel_visita.cod_imovel";
         foreach ($condicao as $indice => $valor) {
             if ($indice != "limite_inicio" && $indice != "limite_qtd") {
                 $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
@@ -188,7 +209,6 @@ class Imoveis extends model {
         if (isset($condicao['limite_inicio'])) {
             $sql = $sql . " ORDER BY ka_imb_imovel.cod_imovel DESC LIMIT " . $condicao['limite_inicio'] . " , " . $condicao['limite_qtd'];
         }
-
         $sql = $this->db->prepare($sql);
         foreach ($condicao as $indice => $valor) {
             if ($indice != "limite_inicio" && $indice != "limite_qtd") {
@@ -274,7 +294,7 @@ class Imoveis extends model {
             $sql->bindValue(":cod", $cod);
             $sql->execute();
 
-            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_visita WHERES cod_imovel = :cod");
+            $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_visita WHERE cod_imovel = :cod");
             $sql->bindValue(":cod", $cod);
             $sql->execute();
 
@@ -287,9 +307,54 @@ class Imoveis extends model {
                 $sql->bindValue(":cod", $cod);
                 $sql->execute();
             }
+
             return TRUE;
         } else {
             return FALSE;
+        }
+    }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
+
+    private function criar_imagem($largura, $altura, $imovel) {
+        $imagem = array();
+        $imagem['temp'] = $imovel['imagem']['tmp_name'];
+        $imagem['extensao'] = explode('.', $imovel['imagem']['name']);
+        $imagem['extensao'] = strtolower(end($imagem['extensao']));
+        $imovel['finalidade'] = strtolower($this->sintetizaString($imovel['finalidade']));
+        $imovel['imovel'] = strtolower($this->sintetizaString($imovel['imovel']));
+        $imagem['diretorio'] = "uploads/imovel/" . $imovel['cod'] . "_" . $imovel["referencia"];
+        $imagem['name'] = "kananda_imobiliaria_" . $imovel['imovel'] . "_" . $imovel['finalidade'] . "_" . md5(rand(10000, 90000) . time()) . "." . $imagem['extensao'];
+        if ($imagem['extensao'] == 'jpg' || $imagem['extensao'] == 'jpeg' || $imagem['extensao'] == 'png') {
+            if (!file_exists($imagem['diretorio'])) {
+                mkdir($imagem['diretorio'], 0777, TRUE);
+            }
+            list($larguraOriginal, $alturaOriginal) = getimagesize($imagem['temp']);
+            $ratio = $larguraOriginal / $alturaOriginal;
+            if ($largura / $altura > $ratio) {
+                $largura = $altura * $ratio;
+            } else {
+                $altura = $largura / $ratio;
+            }
+
+            $imagem_final = imagecreatetruecolor($largura, $altura);
+
+            if ($imagem['extensao'] == 'jpg' || $imagem['extensao'] == 'jpeg') {
+                $imagem_original = imagecreatefromjpeg($imagem['temp']);
+                imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura, $altura, $larguraOriginal, $alturaOriginal);
+                imagejpeg($imagem_final, $imagem['diretorio'] . "/" . $imagem['name'], 90);
+            } else if ($imagem['extensao'] == 'png') {
+                $imagem_original = imagecreatefrompng($imagem['temp']);
+                imagecopyresampled($imagem_final, $imagem_original, 0, 0, 0, 0, $largura, $altura, $larguraOriginal, $alturaOriginal);
+                imagepng($imagem_final, $imagem['diretorio'] . "/" . $imagem['name']);
+            }
+            return $imagem['diretorio'] . "/" . $imagem['name'];
+        } else {
+            return null;
         }
     }
 
@@ -311,6 +376,25 @@ class Imoveis extends model {
                 rmdir($diretorio);
             }
         }
+    }
+
+    /*
+     * public index() [TIPO]
+     * Descrição:
+     * @author Joab Torres Alencar
+     */
+
+    private function sintetizaString($str) {
+        $str = preg_replace('/[áàãâä]/ui', 'a', $str);
+        $str = preg_replace('/[éèêë]/ui', 'e', $str);
+        $str = preg_replace('/[íìîï]/ui', 'i', $str);
+        $str = preg_replace('/[óòõôö]/ui', 'o', $str);
+        $str = preg_replace('/[úùûü]/ui', 'u', $str);
+        $str = preg_replace('/[ç]/ui', 'c', $str);
+        // $str = preg_replace('/[,(),;:|!"#$%&/=?~^><ªº-]/', '_', $str);
+        $str = preg_replace('/[^a-z0-9]/i', '_', $str);
+        $str = preg_replace('/_+/', '_', $str); // ideia do Bacco :)
+        return $str;
     }
 
 }

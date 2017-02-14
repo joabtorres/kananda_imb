@@ -24,7 +24,7 @@
                             <form method="POST">
                                 <div class="form-group">
                                     <label for="cEmail">E-mail: </label>
-                                    <input type="email" name="tEmail" id="cEmail" class="form-control" placeholder="email@exemplo.com.br"/>
+                                    <input type="email" name="tEmail" id="cEmail" class="form-control" placeholder="email@exemplo.com.br" autofocus="true"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="cSenha">Senha:</label>

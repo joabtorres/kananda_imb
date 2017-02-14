@@ -3,7 +3,7 @@
 class core {
 
     public function run() {
-        $url = $_GET['url'];
+        $url = (isset($_GET['url']) && !empty($_GET['url'])) ? $_GET['url']: "";
         $params = array();
 
         if (!empty($url) && $url != '/') {
