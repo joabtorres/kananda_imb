@@ -205,7 +205,10 @@ class Imoveis extends model {
     /*
      * function listar($condicao) [LISTA DADOS DO IMOVEIS]
      * Descricao: Está função tem como objetivo retorna uma lista dos imóveis
-     * @param $condicao - Informações espeficicas como critério de imoveis
+     * @param $serach_imovel - Informações espeficicas como critério de imoveis
+     * @param int limite_inicio - limite inicial
+     * @param int $limite_qtd - limite final
+     * @param string $ordem - Ordem descrecente dos resultados
      * @return $imoveis - um array dos imóveis
      * @autor
      */

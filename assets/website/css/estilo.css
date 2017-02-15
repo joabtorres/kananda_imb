@@ -105,7 +105,7 @@ footer#rodape{
 .thumbnail  .dest-img a:hover{text-decoration:none;}
 .thumbnail .caption a{color: #005F7D; font-weight: bold; display: block;}
 .thumbnail .caption a:hover{color: #005F7D; text-decoration:none;}
-.thumbnail .dest-img .title-nome{font-weight:bold; margin-top: 10px;}
+.thumbnail .dest-img .title-nome{font-weight:bold; margin-top: 10px; }
 .thumbnail .dest-img .title-endereco{font-weight: normal;}
 .ic-qua, .ic-ba, .ic-gar, .ic-larg, .ic-comp, .ic-are{width: 18px;height: 16px; display:inline-block;}
 .ic-larg{background: url(../imagens/icones.png) -3px -3px no-repeat;}

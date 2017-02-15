@@ -111,101 +111,72 @@
         <h2 class="font-bold text-center text-uppercase title">Imóveis Em Destaques</h2>
         <div class="subl-title"></div>
     </article>
-    <!-- IMOVEL -->
-    <article class="col-md-3">
-        <div class="thumbnail">
-            <div class="dest-img">
-                <a href="<?php echo BASE_URL; ?>/imovel">
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
-                    <p class="text-center title-nome">Casa - Venda - Cod 101 	
-                        <br>
-                        <span class="title-endereco">Bela Vista, Itaituba - PA</span>
-                    </p>
-                </a>
-            </div>
-            <div class="caption">
-                <ul class="list-unstyled">
-                    <li><span class="ic-qua"></span> Quartos: 1</li>
-                    <li><span class="ic-ba"></span> Banheiros: 2</li>
-                    <li><span class="ic-gar"></span> Garagem: 4</li>
-                    <li><hr></li>
-                    <li><a href="<?php echo BASE_URL; ?>/imovel">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </article><!-- FIM IMOVEL -->
+    <?php foreach ($imoveis as $imovel) : ?>
+        <section class="col-md-3">
 
-    <!-- IMOVEL -->
-    <article class="col-md-3">
-        <div class="thumbnail">
-            <div class="dest-img">
-                <a href="<?php echo BASE_URL; ?>/imovel">
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
-                    <p class="text-center title-nome">Terreno - Venda - Cod 121 	
-                        <br>
-                        <span class="title-endereco">Bela Vista, Itaituba - PA</span>
-                    </p>
-                </a>
-            </div>
-            <div class="caption">
-                <ul class="list-unstyled">
-                    <li><span class="ic-are"></span> Área Total: 28 metros ²</li>
-                    <li><span class="ic-larg"></span> Largura: 7 metros</li>
-                    <li><span class="ic-comp"></span> Comprimeito: 4 metros</li>
-                    
-                    <li><hr></li>
-                    <li><a href="<?php echo BASE_URL; ?>/imovel">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </article><!-- FIM IMOVEL -->
-
-    <!-- IMOVEL -->
-    <article class="col-md-3">
-        <div class="thumbnail">
-            <div class="dest-img">
-                <a href="<?php echo BASE_URL; ?>/imovel">
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
-                    <p class="text-center title-nome">Apartamento - Alugar - Cod 101  	
-                        <br>
-                        <span class="title-endereco">Bela Vista, Itaituba - PA</span>
-                    </p>
-                </a>
-            </div>
-            <div class="caption">
-                <ul class="list-unstyled">
-                    <li><span class="ic-qua"></span> Suítes: 1</li>
-                    <li><span class="ic-ba"></span> Banheiros: 2</li>
-                    <li><span class="ic-gar"></span> Garagem: 4</li>
-                    <li><hr></li>
-                    <li><a href="<?php echo BASE_URL; ?>/imovel">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </article><!-- FIM IMOVEL -->
-    <!-- IMOVEL -->
-    <article class="col-md-3">
-        <div class="thumbnail">
-            <div class="dest-img">
-                <a href="<?php echo BASE_URL; ?>/imovel">
-                    <img src="holder.js/300x170" class="img-responsive" alt=""> 
-                    <p class="text-center title-nome">Sala / Loja Comercial - Venda - Cod 101 	
-                        <br>
-                        <span class="title-endereco">Bela Vista, Itaituba - PA</span>
-                    </p>
-                </a>
-            </div>
-            <div class="caption">
-                <ul class="list-unstyled">
-                    <li><span class="ic-larg"></span> Largura: 7 metros</li>
-                    <li><span class="ic-comp"></span> Comprimeito: 4 metros</li>
-                    <li><span class="ic-are"></span> Área Total: 28 metros ²</li>
-                    <li><hr></li>
-                    <li><a href="<?php echo BASE_URL; ?>/imovel">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </article><!-- FIM IMOVEL -->
+            <article class="thumbnail">
+                <header class="dest-img">
+                    <a href="<?php echo BASE_URL; ?>/imovel/index/<?php echo $imovel['cod_imovel'] ?>">
+                        <img src="<?php echo BASE_URL . "/" . $imovel['imagem_imovel']; ?>" class="img-responsive" alt="Kananda Imobiliaria <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>" title="Kananda Negócios Imobiliários - <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>">
+                        <p class="text-center title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                            <br>
+                            <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
+                        </p>
+                    </a>
+                </header>
+                <footer class="caption">
+                    <ul class="list-unstyled">
+                        <?php
+                        $quantide_descricao = 1;
+                        if ($imovel["quarto_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-qua"></span> Quartos: <?php echo $imovel['quarto_imovel'] ?></li>
+                            <?php
+                        endif;
+                        if ($quantide_descricao <= 3 && $imovel['suite_imovel'] && !$imovel['quarto_imovel']) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-qua"></span> Suites: <?php echo $imovel['suite_imovel'] ?></li>
+                            <?php
+                        endif;
+                        if ($imovel["banheiro_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-ba"></span> Banheiros: <?php echo $imovel['banheiro_imovel'] ?></li>
+                            <?php
+                        endif;
+                        if ($imovel["garagem_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-gar"></span> Garagem: <?php echo $imovel['garagem_imovel'] ?></li>
+                            <?php
+                        endif;
+                        if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-are"></span> Área Total: <?php echo $imovel['area_total_imovel']; ?></li>
+                            <?php
+                        endif;
+                        if ($imovel["largura_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-larg"></span> Largura: <?php echo $imovel['largura_imovel']; ?></li>
+                            <?php
+                        endif;
+                        if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) :
+                            ++$quantide_descricao;
+                            ?>
+                            <li><span class="ic-comp"></span> Comprimeito: <?php echo $imovel['comprimento_imovel']; ?></li>
+                        <?php endif;
+                        ?>
+                        <li><hr></li>
+                        <li><a href="<?php echo BASE_URL; ?>/imovel/index/<?php echo $imovel['cod_imovel'] ?>">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
+                    </ul>
+                </footer>
+            </article>
+        </section><!-- FIM IMOVEL -->
+    <?php endforeach; ?>
     <!-- FIM LISTA DE IMÓVEIS-->
 </section><!-- fim row -->
 
