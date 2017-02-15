@@ -7,7 +7,7 @@ class homeController extends controller {
         $viewName = array("diretorio" => "website", "view" => "home");
         $imoveis = new ImoveisView();
         $imovel = array();
-        $imovel['status'] = 1;
+        $imovel['status'] = 0;
         $dados['imoveis'] = $imoveis->listar_imoveis($imovel, 0, 4);
         $this->loadTemplate($viewName, $dados);
     }

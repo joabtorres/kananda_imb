@@ -217,8 +217,8 @@
                                 </div>
 
                                 <div class="col-md-12 form-group">
-                                    <input type="hidden" name="tQnt_fotos" value="1" id="iQnt_fotos">
-                                    <span class="btn btn-primary btn-lg" onclick="add_imagem();">Adicionar foto</span> <strong class="font-bold">Quantidade de fotos atualmente: <span id="qnt_fotos"></span></strong>
+                                    <input type="hidden" name="tQnt_fotos" value="<?php echo count($imagens)?>" id="iQnt_fotos" >
+                                    <span class="btn btn-primary btn-lg" onclick="add_imagem();">Adicionar foto</span> <strong class="font-bold">Quantidade de fotos atualmente: <span id="qnt_fotos"><?php echo count($imagens)?></span></strong>
                                 </div>
                                 <div id="fotos">
                                     <?php for ($i = count($imagens)-1; $i >= 0; $i--) : ?>

@@ -125,23 +125,42 @@ class Imoveis extends model {
             $sql->bindValue(":cod", $imovel['cod']);
             $sql->execute();
             //SALVANDO FOTOS
+            $imagens_atual_no_form = array();
+            
+            foreach ($imovel['imagens'] as $imagem) {
+                if (is_array($imagem)) {
+                    $imagens_atual_no_form[] = $this->criar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $imagem, "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade']));
+                } else {
+                    $imagens_atual_no_form[] = $imagem;
+                }
+            }
+            $imovel['imagens'] = $imagens_atual_no_form;
+
             $imagens = $this->listar_imagens($imovel['cod']);
             if (count($imagens) > 0) {
-                foreach ($imagens as $imagem) {
-                    $this->excluir_imagem($imagem['imagem_imagem']);
+                $imagens_atual_no_bd = array();
+                foreach ($imagens as $indice) {
+                    $imagens_atual_no_bd[] = $indice['imagem_imagem'];
                 }
-                $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_imagem WHERE  cod_imovel = :cod");
-                $sql->bindValue(":cod", $imovel['cod']);
-                $sql->execute();
+
+                //imagens que serao removidas
+                $imagens_removida = array_diff($imagens_atual_no_bd, $imagens_atual_no_form);
+                //imagens diferentes da atual inseridas
+                $imovel['imagens'] = array_diff($imagens_atual_no_form, $imagens_atual_no_bd);
+
+                foreach ($imagens_removida as $imagem) {
+                    $this->excluir_imagem($imagem);
+                    $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_imagem WHERE imagem_imagem = :imagem AND cod_imovel = :cod ");
+                    $sql->bindValue(':imagem', $imagem);
+                    $sql->bindValue(':cod', $imovel['cod']);
+                    $sql->execute();
+                }
             }
+
             foreach ($imovel['imagens'] as $imagem) {
                 $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_imagem (cod_imovel, imagem_imagem) VALUES (:cod, :imagem)");
                 $sql->bindValue(":cod", $imovel['cod']);
-                if (is_array($imagem)) {
-                    $sql->bindValue(":imagem", $this->criar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $imagem, "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade'])));
-                } else {
-                    $sql->bindValue(":imagem", $imagem);
-                }
+                $sql->bindValue(":imagem", $imagem);
                 $sql->execute();
             }
 

@@ -20,24 +20,23 @@ if (document.getElementById("cDescricao")) {
 var geocoder;
 var map;
 var marker;
-
 function initialize() {
-    var latlng = new google.maps.LatLng(-4.2639141, -55.998396);
+    if (document.getElementById("cLatitude").value != '' && document.getElementById("cLongitude").value != '') {
+        var latlng = new google.maps.LatLng(document.getElementById("cLatitude").value, document.getElementById("cLongitude").value);
+    } else {
+        var latlng = new google.maps.LatLng(-4.2639141, -55.998396);
+    }
     var options = {
         zoom: 14,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
     map = new google.maps.Map(document.getElementById("viewMapa"), options);
-
     geocoder = new google.maps.Geocoder();
-
     marker = new google.maps.Marker({
         map: map,
-        draggable: true,
+        draggable: true
     });
-
     marker.setPosition(latlng);
 }
 
@@ -50,11 +49,9 @@ $(document).ready(function () {
                     if (results[0]) {
                         var latitude = results[0].geometry.location.lat();
                         var longitude = results[0].geometry.location.lng();
-
                         $('#cEndereco').val(results[0].formatted_address);
                         $('#cLatitude').val(latitude);
                         $('#cLongitude').val(longitude);
-
                         var location = new google.maps.LatLng(latitude, longitude);
                         marker.setPosition(location);
                         map.setCenter(location);
@@ -63,17 +60,15 @@ $(document).ready(function () {
                 }
             });
         }
-
+        
         $("#btnEndereco").click(function () {
             if ($(this).val() !== "")
                 carregarNoMapa($("#txtEndereco").val());
         });
-
         $("#cEndereco").blur(function () {
             if ($(this).val() !== "")
                 carregarNoMapa($(this).val());
         });
-
         google.maps.event.addListener(marker, 'drag', function () {
             geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -93,7 +88,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     selecionaImovel = function () {
         var valor = $("#cSelecionaImovel").val();
-        console.log(valor);
         $("#cCategoria option").css("display", "none");
         if (valor == "Casa") {
             $(".ca").css("display", "block");
@@ -152,7 +146,6 @@ $(document).ready(function () {
     $("#cSelecionaImovel").on("change", selecionaImovel);
     $("#cSelecionaImovel").on("change", oculta_e_Desoculta);
 });
-
 /**
  * Adicionando novo campo para foto do imóvel
  */
@@ -161,7 +154,6 @@ if (document.getElementById("fotos")) {
     var qtd = $(".viewFotos").filter(function (idx) {
         return $(this);
     }).length;
-
     qtdImagem = function () {
         var qtd = $(".viewFotos").filter(function (idx) {
             return $(this);
@@ -181,7 +173,6 @@ if (document.getElementById("fotos")) {
             div = document.createElement("div");
             div.setAttribute("class", "form-group col-md-4 container-foto");
             div.setAttribute("id", "foto-" + qtd);
-
             figure = document.createElement("figure");
             figure.setAttribute("class", "viewFotos");
             p = document.createElement("p");
@@ -221,7 +212,6 @@ if (document.getElementById("fotos")) {
         qtd++;
         qtdImagem();
     };
-
     readURL = function (input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -232,7 +222,6 @@ if (document.getElementById("fotos")) {
             reader.readAsDataURL(input.files[0]);
         }
     };
-
     remover_foto = function (obj) {
         var foto = $(obj).parents('.container-foto').attr('id');
         $('#' + foto).remove();
