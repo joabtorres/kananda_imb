@@ -38,7 +38,7 @@
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuaria</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/predio_comercial_comprar">Prédio Comercial</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
                                     </ul>
                                 </li>
@@ -48,7 +48,7 @@
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuaria</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/predio_comercial_alugar">Prédio Comercial</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
                                     </ul>
                                 </li>

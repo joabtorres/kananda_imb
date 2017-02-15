@@ -192,7 +192,7 @@
                 <section class="row">
                     <article class="col-md-offset-2 col-md-4">
                         <div class="thumbnail">
-                            <a><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
                                 <div class="caption text-center">
                                     COMPRAR
                                 </div>
@@ -202,7 +202,7 @@
                     <article class="col-md-4">
 
                         <div class="thumbnail">
-                            <a><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
                                 <div class="caption text-center">
                                     ALUGAR
                                 </div>

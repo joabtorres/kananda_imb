@@ -2,8 +2,8 @@
 <section class="row">
     <article class="col-xs-12 bg-azul title-destaque">
         <h2>
-            <strong><?php echo strtoupper(strtolower($imovel)) ?></strong><br>
-            <small><?php echo strtoupper(strtolower($finalidade)) ?></small>
+            <strong><?php echo ucwords($imovel) ?></strong><br>
+            <small><?php echo ucwords($finalidade) ?></small>
         </h2>
     </article><!-- FIM title-destaque-->
 </section>
@@ -83,16 +83,16 @@
         <div class="col-xs-12">
             <ul class="pagination">
                 <?php
-                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/ocultos/1'>&laquo;</a></li>";
+                echo "<li><a href='" . BASE_URL . "/imoveis/" . $metodo_imovel . "/1'>&laquo;</a></li>";
                 for ($p = 0; $p <= $paginas; $p++) {
                     if ($pagina_atual == ($p + 1)) {
-                        echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/ocultos/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
+                        echo "<li class='active'><a href='" . BASE_URL . "/imoveis/" . $metodo_imovel . "/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                     } else {
-                        echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/ocultos/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
+                        echo "<li><a href='" . BASE_URL . "/imoveis/" . $metodo_imovel . "/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                     }
                 }
 
-                echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/ocultos/" . ceil($paginas) . "'>&raquo;</a></li>";
+                echo "<li><a href='" . BASE_URL . "/imoveis/" . $metodo_imovel . "/" . ceil($paginas) . "'>&raquo;</a></li>";
                 ?>
             </ul>
         </div>  
