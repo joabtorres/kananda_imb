@@ -175,9 +175,22 @@ class Imoveis extends model {
      * @author Joab Torres Alencar
      */
 
-    public function quantidade_imoveis($condicao = array()) {
+    public function quantidade_imoveis($serach_imovel = array()) {
         $quantidade = 0;
-        if (isset($condicao) && !empty($condicao)) {
+        if (isset($serach_imovel) && !empty($serach_imovel)) {
+            $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE";
+            foreach ($serach_imovel as $indice => $valor) {
+                $sql = $sql . " AND " . $indice . "_imovel = :" . $indice;
+            }
+            $sql = $this->db->prepare($sql);
+            foreach ($serach_imovel as $indice => $valor) {
+                $sql->bindValue(":" . $indice, $valor);
+            }
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $sql = $sql->fetch();
+                $quantidade = $sql['qtd'];
+            }
             return $quantidade;
         } else {
             $sql = $this->db->query("SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel");
@@ -197,23 +210,16 @@ class Imoveis extends model {
      * @autor
      */
 
-    public function listar_imoveis($condicao) {
+    public function listar_imoveis($serach_imovel, $limite_inicio, $limite_qtd, $ordem = "ka_imb_imovel.cod_imovel") {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel AND ka_imb_imovel_endereco.cod_imovel=ka_imb_imovel_visita.cod_imovel";
-        foreach ($condicao as $indice => $valor) {
-            if ($indice != "limite_inicio" && $indice != "limite_qtd") {
-                $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
-            }
+        foreach ($serach_imovel as $indice => $valor) {
+            $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
         }
-
-        if (isset($condicao['limite_inicio'])) {
-            $sql = $sql . " ORDER BY ka_imb_imovel.cod_imovel DESC LIMIT " . $condicao['limite_inicio'] . " , " . $condicao['limite_qtd'];
-        }
+        $sql = $sql . " ORDER BY " . $ordem . " DESC LIMIT " . $limite_inicio . " , " . $limite_qtd;
         $sql = $this->db->prepare($sql);
-        foreach ($condicao as $indice => $valor) {
-            if ($indice != "limite_inicio" && $indice != "limite_qtd") {
-                $sql->bindValue(":" . $indice, $valor);
-            }
+        foreach ($serach_imovel as $indice => $valor) {
+            $sql->bindValue(":" . $indice, $valor);
         }
         $sql->execute();
 

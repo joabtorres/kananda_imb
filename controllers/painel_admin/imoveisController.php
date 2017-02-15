@@ -26,11 +26,27 @@ class imoveisController extends controller {
      * @author Joab Torres Alencar
      */
 
-    public function mais_visitados() {
-        $this->checkUser();
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_mais_visitados");
-        $this->loadTemplate($viewName, $dados);
+    public function mais_visitados($page = array()) {
+        if ($this->checkUser()) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_mais_visitados");
+            $imoveisModal = new Imoveis();
+
+            $imovel = array();
+            $imovel['status'] = 1;
+            $limite = 6;
+            $total_registro = $imoveisModal->quantidade_imoveis($imovel);
+            $paginas = $total_registro / $limite;
+            $indice = 0;
+            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+            $indice = ($pagina_atual - 1) * $limite;
+
+            $ordem = "ka_imb_imovel_visita.quantidade_visita";
+            $dados["paginas"] = $paginas;
+            $dados["pagina_atual"] = $pagina_atual;
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel, $indice, $limite, $ordem);
+            $this->loadTemplate($viewName, $dados);
+        }
     }
 
     /*
@@ -202,12 +218,9 @@ class imoveisController extends controller {
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
             $indice = ($pagina_atual - 1) * $limite;
 
-            $imovel['limite_inicio'] = $indice;
-            $imovel['limite_qtd'] = $limite;
-
             $dados["paginas"] = $paginas;
             $dados["pagina_atual"] = $pagina_atual;
-            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel);
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel, $indice, $limite);
             $this->loadTemplate($viewName, $dados);
         }
     }
@@ -218,10 +231,40 @@ class imoveisController extends controller {
      * @author Joab Torres Alencar
      */
 
-    public function pesquisar() {
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_pesquisar");
-        $this->loadTemplate($viewName, $dados);
+    public function pesquisar($page = array()) {
+        if ($this->checkUser()) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_pesquisar");
+            $imoveisModal = new Imoveis();
+
+            $imovel = array();
+
+            if (isset($_POST['tReferencia']) && !empty($_POST['tReferencia'])) {
+                $imovel['referencia'] = addslashes($_POST['tReferencia']);
+            }
+            if (isset($_POST['tBuscarAvancada'])) {
+                $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
+                if ("Comprar e Alugar" != $_POST['tFinalidade']) {
+                    $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
+                }
+                if ("Todos" != $_POST['tCategoria']) {
+                    $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
+                }
+            }
+
+
+            $limite = 6;
+            $total_registro = $imoveisModal->quantidade_imoveis($imovel);
+            $paginas = $total_registro / $limite;
+            $indice = 0;
+            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+            $indice = ($pagina_atual - 1) * $limite;
+
+            $dados["paginas"] = $paginas;
+            $dados["pagina_atual"] = $pagina_atual;
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel, $indice, $limite);
+            $this->loadTemplate($viewName, $dados);
+        }
     }
 
     /*
@@ -230,10 +273,25 @@ class imoveisController extends controller {
      * @author Joab Torres Alencar
      */
 
-    public function ocultos() {
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_ocultos");
-        $this->loadTemplate($viewName, $dados);
+    public function ocultos($page = array()) {
+        if ($this->checkUser()) {
+            $dados = array();
+            $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_ocultos");
+            $imoveisModal = new Imoveis();
+
+            $imovel = array();
+            $imovel['status'] = 1;
+            $limite = 6;
+            $total_registro = $imoveisModal->quantidade_imoveis($imovel);
+            $paginas = $total_registro / $limite;
+            $indice = 0;
+            $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+            $indice = ($pagina_atual - 1) * $limite;
+            $dados["paginas"] = $paginas;
+            $dados["pagina_atual"] = $pagina_atual;
+            $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel, $indice, $limite);
+            $this->loadTemplate($viewName, $dados);
+        }
     }
 
 }
