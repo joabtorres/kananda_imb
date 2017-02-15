@@ -15,7 +15,7 @@
             <article class="col-xs-12 item-blue">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/compra.jpg" alt="Kananda Negócios Imobiliários - Compra" title="Kananda Negócios Imobiliários - Compra" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kanada_servicos_comprar.jpg" alt="Kananda Negócios Imobiliários - Compra" title="Kananda Negócios Imobiliários - Compra" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Compra</strong></h3>
@@ -28,7 +28,7 @@
             <article class="col-xs-12 item-white">
                 <div class="row">
                     <div class="visible-xs-block visible-sm-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/venda.jpg" alt="Kananda Negócios Imobiliários - venda" title="Kananda Negócios Imobiliários - Venda" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servico_venda.jpg" alt="Kananda Negócios Imobiliários - venda" title="Kananda Negócios Imobiliários - Venda" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Venda</strong></h3>
@@ -37,15 +37,16 @@
                         </p>
                     </div>
                     <div class="col-md-3 visible-md-block visible-lg-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/venda.jpg" alt="Kananda Negócios Imobiliários - venda" title="Kananda Negócios Imobiliários - Venda" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servico_venda.jpg" alt="Kananda Negócios Imobiliários - venda" title="Kananda Negócios Imobiliários - Venda" class="img-responsive img-rounded img-center">
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
+            
             <!-- SERVIÇO -->
             <article class="col-xs-12 item-blue">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/aluguel.jpg" alt="Kananda Negócios Imobiliários - Aluguel" title="Kananda Negócios Imobiliários - Aluguel"  class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servicos_alguel.jpg" alt="Kananda Negócios Imobiliários - Compra" title="Kananda Negócios Imobiliários - Compra" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Aluguel</strong></h3>
@@ -55,10 +56,11 @@
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
+            
             <article class="col-xs-12 item-white">
                 <div class="row">
                     <div class="visible-xs-block visible-sm-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/legalizacao.jpg" alt="Kananda Negócios Imobiliários - Legalização de Imóveis" title="Kananda Negócios Imobiliários - Legalização de Imóveis" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servicos_legalicacao.jpg" alt="Kananda Negócios Imobiliários - Legalização de Imóveis" title="Kananda Negócios Imobiliários - Legalização de Imóveis" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Legalização de Imóveis</strong></h3>
@@ -67,7 +69,7 @@
                         </p>
                     </div>
                     <div class="col-md-3 visible-md-block visible-lg-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/legalizacao.jpg" alt="Kananda Negócios Imobiliários - Legalização de Imóveis" title="Kananda Negócios Imobiliários - Legalização de Imóveis" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servicos_legalicacao.jpg" alt="Kananda Negócios Imobiliários - Legalização de Imóveis" title="Kananda Negócios Imobiliários - Legalização de Imóveis" class="img-responsive img-rounded img-center">
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
@@ -75,7 +77,7 @@
             <article class="col-xs-12 item-blue">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/loteamento.jpg"  alt="Kananda Negócios Imobiliários - Loteamentos" title="Kananda Negócios Imobiliários - Loteamentos" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servico_loteamento.jpg"  alt="Kananda Negócios Imobiliários - Loteamentos" title="Kananda Negócios Imobiliários - Loteamentos" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Loteamentos</strong></h3>
@@ -88,7 +90,7 @@
             <article class="col-xs-12 item-white">
                 <div class="row">
                     <div class="col-md-3 visible-xs-block visible-sm-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/avaliacao.jpg" alt="Kananda Negócios Imobiliários - Loteamentos" title="Kananda Negócios Imobiliários - Loteamentos" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servico_avaliacao.jpg" alt="Kananda Negócios Imobiliários - Loteamentos" title="Kananda Negócios Imobiliários - Loteamentos" class="img-responsive img-rounded img-center">
                     </div>
 
                     <div class="col-md-9">
@@ -98,7 +100,7 @@
                         </p>
                     </div>
                     <div class="col-md-3 visible-md-block visible-lg-block">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/avaliacao.jpg" alt="Kananda Negócios Imobiliários - Avaliação de Imóveis" title="Kananda Negócios Imobiliários - Avaliação de Imóveis" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/kananda_servico_avaliacao.jpg" alt="Kananda Negócios Imobiliários - Avaliação de Imóveis" title="Kananda Negócios Imobiliários - Avaliação de Imóveis" class="img-responsive img-rounded img-center">
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
@@ -106,7 +108,7 @@
             <article class="col-xs-12 item-blue">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="<?php echo BASE_URL; ?>/assets/imagens/servicos/correspontende_caixa.png" alt="Kananda Negócios Imobiliários - Correspondente Caixa" title="Kananda Negócios Imobiliários - Correspondente Caixa" class="img-responsive img-rounded img-center">
+                        <img src="<?php echo BASE_URL; ?>/assets/website/imagens/servicos/correspontende_caixa.png" alt="Kananda Negócios Imobiliários - Correspondente Caixa" title="Kananda Negócios Imobiliários - Correspondente Caixa" class="img-responsive img-rounded img-center">
                     </div>
                     <div class="col-md-9">
                         <h3><strong>Correspondente Caixa</strong></h3>

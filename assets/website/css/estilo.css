@@ -21,6 +21,9 @@ a:hover{cursor: pointer;}
 .float-lef{float: left;}
 .img-responsive{width: 100%;}
 .img-center{display: block; margin:0 auto;}
+.modal .modal-header{background: #0A87CC; color: white;}
+.thumbnail a:hover, .thumbnail a, .thumbnail a:focus{text-decoration: none;}
+.modal-body .thumbnail .caption{background: #0A87CC; color: white; }
 /*
         HEADER
 */

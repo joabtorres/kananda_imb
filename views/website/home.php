@@ -181,30 +181,32 @@
 </section><!-- fim row -->
 
 
-<section class="modal fade bs-casa-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<section class="modal fade bs-casa-modal" tabindex="-1" role="dialog">
     <article class="modal-dialog modal-lg" role="document">
         <section class="modal-content">
             <header class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Casa</h4>
+                <h3 class="modal-title text-justify" >Casa</h3>
             </header>
             <article class="modal-body">
                 <section class="row">
                     <article class="col-md-offset-2 col-md-4">
                         <div class="thumbnail">
-                            <a><img src="holder.js/300x170"/></a>
-                            <div class="caption text-center">
-                                COMPRAR
-                            </div>
+                            <a><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                                <div class="caption text-center">
+                                    COMPRAR
+                                </div>
+                            </a>
                         </div>
                     </article>
                     <article class="col-md-4">
 
                         <div class="thumbnail">
-                            <a><img src="holder.js/300x170"/></a>
-                            <div class="caption text-center">
-                                ALUGAR
-                            </div>
+                            <a><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                                <div class="caption text-center">
+                                    ALUGAR
+                                </div>
+                            </a>
                         </div>
                     </article>
                 </section>

@@ -22,7 +22,15 @@ class ImoveisView extends model {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel AND ka_imb_imovel_endereco.cod_imovel=ka_imb_imovel_visita.cod_imovel";
         foreach ($serach_imovel as $indice => $valor) {
-            $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+            switch ($indice) {
+                case "finalidade":
+                    $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice;
+                    $serach_imovel[$indice] = "%" . $valor . "%";
+                    break;
+                default :
+                    $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+                    break;
+            }
         }
         $sql = $sql . " ORDER BY " . $ordem . " DESC LIMIT " . $limite_inicio . " , " . $limite_qtd;
         $sql = $this->db->prepare($sql);
@@ -35,6 +43,49 @@ class ImoveisView extends model {
             $imoveis = $sql->fetchAll();
         }
         return $imoveis;
+    }
+
+    /*
+     * function quantidade_imoveis($condicao = array()) ['retorna a quantidade de imóveis]
+     * Descrição: É utilizada para retornar a quantidade  de imóveis registrados
+     * @param $condicao : São condições dos em buscar de uma categoria de imóveis especificos
+     * @return $quantidade
+     * @author Joab Torres Alencar
+     */
+
+    public function quantidade_imoveis($serach_imovel = array()) {
+        $quantidade = 0;
+        if (isset($serach_imovel) && !empty($serach_imovel)) {
+            $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE";
+            foreach ($serach_imovel as $indice => $valor) {
+                switch ($indice) {
+                    case "finalidade":
+                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice . " ";
+                        break;
+                    default :
+                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+                        break;
+                }
+            }
+
+            $sql = $this->db->prepare($sql);
+            foreach ($serach_imovel as $indice => $valor) {
+                $sql->bindValue(":" . $indice, $valor);
+            }
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $sql = $sql->fetch();
+                $quantidade = $sql['qtd'];
+            }
+            return $quantidade;
+        } else {
+            $sql = $this->db->query("SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel");
+            if ($sql->rowCount() > 0) {
+                $sql = $sql->fetch();
+                $quantidade = $sql['qtd'];
+            }
+            return $quantidade;
+        }
     }
 
     /*
