@@ -13,7 +13,7 @@
         <p></p>
         <!-- MAPA-->
         <div class="mapa">
-            <div id="mapa_contato" style="background: red;"></div>
+            <div id="mapa_contato"></div>
             <script type="text/javascript">
                 var latitude = -4.2639141;
                 var longitude = -55.998396;

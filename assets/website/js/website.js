@@ -50,7 +50,7 @@ if (document.getElementById("view-mapa-imoveis")) {
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(ponto.Latitude, ponto.Longitude),
                             title: "KANANDA IMOBILIÁRIA - IMÓVEL",
-                            icon: "assets/website/imagens/mapa/marcado.png"
+                            icon: "/assets/website/imagens/mapa/marcado.png"
                         });
 
                         var myOptions = {
@@ -176,7 +176,7 @@ if (document.getElementById("mapa_contato")) {
         var marker = new google.maps.Marker({
             position: myLocation,
             title: "Localização dos imoveis da Kananda Imobiliaria!",
-            icon: "assets/website/imagens/mapa/marcado.png"
+            icon: "/assets/website/imagens/mapa/marcado.png"
         });
         var map = new google.maps.Map(document.getElementById("mapa_contato"),
                 mapOptions);
@@ -204,7 +204,7 @@ if (document.getElementById("view-mapa")) {
                 position: new google.maps.LatLng(latitude_imovel, longitude_imovel),
                 title: "Cliente!",
                 zoom: 16,
-                icon: "assets/website/imagens/mapa/marcado.png",
+                icon: "/assets/website/imagens/mapa/marcado.png",
                 map: map
             });
         }

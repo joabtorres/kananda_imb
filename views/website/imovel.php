@@ -2,24 +2,24 @@
 <section class="row">
     <!-- CHAMADA title-destaque -->
     <article class="col-xs-12 bg-azul title-destaque">
-        <h2><strong>Casa a Venda</strong><br><small>
-                COD 110 </small></h2>
+        <h2><strong><?php echo ucwords($imovel['imovel_imovel']) . ' - ' . $imovel['finalidade_imovel'] ?> </strong><br><small>
+                COD <?php echo $imovel['referencia_imovel']; ?> </small></h2>
     </article><!-- FIM CHAMADA title-destaque -->
 
     <!-- CHAMADA SLIDE DO IMÓVEL-->
     <article class="col-xs-12 bg-azul slide-imovel">
-
         <div class="col-md-offset-2 col-md-8 col-sm-12">
+
             <div class="fotorama" data-width="850" data-ratio="850/478" data-max-width="100%" data-nav="thumbs"  data-allowfullscreen="true">
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/01.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/01_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/02.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/02_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/03.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/03_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/04.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/04_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/05.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/05_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/05.5.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/05.5_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/06.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/06_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/07.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/07_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
-                <a href="<?php echo BASE_URL;?>/uploads/imovel/31-149A/08.jpg"><img src="<?php echo BASE_URL;?>/uploads/imovel/31-149A/08_thumbnail.jpg" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>                            
+                <?php
+                if (isset($imagens) && !empty($imagens)) :
+                    foreach ($imagens as $imagem) :
+                        ?>
+                        <a href="<?php echo BASE_URL . '/' . $imagem['imagem_imagem']; ?>"><img src="<?php echo BASE_URL . '/' . $imagem['imagem_imagem']; ?>" alt="Kananda Negócios Imobiliários Casa a Venda" title="Kananda Negócios Imobiliários Casa a Venda"></a>
+                        <?php
+                    endforeach;
+                endif;
+                ?>
             </div>
         </div>
 
@@ -40,23 +40,59 @@
                 <!-- Descrição do imóvel -->
                 <div role="tabpanel" class="tab-pane active" id="descricaoImovel">
                     <p class="text-justify">
-                        <strong>Descrição:</strong><br>
-                        Este imóvel está localizado na 13ª rua , nº 315 -  bairro Bela Vista, possui 4 quartos, 1 sala de estar, vaga para guarda até 6 carros simples na garagem, 3 banheiros socias, 2 suites. <br><br>
-                        <strong>Valor: </strong><br>
-                        R$ 300.000,00
+                        <?php
+                        if (isset($imovel['descricao_descricao']) && $imovel['descricao_descricao'] != "") :
+                            echo '<strong>Descrição:</strong><br>';
+                            echo $imovel['descricao_descricao'];
+                        endif;
+                        if (isset($imovel['valor_descricao'])) :
+                            ?>
+                            <strong>Valor: </strong><br>
+                            <?php echo $imovel['valor_descricao'] ?>
+                        <?php endif; ?>
                     </p>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Especificações extras</strong></div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li><span class="font-bold">Quarto(s): </span> 4</li>
-                                <li><span class="font-bold">Suite(s): </span> 2</li>
-                                <li><span class="font-bold">Garagem: </span> 6</li>
-                                <li><span class="font-bold">Largura: </span> 10 metros</li>
-                                <li><span class="font-bold">Comprimento: </span> 30 metros</li>
-                                <li><span class="font-bold">Área Construida: </span> 250 metros²</li>
-                                <li><span class="font-bold">Área Total: </span> 300 metros ²</li>
-                                <li><span class="font-bold">Endereço: </span> Rua 13ª (décima terceira), nº 315, Bela Vista - Itaituba - PA</li>
+                                <?php if (isset($imovel['quarto_imovel']) && $imovel['quarto_imovel'] != 0) : ?>
+                                    <li><span class="font-bold">Quarto(s): </span> <?php echo $imovel['quarto_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['suite_imovel']) && $imovel['suite_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Suite(s): </span> <?php echo $imovel['suite_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['garagem_imovel']) && $imovel['garagem_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Garagem: </span> <?php echo $imovel['garagem_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['largura_imovel']) && $imovel['largura_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Largura: </span> <?php echo $imovel['largura_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['comprimento_imovel']) && $imovel['comprimento_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Comprimento: </span> <?php echo $imovel['comprimento_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['area_construida_imovel']) && $imovel['area_construida_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Área Construida: </span> <?php echo $imovel['area_construida_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['area_total_imovel']) && $imovel['area_total_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Área Total: </span> <?php echo $imovel['area_total_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['comprimento_imovel']) && $imovel['comprimento_imovel'] != 0) :
+                                    ?>
+                                    <li style="text-transform: capitalize;"><span class="font-bold" style="text-transform: capitalize;">Endereço: </span> <?php echo $imovel['logradouro_endereco'] ?>, nº <?php echo $imovel['numero_endereco'] ?>, <?php echo $imovel['bairro_endereco'] ?> - <?php echo $imovel['complemento_endereco'] ?> -<?php echo $imovel['cidade_endereco'] ?> - PA</li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -65,12 +101,14 @@
                 <div role="tabpanel" class="tab-pane" id="localidadeImovel">
                     <div class="mapa">
                         <div id="view-mapa"></div>
-                        <script type="text/javascript">
-                            var latitude_imovel = -4.2639141, longitude_imovel = -55.998396;
-                        </script>
+                        <script type="text/javascript"> var latitude_imovel, longitude_imovel;</script>
+                        <?php
+                        echo "<script>var latitude_imovel ='" . $imovel['latitude_endereco'] . "';</script>";
+                        echo "<script>var longitude_imovel ='" . $imovel['longitude_endereco'] . "';</script>";
+                        ?>
                         <div class="caption">
                             <h3><span class="font-bold">Endereço: </span></h3>
-                            <p>Rua 13ª (décima terceira), nº 315, Bela Vista - Itaituba - PA.</p>
+                            <p style="text-transform: capitalize;"><?php echo $imovel['logradouro_endereco'] ?>, nº <?php echo $imovel['numero_endereco'] ?>, <?php echo $imovel['bairro_endereco'] ?> - <?php echo $imovel['complemento_endereco'] ?> -<?php echo $imovel['cidade_endereco'] ?> - PA</p>
                         </div>
                     </div><!-- fim MAPA-->
                 </div> <!-- localização do imóvel -->
