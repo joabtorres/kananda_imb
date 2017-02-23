@@ -215,47 +215,38 @@
                                 <ul class="list-unstyled">
                                     <?php
                                     $quantide_descricao = 1;
-                                    if ($imovel["quarto_imovel"] && $quantide_descricao <= 3) :
+                                    if ($imovel["suite_imovel"] != 0 && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-qua"></span> Quartos: <?php echo $imovel['quarto_imovel'] ?></li>
-                                        <?php
-                                    endif;
-                                    if ($quantide_descricao <= 3 && $imovel['suite_imovel'] && !$imovel['quarto_imovel']) :
+                                        echo '<li><span class="ic-qua"></span> Suites:' . $imovel['suite_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["quarto_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-qua"></span> Suites: <?php echo $imovel['suite_imovel'] ?></li>
-                                        <?php
-                                    endif;
-                                    if ($imovel["banheiro_imovel"] && $quantide_descricao <= 3) :
+
+                                        echo '<li><span class="ic-qua"></span> Quartos: ' . $imovel['quarto_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["banheiro_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-ba"></span> Banheiros: <?php echo $imovel['banheiro_imovel'] ?></li>
-                                        <?php
-                                    endif;
-                                    if ($imovel["garagem_imovel"] && $quantide_descricao <= 3) :
+
+                                        echo '<li><span class="ic-ba"></span> Banheiros: ' . $imovel['banheiro_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["garagem_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-gar"></span> Garagem: <?php echo $imovel['garagem_imovel'] ?></li>
-                                        <?php
-                                    endif;
-                                    if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) :
+
+                                        echo '<li><span class="ic-gar"></span> Vagas: ' . $imovel['garagem_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-are"></span> Área Total: <?php echo $imovel['area_total_imovel']; ?></li>
-                                        <?php
-                                    endif;
-                                    if ($imovel["largura_imovel"] && $quantide_descricao <= 3) :
+
+                                        echo '<li><span class="ic-are"></span> Área Total: ' . $imovel['area_total_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["largura_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-larg"></span> Largura: <?php echo $imovel['largura_imovel']; ?></li>
-                                        <?php
-                                    endif;
-                                    if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) :
+                                        echo '<li><span class="ic-larg"></span> Largura: ' . $imovel['largura_imovel'] . '</li>';
+                                    }
+                                    if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) {
                                         ++$quantide_descricao;
-                                        ?>
-                                        <li><span class="ic-comp"></span> Comprimeito: <?php echo $imovel['comprimento_imovel']; ?></li>
-                                    <?php endif;
+                                        echo '<li><span class="ic-comp"></span> Comprimeito: ' . $imovel['comprimento_imovel'] . '</li>';
+                                    }
                                     ?>
 
 

@@ -290,10 +290,10 @@
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Horário de atendimento</strong></h3>
                         <ul class="list-unstyled">
-                            <li>Nósso horário de antendimento:</li>
+                            <li>Horário de antendimento:</li>
                             <li><br/></li>
                             <li><strong>Segunda a Sexta</strong></li>
-                            <li>08:00h as 12:30h | 14:30h as 18:00h</li>
+                            <li>09:00h as 13:00h | 15:00h as 18:00h</li>
                         </ul>
                     </article>
                     <div class="col-xs-12">

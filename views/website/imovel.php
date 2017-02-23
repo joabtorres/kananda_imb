@@ -31,8 +31,8 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#descricaoImovel" aria-controls="descricaoImovel" role="tab" data-toggle="tab">Descrição</a></li>
-                <li role="presentation"><a href="#localidadeImovel" aria-controls="localidadeImovel" role="tab" data-toggle="tab" onclick="inicialize_mapa_imovel();">Localização via mapa</a></li>
-                <li role="presentation"><a href="#contataImovel" aria-controls="contataImovel" role="tab" data-toggle="tab">Entra em Contato</a></li>
+                <li role="presentation"><a href="#localidadeImovel" aria-controls="localidadeImovel" role="tab" data-toggle="tab" onclick="inicialize_mapa_imovel();">Localização</a></li>
+                <li role="presentation"><a href="#contataImovel" aria-controls="contataImovel" role="tab" data-toggle="tab">Contato</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -52,7 +52,7 @@
                         <?php endif; ?>
                     </p>
                     <div class="panel panel-primary">
-                        <div class="panel-heading"><strong>Especificações extras</strong></div>
+                        <div class="panel-heading"><strong>Especificações</strong></div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
                                 <?php if (isset($imovel['quarto_imovel']) && $imovel['quarto_imovel'] != 0) : ?>

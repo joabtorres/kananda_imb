@@ -56,7 +56,7 @@
                                     <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/cadastrar"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Imóvel</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/cadastrados"><span class="glyphicon glyphicon-list"></span> Exibir Imóvel Cadastrados</a>
+                                    <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/cadastrados"><span class="glyphicon glyphicon-list"></span> Imóveis Cadastrados</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/pesquisar"><span class="glyphicon glyphicon-search"></span> Pesquisar Imóveis</a>

@@ -20,10 +20,15 @@
                                     <label for="iReferencia">Referência:</label>
                                     <input type="text" name="nReferencia" id="iReferencia" class="form-control"/>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <p class="font-bold">Deseja oculta este imóvel?</p>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Ocutar imóvel?</p>
                                     <label><input type="radio" name="tOcuta" value="1"/> Sim </label>
                                     <label><input type="radio" name="tOcuta" value="0" checked="true"/> Não</label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Destaca imóvel?</p>
+                                    <label><input type="radio" name="tDestaque" value="1"/> Sim </label>
+                                    <label><input type="radio" name="tDestaque" value="0" checked="true"/> Não</label>
                                 </div>
                             </div><!--fim row-->
                             <div class="row">

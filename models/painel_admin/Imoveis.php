@@ -17,10 +17,11 @@ class Imoveis extends model {
 
     public function cadastrar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (cod_imovel, referencia_imovel, status_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:cod, :referencia, :status, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
+        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (cod_imovel, referencia_imovel, status_imovel, destaque_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:cod, :referencia, :status, :destaque, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
+        $sql->bindValue(":destaque", $imovel['destaque']);
         $sql->bindValue(":imovel", $imovel['imovel']);
         $sql->bindValue(":finalidade", $imovel['finalidade']);
         $sql->bindValue(":categoria", $imovel['categoria']);
@@ -78,9 +79,10 @@ class Imoveis extends model {
 
     public function salvar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("UPDATE ka_imb_imovel SET referencia_imovel = :referencia, status_imovel = :status, imovel_imovel = :imovel, finalidade_imovel = :finalidade, categoria_imovel = :categoria, quarto_imovel = :quarto, banheiro_imovel = :banheiro, suite_imovel = :suite, garagem_imovel = :garagem, largura_imovel = :largura, comprimento_imovel =:comprimento, area_total_imovel = :area_total, area_construida_imovel =:area_construida, imagem_imovel = :imagem, data_imovel = :data WHERE cod_imovel = :cod");
+        $sql = $this->db->prepare("UPDATE ka_imb_imovel SET referencia_imovel = :referencia, status_imovel = :status, destaque_imovel = :destaque, imovel_imovel = :imovel, finalidade_imovel = :finalidade, categoria_imovel = :categoria, quarto_imovel = :quarto, banheiro_imovel = :banheiro, suite_imovel = :suite, garagem_imovel = :garagem, largura_imovel = :largura, comprimento_imovel =:comprimento, area_total_imovel = :area_total, area_construida_imovel =:area_construida, imagem_imovel = :imagem, data_imovel = :data WHERE cod_imovel = :cod");
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
+        $sql->bindValue(":destaque", $imovel['destaque']);
         $sql->bindValue(":imovel", $imovel['imovel']);
         $sql->bindValue(":finalidade", $imovel['finalidade']);
         $sql->bindValue(":categoria", $imovel['categoria']);
@@ -125,8 +127,8 @@ class Imoveis extends model {
             $sql->bindValue(":cod", $imovel['cod']);
             $sql->execute();
             //SALVANDO FOTOS
+
             $imagens_atual_no_form = array();
-            
             foreach ($imovel['imagens'] as $imagem) {
                 if (is_array($imagem)) {
                     $imagens_atual_no_form[] = $this->criar_imagem(850, 478, array("cod" => $imovel['cod'], "imagem" => $imagem, "referencia" => $imovel['referencia'], "imovel" => $imovel['imovel'], "finalidade" => $imovel['finalidade']));
@@ -135,19 +137,30 @@ class Imoveis extends model {
                 }
             }
             $imovel['imagens'] = $imagens_atual_no_form;
-
             $imagens = $this->listar_imagens($imovel['cod']);
             if (count($imagens) > 0) {
                 $imagens_atual_no_bd = array();
                 foreach ($imagens as $indice) {
                     $imagens_atual_no_bd[] = $indice['imagem_imagem'];
                 }
-
                 //imagens que serao removidas
                 $imagens_removida = array_diff($imagens_atual_no_bd, $imagens_atual_no_form);
                 //imagens diferentes da atual inseridas
                 $imovel['imagens'] = array_diff($imagens_atual_no_form, $imagens_atual_no_bd);
-
+                array_multisort($imagens_removida);
+                array_multisort($imovel['imagens']);
+                
+                while (count($imagens_removida) >= count($imovel['imagens']) && count($imovel['imagens']) > 0) {
+                    $this->excluir_imagem($imagens_removida[0]);
+                    $sql = $this->db->prepare("UPDATE ka_imb_imovel_imagem SET cod_imovel = :cod1, imagem_imagem = :imagem1 WHERE cod_imovel = :cod2 AND imagem_imagem = :imagem2");
+                    $sql->bindValue(':cod1', $imovel['cod']);
+                    $sql->bindValue(':imagem1', $imovel['imagens'][0]);
+                    $sql->bindValue(':cod2', $imovel['cod']);
+                    $sql->bindValue(':imagem2', $imagens_removida[0]);
+                    $sql->execute();
+                    array_shift($imagens_removida);
+                    array_shift($imovel['imagens']);
+                }
                 foreach ($imagens_removida as $imagem) {
                     $this->excluir_imagem($imagem);
                     $sql = $this->db->prepare("DELETE FROM ka_imb_imovel_imagem WHERE imagem_imagem = :imagem AND cod_imovel = :cod ");
@@ -156,7 +169,6 @@ class Imoveis extends model {
                     $sql->execute();
                 }
             }
-
             foreach ($imovel['imagens'] as $imagem) {
                 $sql = $this->db->prepare("INSERT INTO ka_imb_imovel_imagem (cod_imovel, imagem_imagem) VALUES (:cod, :imagem)");
                 $sql->bindValue(":cod", $imovel['cod']);

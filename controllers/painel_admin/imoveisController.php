@@ -66,6 +66,7 @@ class imoveisController extends controller {
             $imovel['data'] = date("Y-m-d");
             $imovel['referencia'] = addslashes($_POST['nReferencia']);
             $imovel['status'] = addslashes($_POST['tOcuta']);
+            $imovel['destaque'] = addslashes($_POST['tDestaque']);
             $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
             $imovel['categoria'] = addslashes($_POST['tCategoria']);
             $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
@@ -126,6 +127,7 @@ class imoveisController extends controller {
                 $imovel['data'] = date("Y-m-d");
                 $imovel['referencia'] = addslashes($_POST['nReferencia']);
                 $imovel['status'] = addslashes($_POST['tOcuta']);
+                $imovel['destaque'] = addslashes($_POST['tDestaque']);
                 $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
                 $imovel['categoria'] = addslashes($_POST['tCategoria']);
                 $imovel['finalidade'] = addslashes($_POST['tFinalidade']);

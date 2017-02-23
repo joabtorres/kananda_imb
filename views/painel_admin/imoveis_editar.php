@@ -22,8 +22,8 @@
                                     <input type="hidden" name="nCod" class="form-control" value="<?php echo!empty($imoveis['cod_imovel']) ? $imoveis['cod_imovel'] : "" ?>"/>
                                     <input type="text" name="nReferencia" id="iReferencia" class="form-control" value="<?php echo!empty($imoveis['referencia_imovel']) ? $imoveis['referencia_imovel'] : "" ?>"/>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <p class="font-bold">Deseja oculta este imóvel?</p>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Ocutar imóvel?</p>
                                     <?php
                                     for ($i = 1; $i >= 0; $i--) {
                                         $status = ($i == 1) ? "Sim" : "Não";
@@ -31,6 +31,20 @@
                                             echo '<label><input type="radio" name="tOcuta" value="' . $i . '" checked="true"/> ' . $status . ' </label>';
                                         } else {
                                             echo '<label><input type="radio" name="tOcuta" value="' . $i . '" /> ' . $status . ' </label>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Destaca imóvel?</p>
+                                    
+                                    <?php
+                                    for ($i = 1; $i >= 0; $i--) {
+                                        $status = ($i == 1) ? "Sim" : "Não";
+                                        if ($i == $imoveis['destaque_imovel']) {
+                                            echo '<label><input type="radio" name="tDestaque" value="' . $i . '" checked="true"/> ' . $status . ' </label>';
+                                        } else {
+                                            echo '<label><input type="radio" name="tDestaque" value="' . $i . '" /> ' . $status . ' </label>';
                                         }
                                     }
                                     ?>
@@ -95,11 +109,11 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="cBanheiro">Banheiro (s):</label>
-                                    <input type="text" name="tBanheiro" id="cBanheiro" class="form-control" value="<?php echo (isset($imoveis['suite_imovel'])) ? $imoveis['suite_imovel'] : ""; ?>"/>
+                                    <input type="text" name="tBanheiro" id="cBanheiro" class="form-control" value="<?php echo (isset($imoveis['banheiro_imovel'])) ? $imoveis['banheiro_imovel'] : ""; ?>"/>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="cSuite">Suíte (s):</label>
-                                    <input type="text" name="tSuite" id="cSuite" class="form-control" value="<?php echo (isset($imoveis['banheiro_imovel'])) ? $imoveis['banheiro_imovel'] : ""; ?>"/>
+                                    <input type="text" name="tSuite" id="cSuite" class="form-control" value="<?php echo (isset($imoveis['suite_imovel'])) ? $imoveis['suite_imovel'] : ""; ?>"/>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="cGarage">Garagem:</label>
