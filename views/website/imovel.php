@@ -55,8 +55,18 @@
                         <div class="panel-heading"><strong>Especificações</strong></div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <?php if (isset($imovel['quarto_imovel']) && $imovel['quarto_imovel'] != 0) : ?>
-                                    <li><span class="font-bold">Quarto(s): </span> <?php echo $imovel['quarto_imovel'] ?></li>
+                                <?php if (isset($imovel['imovel_imovel'])) : ?>
+                                    <li><span class="font-bold">Tipo do Imóvel: </span> <?php echo $imovel['imovel_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['finalidade_imovel'])) :
+                                    ?>
+                                    <li><span class="font-bold">Finalidade: </span> <?php echo $imovel['finalidade_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['categoria_imovel'])) :
+                                    ?>
+                                    <li><span class="font-bold">Categoria: </span> <?php echo $imovel['categoria_imovel'] ?></li>
                                     <?php
                                 endif;
                                 if (isset($imovel['suite_imovel']) && $imovel['suite_imovel'] != 0) :
@@ -64,9 +74,19 @@
                                     <li><span class="font-bold">Suite(s): </span> <?php echo $imovel['suite_imovel'] ?></li>
                                     <?php
                                 endif;
+                                ?>
+                                <?php if (isset($imovel['quarto_imovel']) && $imovel['quarto_imovel'] != 0) : ?>
+                                    <li><span class="font-bold">Quarto(s): </span> <?php echo $imovel['quarto_imovel'] ?></li>
+                                    <?php
+                                endif;
+                                if (isset($imovel['banheiro_imovel']) && $imovel['banheiro_imovel'] != 0) :
+                                    ?>
+                                    <li><span class="font-bold">Banheiro(s): </span> <?php echo $imovel['quarto_imovel'] ?></li>
+                                    <?php
+                                endif;
                                 if (isset($imovel['garagem_imovel']) && $imovel['garagem_imovel'] != 0) :
                                     ?>
-                                    <li><span class="font-bold">Garagem: </span> <?php echo $imovel['garagem_imovel'] ?></li>
+                                    <li><span class="font-bold">Vagas: </span> <?php echo $imovel['garagem_imovel'] ?></li>
                                     <?php
                                 endif;
                                 if (isset($imovel['largura_imovel']) && $imovel['largura_imovel'] != 0) :
@@ -92,7 +112,7 @@
                                 if (isset($imovel['comprimento_imovel']) && $imovel['comprimento_imovel'] != 0) :
                                     ?>
                                     <li style="text-transform: capitalize;"><span class="font-bold" style="text-transform: capitalize;">Endereço: </span> <?php echo $imovel['logradouro_endereco'] ?>, nº <?php echo $imovel['numero_endereco'] ?>, <?php echo $imovel['bairro_endereco'] ?> - <?php echo $imovel['complemento_endereco'] ?> -<?php echo $imovel['cidade_endereco'] ?> - PA</li>
-                                <?php endif; ?>
+<?php endif; ?>
                             </ul>
                         </div>
                     </div>

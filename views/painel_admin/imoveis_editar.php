@@ -53,11 +53,12 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="cSelecionaImovel">Tipo do Imóvel: </label>
-                                    <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control itemPesquisa">
+                                    <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control ">
 
                                         <?php
-                                        $imovel = array("Casa", "Terreno", "Ponto Comercial", "Sala / Loja Comercial", "Loteamento", "Galpão / Barração", "Apartamento", "Kitnet",
-                                            "Sítio / Chácara", "Lote / Fazenda", "Área Portuária");
+                                        $imovel = array("Casa", "Terreno", "Ponto Comercial", "Loja Comercial", "Loteamento", "Galpão", "Apartamento", "Kitnet",
+                                            "Chácara", "Fazenda", "Área Portuária");
+                                        echo '<script> var categoria = "'.$imoveis['categoria_imovel'].'";</script>';
                                         foreach ($imovel as $valor) {
                                             if ($valor == $imoveis['imovel_imovel']) {
                                                 echo '<option value="' . $valor . '" selected="true">' . $valor . '</option>';
@@ -70,15 +71,15 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="cFinalidade">Finalidade: </label>
-                                    <select name="tFinalidade" id="cFinalidade" class="form-control itemPesquisa">
+                                    <select name="tFinalidade" id="cFinalidade" class="form-control ">
 
                                         <?php
                                         $finalidade = array("Comprar e Alugar", "Comprar", "Alugar");
                                         foreach ($finalidade as $valor) {
                                             if ($valor === $imoveis['finalidade_imovel']) {
-                                                echo '<option value = "' . $valor . '" class = "ca" selected="true" >' . $valor . '</option>';
+                                                echo '<option value = "' . $valor . '" selected="true" >' . $valor . '</option>';
                                             } else {
-                                                echo '<option value = "' . $valor . '" class = "ca">' . $valor . '</option>';
+                                                echo '<option value = "' . $valor . '" >' . $valor . '</option>';
                                             }
                                         }
                                         ?>
@@ -86,19 +87,7 @@
                                 </div>
                                 <div class="form-group col-md-4 cCategoria">
                                     <label for="cCategoria">Categoria: </label>
-                                    <select name="tCategoria" id="cCategoria" class="form-control itemPesquisa">
-                                        <option value="Térreo (a)" class="pc ca kit" >Térreo (a)</option>
-                                        <option value="Sobrado" class="ca">Sobrado</option>
-                                        <option value="Urbano(a)" class="te sch">Urbano(a)</option>
-                                        <option value="Rural" class="te sch lof">Rural</option>
-                                        <option value="Comercial">Comercial</option>
-                                        <option value="Residencial" class="ca te kit">Residencial</option>
-                                        <option value="Condomínio" class="ca te ap">Condomínio</option>
-                                        <option value="Lotes" class="lot">Lotes</option>
-                                        <option value="Edifício" class="pc slc ap kit">Edifício</option>
-                                        <option value="Shopping" class="slc">Shopping</option>
-                                        <option value="Loteamento" class="te">Loteamento</option>
-                                        <option value="Porto" class="ap">Porto</option>
+                                    <select name="tCategoria" id="cCategoria" class="form-control ">
                                     </select>
                                 </div>
                             </div><!--fim row-->

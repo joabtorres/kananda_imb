@@ -85,66 +85,58 @@ $(document).ready(function () {
 /*
  * Carregar categoria de acordo com o tipo do imóvel selecionado
  */
+function seleciona_imovel() {
+    var imovel = $("#cSelecionaImovel").val();
+    var serach_imovel = ['Casa', 'Kitnet', 'Apartamento'];
+    if (serach_imovel.indexOf(imovel) > -1) {
+        $('div.o').css('display', 'none');
+        $('div.a').css('display', 'block');
+    } else {
+        $('div.a').css('display', 'none');
+        $('div.o').css('display', 'block');
+    }
+    filtra_categoria(imovel, categoria);
+}
+
+function filtra_categoria(imovel, categoria) {
+    var imoveis = ['Casa', 'Terreno', 'Ponto Comercial', 'Loja Comercial', 'Loteamento', 'Galpão', 'Apartamento', 'Kitnet', 'Chácara', 'Fazenda', 'Área Portuária'];
+    var categorias = {
+        0: ['Todos', 'Térrea', 'Sobrado', 'Residencial', 'Condomínio'], //casa
+        1: ['Todos', 'Urbano', 'Rural', 'Residencial', 'Condomínio', 'Loteamento'], //terreno
+        2: ['Todos', 'Térreo', 'Edifício'], //ponto comercial
+        3: ['Todos', 'Edifício', 'Shopping'], //loja Comercial
+        4: ['Lotes'], //Loteamento
+        5: ['Todos', 'Comercial', 'Industrial'], //Galpão
+        6: ['Todos', 'Condomínio', 'Edifício'], //Apartamento
+        7: ['Todos', 'Térreo', 'Residencial', 'Edifício'], //Kitnet
+        8: ['Todos', 'Urbana', 'Rural'], //Chácara
+        9: ['Rural'], //Fazenda
+        10: ['Porto'] //Área Portuária
+    };
+    document.getElementById('cCategoria').innerHTML = "";
+    var categoria_options = null;
+    for (var i = 0; i < categorias[imoveis.indexOf(imovel)].length; i++) {
+        if(categorias[imoveis.indexOf(imovel)][i] === categoria){            
+         categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '" selected="true">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+        }else{
+         categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+        }
+      
+    }
+    document.getElementById('cCategoria').innerHTML = categoria_options;
+}
+
+function oculta_busca_avancada() {
+    if ($("#cReferencia").val() !== "") {
+        $('form#buscar_avancada').css('display', 'none');
+        $('p.aviso-de-busca').css('display', 'block');
+    } else {
+        $('form#buscar_avancada').css('display', 'block');
+        $('p.aviso-de-busca').css('display', 'none');
+    }
+}
 $(document).ready(function () {
-    selecionaImovel = function () {
-        var valor = $("#cSelecionaImovel").val();
-        $("#cCategoria option").css("display", "none");
-        if (valor == "Casa") {
-            $(".ca").css("display", "block");
-        } else if (valor == 'Terreno') {
-            $(".te").css("display", "block");
-        } else if (valor == 'Ponto Comercial') {
-            $(".pc").css("display", "block");
-        } else if (valor == 'Sala / Loja Comercial') {
-            $(".slc").css("display", "block");
-        } else if (valor == 'Loteamento') {
-            $(".lot").css("display", "block");
-        } else if (valor == 'Galpão / Barração') {
-            $(".gb").css("display", "block");
-        } else if (valor == 'Apartamento') {
-            $(".ap").css("display", "block");
-        } else if (valor == 'Kitnet') {
-            $(".kit").css("display", "block");
-        } else if (valor == 'Sítio / Chácara') {
-            $(".sch").css("display", "block");
-        } else if (valor == 'Lote / Fazenda') {
-            $(".lof").css("display", "block");
-        } else if (valor == 'Área Portuária') {
-            $(".ap").css("display", "block");
-        }
-    };
-    /**
-     * 
-     * Função para ocultar e descultar campos.
-     */
-    oculta_e_Desoculta = function () {
-        var valor = $("#cSelecionaImovel").val();
-        if (valor == 'Casa' || valor == 'Apartamento' || valor == 'Kitnet') {
-            $(".o").addClass('ocultar');
-            $(".a").css("display", "block");
-        } else {
-            $(".o").css("display", "block");
-            $(".a").addClass('ocultar');
-        }
-    };
-    /**
-     * função responsável por ocultar e revelar componentes do FILTRO de busca quando a REFERÊNCIA for modificada
-     */
-    $("#cReferencia").on("focusout", function () {
-        if ($(this).val() == '') {
-            $("select option").removeAttr('disabled');
-            $("#cBuscar02").removeAttr('disabled');
-            $('.aviso-de-busca').css("display", "none");
-        } else {
-            $("select option").attr('disabled', true);
-            $("#cBuscar02").attr('disabled', true);
-            $('.aviso-de-busca').css("display", "block");
-        }
-    });
-    oculta_e_Desoculta();
-    selecionaImovel();
-    $("#cSelecionaImovel").on("change", selecionaImovel);
-    $("#cSelecionaImovel").on("change", oculta_e_Desoculta);
+    seleciona_imovel();
 });
 /**
  * Adicionando novo campo para foto do imóvel

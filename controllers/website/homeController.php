@@ -9,6 +9,7 @@ class homeController extends controller {
         $imovel = array();
         $imovel['status'] = 0;
         $imovel['destaque'] = 1;
+        $dados['nome'] = 'joabtorres';
         $dados['imoveis'] = $imoveis->listar_imoveis($imovel, 0, 4);
         $this->loadTemplate($viewName, $dados);
     }

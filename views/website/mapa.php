@@ -27,11 +27,16 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="cSelecionaImovelMapa" > Imóvel</label>
-                <select name="tSelecionaImovel" id="cSelecionaImovelMapa" class="form-control" onclick="filtrar_mapa()">
-                    <option value="Todos" selected="selected"> Todos</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Terreno">Terreno</option>
-                    <option value="Loteamento">Loteamento</option>
+                <select name="tSelecionaImovel" id="cSelecionaImovelMapa" class="form-control" onchange="filtrar_mapa()">
+                    <?php
+                    foreach ($imoveis as $imovel) {
+                        if ($imovel == "Todos") {
+                            echo '<option value="' . $imovel . '" selected="selected">' . $imovel . '</option>';
+                        } else {
+                            echo '<option value="' . $imovel . '">' . $imovel . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
             </div>
         </form>

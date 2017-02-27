@@ -72,6 +72,7 @@ class Imoveis extends model {
             $sql->bindValue(":quantidade", 0);
             $sql->execute();
             return true;
+            $this->saveImoveisJson();
         } else {
             return false;
         }
@@ -149,7 +150,7 @@ class Imoveis extends model {
                 $imovel['imagens'] = array_diff($imagens_atual_no_form, $imagens_atual_no_bd);
                 array_multisort($imagens_removida);
                 array_multisort($imovel['imagens']);
-                
+
                 while (count($imagens_removida) >= count($imovel['imagens']) && count($imovel['imagens']) > 0) {
                     $this->excluir_imagem($imagens_removida[0]);
                     $sql = $this->db->prepare("UPDATE ka_imb_imovel_imagem SET cod_imovel = :cod1, imagem_imagem = :imagem1 WHERE cod_imovel = :cod2 AND imagem_imagem = :imagem2");
@@ -176,6 +177,7 @@ class Imoveis extends model {
                 $sql->execute();
             }
 
+            $this->saveImoveisJson();
             return true;
         } else {
             return false;
@@ -211,7 +213,7 @@ class Imoveis extends model {
         if (isset($serach_imovel) && !empty($serach_imovel)) {
             $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE";
             foreach ($serach_imovel as $indice => $valor) {
-                $sql = $sql . " AND " . $indice . "_imovel = :" . $indice;
+                $sql = $sql . " " . $indice . "_imovel = :" . $indice;
             }
             $sql = $this->db->prepare($sql);
             foreach ($serach_imovel as $indice => $valor) {
@@ -348,6 +350,7 @@ class Imoveis extends model {
                 $sql->execute();
             }
 
+            $this->saveImoveisJson();
             return TRUE;
         } else {
             return FALSE;
@@ -435,6 +438,29 @@ class Imoveis extends model {
         $str = preg_replace('/[^a-z0-9]/i', '_', $str);
         $str = preg_replace('/_+/', '_', $str); // ideia do Bacco :)
         return $str;
+    }
+
+    
+    private function saveImoveisJson() {
+        $imoveis = array();
+        $sql = "SELECT ka_imb_imovel.cod_imovel, ka_imb_imovel.referencia_imovel, ka_imb_imovel.imovel_imovel, ka_imb_imovel.finalidade_imovel, ka_imb_imovel.imagem_imovel, ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel = ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.status_imovel=0";
+        $sql = $this->db->query($sql);
+        if ($sql->rowCount() > 0) {
+            $imoveis = $sql->fetchAll();
+        }
+        if (file_exists("assets/website/json/imoveis.json")) {
+            unlink("assets/website/json/imoveis.json");
+        }
+        file_put_contents("assets/website/json/imoveis.json", json_encode($imoveis));
+    }
+
+
+    public function readImoveisJson() {
+        $imoveis = array();
+        if (file_exists("assets/website/json/imoveis.json")) {
+            $imoveis = json_decode(file_get_contents("assets/website/json/imoveis.json"));
+        }
+        return $imoveis;
     }
 
 }

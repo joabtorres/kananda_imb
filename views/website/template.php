@@ -78,13 +78,13 @@
                                 <article class="panel-body">
                                     <div class="row"> <!-- buscar rápida -->
                                         <div class="col-md-12">
-                                            <h3 class="font-bold">Busca Rápida</h3>
+                                            <h4 class="font-bold">Busca Rápida</h4>
                                             <form method='post' role="form">
                                                 <div class="col-md-12">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="cReferencia" name="tReferencia" placeholder="Código do Imóvel">
+                                                        <input type="text" class="form-control" id="cReferencia" name="tReferencia" placeholder="Código do Imóvel" onkeypress="oculta_busca_avancada();" onblur="oculta_busca_avancada();">
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-primary" name="tBuscar" id="cBuscar" type="submit"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+                                                            <button class="btn btn-primary" name="tBuscaRapida" id="cBuscar" type="submit"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
                                                         </span>
                                                     </div><!-- /input-group -->
                                                 </div>
@@ -93,90 +93,48 @@
                                     </div>  <!-- fim buscar rápida -->
                                     <hr>
 
-                                    <div class="row"><!-- buscar avançada -->
+                                    <div class="row" ><!-- buscar avançada -->
                                         <div class="col-md-12">
-                                            <h3 class="font-bold">Busca Avançada</h3>
                                             <p class="bg-danger btn-lg ocultar aviso-de-busca">Aviso: <small>Caso deseje fazer uma busca avançada remova o 'código do imóvel' informado a acima.</small></p>
-                                            <form action="" method='post' role="form">                
+                                            <form method='post' role="form" class="form" id="buscar_avancada">                
+                                                <h4 class="font-bold">Busca Avançada</h4>
                                                 <div class="form-group col-md-4">
                                                     <label for="cSelecionaImovel">Imóvel: </label>
-                                                    <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control itemPesquisa">
+                                                    <script> var categoria = null;</script>
+                                                    <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control" onchange="seleciona_imovel();">
                                                         <option value="Casa">Casa</option>
                                                         <option value="Terreno">Terreno</option>
                                                         <option value="Ponto Comercial">Ponto Comercial</option>
-                                                        <option value="Sala / Loja Comercial">Sala / Loja Comercial</option>
+                                                        <option value="Loja Comercial">Loja Comercial</option>
                                                         <option value="Loteamento">Loteamento</option>
-                                                        <option value="Galpão / Barração">Galpão / Barração</option>
+                                                        <option value="Galpão">Galpão</option>
                                                         <option value="Apartamento">Apartamento</option>
                                                         <option value="Kitnet">Kitnet</option>
-                                                        <option value="Sítio / Chácara">Sítio / Chácara</option>
-                                                        <option value="Lote / Fazenda">Lote / Fazenda</option>
+                                                        <option value="Chácara">Chácara</option>
+                                                        <option value="Fazenda">Fazenda</option>
                                                         <option value="Área Portuária">Área Portuária</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4"> 
                                                     <label for="cFinalidade">Finalidade: </label>
-                                                    <select name="tFinalidade" id="cFinalidade" class="form-control itemPesquisa">
-                                                        <option value="Todos" selected class="ca">Todas</option>
-                                                        <option value="Venda" class="ca">Venda</option>
-                                                        <option value="Aluguel" class="ca">Aluguel</option>
+                                                    <select name="tFinalidade" id="cFinalidade" class="form-control ">
+                                                        <option value="Comprar e Alugar">Comprar e Alugar</option>
+                                                        <option value="Comprar">Comprar</option>
+                                                        <option value="Alugar">Alugar</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4 cCategoria"> 
                                                     <label for="cCategoria">Categoria: </label>
-                                                    <select name="tCategoria" id="cCategoria" class="form-control itemPesquisa">
-                                                        <option value="Todos" class="ca te pc slc ap kit sch ap lof lot todos" selected>Todas</option>
-                                                        <option value="Térreo" class="pc ca kit">Térreo</option>
-                                                        <option value="Sobrado" class="ca">Sobrado</option>
-                                                        <option value="Urbano(a)" class="te sch">Urbano(a)</option>
-                                                        <option value="Rural" class="te sch lof">Rural</option>
-                                                        <option value="Comercial">Comercial</option>
-                                                        <option value="Residencial" class="ca te kit">Residencial</option>
-                                                        <option value="Condomínio" class="ca te ap">Condomínio</option>
-                                                        <option value="Lotes" class="lot">Lotes</option>
-                                                        <option value="Edifício" class="pc slc ap kit">Edifício</option>
-                                                        <option value="Shopping" class="slc">Shopping</option>
-                                                        <option value="Loteamento" class="te">Loteamento</option>
-                                                        <option value="Industrial">Industrial</option>
-                                                        <option value="Porto" class="ap">Porto</option>
-                                                    </select>
+                                                    <select name="tCategoria" id="cCategoria" class="form-control "></select>
                                                 </div>
 
-                                                <!-- 
-                                                QUARTO, SUITES, GARAGEM
-                                                -->
-                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
-                                                    <label for="cSelecionaQntQuarto">Quarto (s): </label>
-                                                    <select name="tSelecionaQntQuarto" id="cSelecionaQntQuarto" class="itemPesquisa form-control">
-                                                        <option value="" selected>Todos</option>
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="+">mais de 5</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
-                                                    <label for="cBanheiro">Banheiro (s): </label>
-                                                    <select name="tSelecionaQntSuites" id="cBanheiro" class="itemPesquisa form-control">
-                                                        <option value="" selected>Todos</option>
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="+">mais de 5</option>
-                                                    </select>
-                                                </div>
+                                                <!-- --------------------------
+                                                SUÍTES, QUARTOS, BANHEIROS, GARAGENS
+                                            ---------------------------- -->
                                                 <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
                                                     <label for="cSelecionaQntSuites">Suite (s): </label>
-                                                    <select name="tSelecionaQntSuites" id="cSelecionaQntSuites" class="itemPesquisa form-control">
-                                                        <option value="" selected>Todos</option>
-                                                        <option value="0">0</option>
+                                                    <select name="tSelecionaQntSuites" id="cSelecionaQntSuites" class="form-control">
+                                                        <option value="0" selected>Todos</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -186,10 +144,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
-                                                    <label for="cSelecionaqntGaragem">Garagem: </label>
-                                                    <select name="tSelecionaqntGaragem" id="cSelecionaqntGaragem" class="itemPesquisa form-control">
-                                                        <option value="" selected>Todos</option>
-                                                        <option value="0">0</option>
+                                                    <label for="cSelecionaQntQuarto">Quarto (s): </label>
+                                                    <select name="tSelecionaQntQuarto" id="cSelecionaQntQuarto" class="form-control">
+                                                        <option value="0" selected>Todos</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -198,30 +155,56 @@
                                                         <option value="+">mais de 5</option>
                                                     </select>
                                                 </div>
-                                                <!-- 
-                                                QUARTO, SUITES, GARAGEM
-                                                -->
 
-                                                <!--
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cSelecionaQntSuites">Banheiro (s): </label>
+                                                    <select name="tSelecionaQntSuites" id="cSelecionaQntSuites" class="form-control">
+                                                        <option value="0" selected>Todos</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
+                                                    <label for="cSelecionaqntGaragem">Vaga (s): </label>
+                                                    <select name="tSelecionaqntGaragem" id="cSelecionaqntGaragem" class="form-control">
+                                                        <option value="0" selected>Todas</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>                                                
+                                                        <option value="+">mais de 5</option>
+                                                    </select>
+                                                </div>
+                                                <!-- --------------------------
+                                                QUARTO, SUITES, GARAGEM
+                                            ---------------------------- -->
+
+                                                <!-- --------------------------
                                                 INICIO Largura, Comprimento
-                                                -->
+                                             ---------------------------- -->
 
                                                 <div class="form-group col-md-6 o"> <!-- INCLUIR O CAMPO QUE COMEÇA OCULTO, COM A CLASSE "o"-->
                                                     <label for="cLargura">Largura: </label>
-                                                    <input type="text" class="form-control itemPesquisa" id="cLargura" name="tLargura" placeholder="Ex: 5 metros">
+                                                    <input type="text" class="form-control " id="cLargura" name="tLargura" placeholder="Ex: 5,20 m">
 
                                                 </div>
                                                 <div class="form-group col-md-6 o"> <!-- INCLUIR O CAMPO QUE COMEÇA OCULTO, COM A CLASSE "o"-->
                                                     <label for="cComprimento">Comprimento: </label> 
-                                                    <input type="text" class="form-control itemPesquisa" id="cComprimento" name="tComprimento" placeholder="Ex: 10 metros">
+                                                    <input type="text" class="form-control" id="cComprimento" name="tComprimento" placeholder="Ex: 10 m">
                                                 </div>
                                                 <!-- --------------------------
                                                 FIM Largura, Comprimento
                                              ---------------------------- -->
                                                 <div class="form-group col-md-12">
                                                     <label for="cSelecionaBairro">Bairro: </label>
-                                                    <select name="tSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
-                                                        <option value="Todos" selected>Qualquer Bairro</option>
+                                                    <select name="tSelecionaBairro" id="cSelecionaBairro" class="form-control">
+                                                        <option value="Todos" selected>Todos</option>
                                                         <option value="Bela vista">Bela vista</option>
                                                         <option value="Boa Esperança">Boa Esperança</option>
                                                         <option value="Bom Jardim">Bom Jardim</option>
@@ -252,7 +235,7 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <hr>
-                                                    <button type="submit" name="tBuscar" id="cBuscar02" class="btn btn-primary float-right"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>         
+                                                    <button type="submit" name="tBuscarAvancada" id="cBuscar02" class="btn btn-primary float-right"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>         
                                                 </div>
                                             </form>
                                         </div>

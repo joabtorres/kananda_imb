@@ -22,7 +22,7 @@ class controller {
         extract($viewData);
         include 'views/' . $viewName['diretorio'] . '/' . $viewName['view'] . '.php';
     }
-
+    
 }
 
 ?>

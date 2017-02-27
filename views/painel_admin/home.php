@@ -12,8 +12,8 @@
                     <h1>Olá, <?php echo (isset($_SESSION["ka_usuario_nome"]) && !empty($_SESSION["ka_usuario_nome"])) ? ucwords(strtolower($_SESSION["ka_usuario_nome"])) : ""; ?>!</h1>
                     <p class="text-left">
                         Bem-vindo ao painel adminstrativo da Kanananda Negócios Imobiliários.<br/>
-                        Imóveis cadastrados: 30 registros encontrados <br/>
-                        Imóveis ocultos: 0 registros encontrados</p>
+                        Imóveis cadastrados: <?php echo $imoveis_cadastrados;?> registros encontrados <br/>
+                        Imóveis ocultos: <?php echo $imoveis_ocultos;?> registros encontrados</p>
                     <a href="<?php echo BASE_URL;?>/home" class="btn btn-dark btn-lg">Página do site &raquo;</a>
                 </article>
             </section>

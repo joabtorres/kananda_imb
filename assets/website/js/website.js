@@ -39,30 +39,30 @@ if (document.getElementById("view-mapa-imoveis")) {
             markerCluster.clearMarkers();
         }
 
-        $.getJSON('pontos.json', function (pontos) {
+        $.getJSON('assets/website/json/imoveis.json', function (pontos) {
 
             var latlngbounds = new google.maps.LatLngBounds();
 
             $.each(pontos, function (index, ponto) {
 
-                if (ponto.Finalidade == finalidade || finalidade == "Comprar e Alugar") {
-                    if (ponto.Imovel == imovel || imovel == "Todos") {
+                if (ponto.finalidade_imovel == finalidade || finalidade == "Comprar e Alugar") {
+                    if (ponto.imovel_imovel == imovel || imovel == "Todos") {
                         var marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(ponto.Latitude, ponto.Longitude),
+                            position: new google.maps.LatLng(ponto.latitude_endereco, ponto.longitude_endereco),
                             title: "KANANDA IMOBILIÁRIA - IMÓVEL",
                             icon: "/assets/website/imagens/mapa/marcado.png"
                         });
 
                         var myOptions = {
-                            content: "<p><strong>Imovel: </strong>" + ponto.Imovel + "<br/>  <strong>Finalidade: </strong>" + ponto.Finalidade + "</p>",
+                            content: "<img src='" + ponto.imagem_imovel + "' class='img-responsive'/><p class='text-center font-bold'>" + ponto.imovel_imovel + " - " + ponto.finalidade_imovel + " - Cod "+ponto.referencia_imovel+"</p> <a style='display: block; witdh: 100%;' href='/imovel/index/"+ponto.cod_imovel+"' class='btn btn-success'> <span class=' glyphicon glyphicon-search'></span> Consulta imóvel</a>",
                             pixelOffset: new google.maps.Size(-150, 0)
                         };
 
-                        infoBox[ponto.Id] = new InfoBox(myOptions);
-                        infoBox[ponto.Id].marker = marker;
+                        infoBox[ponto.cod_imovel] = new InfoBox(myOptions);
+                        infoBox[ponto.cod_imovel].marker = marker;
 
-                        infoBox[ponto.Id].listener = google.maps.event.addListener(marker, 'click', function (e) {
-                            abrirInfoBox(ponto.Id, marker);
+                        infoBox[ponto.cod_imovel].listener = google.maps.event.addListener(marker, 'click', function (e) {
+                            abrirInfoBox(ponto.cod_imovel, marker);
                         });
 
                         markers.push(marker);
@@ -99,70 +99,60 @@ if (document.getElementById("view-mapa-imoveis")) {
 /*
  * Carregar categoria de acordo com o tipo do imóvel selecionado
  */
+function seleciona_imovel() {
+    var imovel = $("#cSelecionaImovel").val();
+    var serach_imovel = ['Casa', 'Kitnet', 'Apartamento'];
+    if (serach_imovel.indexOf(imovel) > -1) {
+        $('div.o').css('display', 'none');
+        $('div.a').css('display', 'block');
+    } else {
+        $('div.a').css('display', 'none');
+        $('div.o').css('display', 'block');
+    }
+    filtra_categoria(imovel, categoria);
+}
+
+function filtra_categoria(imovel, categoria) {
+    var imoveis = ['Casa', 'Terreno', 'Ponto Comercial', 'Loja Comercial', 'Loteamento', 'Galpão', 'Apartamento', 'Kitnet', 'Chácara', 'Fazenda', 'Área Portuária'];
+    var categorias = {
+        0: ['Todos', 'Térrea', 'Sobrado', 'Residencial', 'Condomínio'], //casa
+        1: ['Todos', 'Urbano', 'Rural', 'Residencial', 'Condomínio', 'Loteamento'], //terreno
+        2: ['Todos', 'Térreo', 'Edifício'], //ponto comercial
+        3: ['Todos', 'Edifício', 'Shopping'], //loja Comercial
+        4: ['Lotes'], //Loteamento
+        5: ['Todos', 'Comercial', 'Industrial'], //Galpão
+        6: ['Todos', 'Condomínio', 'Edifício'], //Apartamento
+        7: ['Todos', 'Térreo', 'Residencial', 'Edifício'], //Kitnet
+        8: ['Todos', 'Urbana', 'Rural'], //Chácara
+        9: ['Rural'], //Fazenda
+        10: ['Porto'] //Área Portuária
+    };
+    document.getElementById('cCategoria').innerHTML = "";
+    var categoria_options = null;
+    for (var i = 0; i < categorias[imoveis.indexOf(imovel)].length; i++) {
+        if (categorias[imoveis.indexOf(imovel)][i] === categoria) {
+            categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '" selected="true">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+        } else {
+            categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+        }
+
+    }
+    document.getElementById('cCategoria').innerHTML = categoria_options;
+}
+
+function oculta_busca_avancada() {
+    if ($("#cReferencia").val() !== "") {
+        $('form#buscar_avancada').css('display', 'none');
+        $('p.aviso-de-busca').css('display', 'block');
+    } else {
+        $('form#buscar_avancada').css('display', 'block');
+        $('p.aviso-de-busca').css('display', 'none');
+    }
+}
 $(document).ready(function () {
-    selecionaImovel = function () {
-        var valor = $("#cSelecionaImovel").val();
-        $("#cCategoria option").addClass('ocultar');
-        if (valor == "Casa") {
-            $(".ca").removeClass('ocultar');
-        } else if (valor == 'Terreno') {
-            $(".te").removeClass('ocultar');
-        } else if (valor == 'Ponto Comercial') {
-            $(".pc").removeClass('ocultar');
-        } else if (valor == 'Sala / Loja Comercial') {
-            $(".slc").removeClass('ocultar');
-        } else if (valor == 'Loteamento') {
-            $(".lot").removeClass('ocultar');
-        } else if (valor == 'Galpão / Barração') {
-            $(".gb").removeClass('ocultar');
-        } else if (valor == 'Apartamento') {
-            $(".ap").removeClass('ocultar');
-        } else if (valor == 'Kitnet') {
-            $(".kit").removeClass('ocultar');
-        } else if (valor == 'Sítio / Chácara') {
-            $(".sch").removeClass('ocultar');
-        } else if (valor == 'Lote / Fazenda') {
-            $(".lof").removeClass('ocultar');
-        } else if (valor == 'Área Portuária') {
-            $(".ap").removeClass('ocultar');
-        }
-    };
-
-    /**
-     * 
-     * Função para ocultar e descultar campos.
-     */
-
-    oculta_e_Desoculta = function () {
-        var valor = $("#cSelecionaImovel").val();
-        if (valor == 'Casa' || valor == 'Apartamento' || valor == 'Kitnet') {
-            $(".o").addClass('ocultar');
-            $(".a").removeClass('ocultar');
-        } else {
-            $(".o").removeClass('ocultar');
-            $(".a").addClass('ocultar');
-        }
-    };
-    /**
-     * função responsável por ocultar e revelar componentes do FILTRO de busca quando a REFERÊNCIA for modificada
-     */
-    $("#cReferencia").on("focusout", function () {
-        if ($(this).val() == '') {
-            $("select option").removeAttr('disabled');
-            $("#cBuscar02").removeAttr('disabled');
-            $('.aviso-de-busca').addClass('ocultar');
-        } else {
-            $("select option").attr('disabled', true);
-            $("#cBuscar02").attr('disabled', true);
-            $('.aviso-de-busca').removeClass('ocultar');
-        }
-    });
-    oculta_e_Desoculta();
-    selecionaImovel();
-    $("#cSelecionaImovel").on("change", selecionaImovel);
-    $("#cSelecionaImovel").on("change", oculta_e_Desoculta);
-
+    seleciona_imovel();
 });
+
 /**
  * PÁGINA CONTATO - MAPA
  */
