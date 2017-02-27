@@ -6,12 +6,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kananda Negócios Imobiliários</title>
+        <?php if (isset($viewData['imovel']['cod_imovel'])) : ?>
+            <meta property="og:url"           content="<?php echo BASE_URL . '/imovel/index/' . $viewData['imovel']['cod_imovel'] ?>" />
+            <meta property="og:type"          content="website" />
+            <meta property="og:title"         content="Kananda Negócios Imobiliários - <?php echo $viewData['imovel']['imovel_imovel'] . ' - ' . $viewData['imovel']['finalidade_imovel'] . ' - ' . $viewData['imovel']['categoria_imovel']; ?>" />
+            <meta property="og:description"   content="Você já visitou o nosso website? Não? Então visite agora mesmo e confira este imóvel, quem sabe seja aquele em que você procura." />
+            <meta property="og:image"         content="<?php echo BASE_URL . '/' . $viewData['imovel']['imagem_imovel']; ?>" />
+        <?php endif; ?>
 
         <link href="<?php echo BASE_URL ?>/assets/website/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<?php echo BASE_URL ?>/assets/website/css/fotorama.css" rel="stylesheet"/>
         <link href="<?php echo BASE_URL ?>/assets/website/css/estilo.css" rel="stylesheet"/>
     </head>
     <body>
+        <?php if (isset($viewData['imovel']['cod_imovel'])) : ?>
+            <div id="fb-root"></div>
+            <script>(function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id))
+                        return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+        <?php endif; ?>
         <div class="container-fluid" id="container-site">
             <!-- Cabeçalho do site[PARTE ESTÁTICA] -->
             <header class="row bg-branco" id="header">

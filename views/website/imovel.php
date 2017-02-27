@@ -51,6 +51,10 @@
                             <?php echo $imovel['valor_descricao'] ?>
                         <?php endif; ?>
                     </p>
+                    <p class="text-right">
+                        <!-- Your like button code -->
+                        <div class="fb-like" data-href="<?php echo BASE_URL . '/imovel/index/' . $imovel['cod_imovel'] ?>"  data-layout="standard" data-action="recommend" data-size="small" data-show-faces="true" data-share="true"></div>
+                    </p>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Especificações</strong></div>
                         <div class="panel-body">
@@ -112,7 +116,7 @@
                                 if (isset($imovel['comprimento_imovel']) && $imovel['comprimento_imovel'] != 0) :
                                     ?>
                                     <li style="text-transform: capitalize;"><span class="font-bold" style="text-transform: capitalize;">Endereço: </span> <?php echo $imovel['logradouro_endereco'] ?>, nº <?php echo $imovel['numero_endereco'] ?>, <?php echo $imovel['bairro_endereco'] ?> - <?php echo $imovel['complemento_endereco'] ?> -<?php echo $imovel['cidade_endereco'] ?> - PA</li>
-<?php endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>

@@ -71,7 +71,7 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a data-toggle="modal" data-target=".bs-casa-modal" >
+                <a data-toggle="modal" data-target=".bs-terreno-modal" >
                     <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_terreno.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Terrenos
                     </h4>
@@ -83,7 +83,7 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a data-toggle="modal" data-target=".bs-casa-modal">
+                <a data-toggle="modal" data-target=".bs-empreendimento-modal">
                     <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_empreendimento.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Empreendimentos
                     </h4>
@@ -95,7 +95,7 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a data-toggle="modal" data-target=".bs-casa-modal">
+                <a data-toggle="modal" data-target=".bs-ponto-comercial-modal">
                     <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_ponto_comercial.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Ponto Comercial
                     </h4>
@@ -171,7 +171,7 @@
     <!-- FIM LISTA DE IMÓVEIS-->
 </section><!-- fim row -->
 
-
+<!-- MODAL CASA-->
 <section class="modal fade bs-casa-modal" tabindex="-1" role="dialog">
     <article class="modal-dialog modal-lg" role="document">
         <section class="modal-content">
@@ -205,3 +205,113 @@
         </section>
     </article>
 </section>
+<!-- fim MODAL CASA-->
+
+
+<!-- MODAL Terreno-->
+<section class="modal fade bs-terreno-modal" tabindex="-1" role="dialog">
+    <article class="modal-dialog modal-lg" role="document">
+        <section class="modal-content">
+            <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-justify" >Terreno</h3>
+            </header>
+            <article class="modal-body">
+                <section class="row">
+                    <article class="col-md-offset-2 col-md-4">
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                                <div class="caption text-center">
+                                    COMPRAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="col-md-4">
+
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                                <div class="caption text-center">
+                                    ALUGAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </article>
+        </section>
+    </article>
+</section>
+<!-- fim MODAL terrno-->
+
+<!-- MODAL empreendimentos-->
+<section class="modal fade bs-empreendimento-modal" tabindex="-1" role="dialog">
+    <article class="modal-dialog modal-lg" role="document">
+        <section class="modal-content">
+            <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-justify" >Empreendimentos</h3>
+            </header>
+            <article class="modal-body">
+                <section class="row">
+                    <article class="col-md-offset-2 col-md-4">
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                                <div class="caption text-center">
+                                    COMPRAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="col-md-4">
+
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                                <div class="caption text-center">
+                                    ALUGAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </article>
+        </section>
+    </article>
+</section>
+<!-- fim MODAL empreendimentos-->
+
+<!-- MODAL ponto comercial-->
+<section class="modal fade bs-ponto-comercial-modal" tabindex="-1" role="dialog">
+    <article class="modal-dialog modal-lg" role="document">
+        <section class="modal-content">
+            <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-justify" >Ponto Comercial</h3>
+            </header>
+            <article class="modal-body">
+                <section class="row">
+                    <article class="col-md-offset-2 col-md-4">
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                                <div class="caption text-center">
+                                    COMPRAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="col-md-4">
+
+                        <div class="thumbnail">
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                                <div class="caption text-center">
+                                    ALUGAR
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </article>
+        </section>
+    </article>
+</section>
+<!-- fim MODAL ponto comercial-->
