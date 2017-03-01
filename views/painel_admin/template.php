@@ -10,7 +10,7 @@
         <link href="<?php echo BASE_URL; ?>/assets/painel_admin/css/bootstrap.min.css" rel="stylesheet">
         <!-- Estilo -->
         <link href="<?php echo BASE_URL; ?>/assets/painel_admin/css/estilo.css" rel="stylesheet">
-
+        <script> var categoria = null;</script>
     </head>
     <body>
         <div id="wrapper">
@@ -66,6 +66,7 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php if($_SESSION['ka_usuario_permissao']) : ?>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><span class="glyphicon glyphicon-user"></span> USUÁRIOS <b class="caret"></b></a>
                             <ul id="usuarios" class="collapse">
@@ -80,6 +81,7 @@
                                 </li>
                             </ul>
                         </li>
+                        
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#configuracoes"><span class=" glyphicon glyphicon-cog"></span> CONFIGURAÇÕES <b class="caret"></b></a>
                             <ul id="configuracoes" class="collapse">
@@ -91,7 +93,7 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <?php endif; //FIM $_SESSION['KA_USUARIO_PERMISSAO']?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

@@ -112,3 +112,33 @@
     </section>
 </div>
 <!-- /#page-wrapper -->
+
+<?php
+foreach ($imoveis as $imovel):
+    ?>
+    <!--MODEL-->
+    <div class="modal fade" id="model_<?php echo $imovel['cod_imovel'] . '_' . $imovel['referencia_imovel'] ?>" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <section class="modal-content">
+                <header class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Deseja excluir este imóvel?</h4>
+                </header>
+                <article class="modal-body">
+
+                    <p class="text-justify title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                        <br>
+                        <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
+                    </p>
+
+                </article>
+                <footer class="modal-footer">
+                    <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/excluir/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-danger">Excluir</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </footer>
+            </section>
+        </div>
+    </div>
+    <!--FIM MODEL-->
+
+<?php endforeach; ?>

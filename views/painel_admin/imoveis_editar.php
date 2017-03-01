@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <p class="font-bold">Destaca imóvel?</p>
-                                    
+
                                     <?php
                                     for ($i = 1; $i >= 0; $i--) {
                                         $status = ($i == 1) ? "Sim" : "Não";
@@ -58,7 +58,7 @@
                                         <?php
                                         $imovel = array("Casa", "Terreno", "Ponto Comercial", "Loja Comercial", "Loteamento", "Galpão", "Apartamento", "Kitnet",
                                             "Chácara", "Fazenda", "Área Portuária");
-                                        echo '<script> var categoria = "'.$imoveis['categoria_imovel'].'";</script>';
+
                                         foreach ($imovel as $valor) {
                                             if ($valor == $imoveis['imovel_imovel']) {
                                                 echo '<option value="' . $valor . '" selected="true">' . $valor . '</option>';
@@ -87,6 +87,7 @@
                                 </div>
                                 <div class="form-group col-md-4 cCategoria">
                                     <label for="cCategoria">Categoria: </label>
+                                    <?php echo '<script> var categoria = "' . $imoveis['categoria_imovel'] . '";</script>'; ?>
                                     <select name="tCategoria" id="cCategoria" class="form-control ">
                                     </select>
                                 </div>
@@ -220,19 +221,19 @@
                                 </div>
 
                                 <div class="col-md-12 form-group">
-                                    <input type="hidden" name="tQnt_fotos" value="<?php echo count($imagens)?>" id="iQnt_fotos" >
-                                    <span class="btn btn-primary btn-lg" onclick="add_imagem();">Adicionar foto</span> <strong class="font-bold">Quantidade de fotos atualmente: <span id="qnt_fotos"><?php echo count($imagens)?></span></strong>
+                                    <input type="hidden" name="tQnt_fotos" value="<?php echo count($imagens) ?>" id="iQnt_fotos" >
+                                    <span class="btn btn-primary btn-lg" onclick="add_imagem();">Adicionar foto</span> <strong class="font-bold">Quantidade de fotos atualmente: <span id="qnt_fotos"><?php echo count($imagens) ?></span></strong>
                                 </div>
                                 <div id="fotos">
-                                    <?php for ($i = count($imagens)-1; $i >= 0; $i--) : ?>
+                                    <?php for ($i = count($imagens) - 1; $i >= 0; $i--) : ?>
                                         <div class="form-group col-md-4 container-foto" id="foto-1"> 
                                             <figure class="viewFotos" > 
-                                                <p class="font-bold">Imagem - <?php echo ($i+1)?></p>
-                                                <img src="<?php echo BASE_URL . "/" . $imagens[$i]['imagem_imagem']; ?>" alt="Imóvel Kananda" id="viewImagem-<?php echo ($i+1)?>"/> 
+                                                <p class="font-bold">Imagem - <?php echo ($i + 1) ?></p>
+                                                <img src="<?php echo BASE_URL . "/" . $imagens[$i]['imagem_imagem']; ?>" alt="Imóvel Kananda" id="viewImagem-<?php echo ($i + 1) ?>"/> 
                                                 <figcaption> 
-                                                    <label for="cImagem-<?php echo ($i+1)?>" class="btn btn-primary btn-block ">Escolher arquivo</label> 
-                                                    <input type="hidden" name="nImagem-<?php echo ($i+1)?>" value="<?php echo $imagens[$i]['imagem_imagem']; ?>">
-                                                    <input type="file" id="cImagem-<?php echo ($i+1)?>" class="ocultar" name="tImagem-<?php echo ($i+1)?>" onchange="readURL(this);"/>
+                                                    <label for="cImagem-<?php echo ($i + 1) ?>" class="btn btn-primary btn-block ">Escolher arquivo</label> 
+                                                    <input type="hidden" name="nImagem-<?php echo ($i + 1) ?>" value="<?php echo $imagens[$i]['imagem_imagem']; ?>">
+                                                    <input type="file" id="cImagem-<?php echo ($i + 1) ?>" class="ocultar" name="tImagem-<?php echo ($i + 1) ?>" onchange="readURL(this);"/>
                                                     <span class="btn btn-danger btn-block" onclick="remover_foto(this);">Remover</span> 
                                                 </figcaption> 
                                             </figure>
@@ -245,7 +246,7 @@
                     <section class="row">
                         <article class="col-md-12">
                             <input type="submit" class="btn btn-success" value="Salvar" name="nSalvar"/>
-                            <a class="btn btn-danger" href="<?php echo BASE_URL?>/painel_admin/imoveis/cadastrados"/>Cancelar</a>
+                            <a class="btn btn-danger" href="<?php echo BASE_URL ?>/painel_admin/imoveis/cadastrados"/>Cancelar</a>
                         </article>
                     </section>
 

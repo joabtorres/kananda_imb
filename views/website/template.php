@@ -100,7 +100,7 @@
                                     <div class="row"> <!-- buscar rápida -->
                                         <div class="col-md-12">
                                             <h4 class="font-bold">Busca Rápida</h4>
-                                            <form method='post' role="form">
+                                            <form  action="<?php echo BASE_URL?>/imoveis/buscar" method='post' role="form">
                                                 <div class="col-md-12">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="cReferencia" name="tReferencia" placeholder="Código do Imóvel" onkeypress="oculta_busca_avancada();" onblur="oculta_busca_avancada();">
@@ -117,7 +117,7 @@
                                     <div class="row" ><!-- buscar avançada -->
                                         <div class="col-md-12">
                                             <p class="bg-danger btn-lg ocultar aviso-de-busca">Aviso: <small>Caso deseje fazer uma busca avançada remova o 'código do imóvel' informado a acima.</small></p>
-                                            <form method='post' role="form" class="form" id="buscar_avancada">                
+                                            <form action="<?php echo BASE_URL?>/imoveis/buscar" method='post' role="form" class="form" id="buscar_avancada">                
                                                 <h4 class="font-bold">Busca Avançada</h4>
                                                 <div class="form-group col-md-4">
                                                     <label for="cSelecionaImovel">Imóvel: </label>

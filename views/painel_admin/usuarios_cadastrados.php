@@ -9,17 +9,19 @@
                 </ol>
             </header><!--fim container-breadcrumb-->
             <section class="container-usuario clear">
-                <article class="col-md-4">
-                    <figure class="thumbnail">
-                        <img src="imagens/user.png">
-                        <p class="text-center"><strong class="font-bold">Joab Torres Alencar</strong> <br/> Usuário Padrão</p>
-                        <figcaption>
-                            <a href="#" class="btn btn-success btn-block">Recuperar Senha</a>
-                            <a href="#" class="btn btn-primary btn-block">Editar</a>
-                            <a href="#" class="btn btn-danger btn-block">Excluir</a>
-                        </figcaption>
-                    </figure>
-                </article>
+                <?php foreach ($usuarios as $usuario) : ?>
+                    <article class="col-md-4">
+                        <figure class="thumbnail">
+                            <img src="<?php echo (isset($usuario['imagem_usuario']) && !empty($usuario['imagem_usuario'])) ? BASE_URL . "/" . $usuario['imagem_usuario'] : BASE_URL . "/assets/painel_admin/imagens/user.png"; ?>">
+                            <p class="text-center"><strong class="font-bold"><?php echo ucwords(strtolower($usuario['nome_usuario'])) ?></strong> <br/> <?php echo ($usuario['nivel_usuario'] == 1) ? "Usuário Administrador" : "Usuário Padrão"; ?></p>
+                            <figcaption>
+                                <a data-toggle="modal" data-target="#model_recupera_<?php echo $usuario['cod_usuario'] ?>"  class="btn btn-success btn-block">Recuperar Senha</a>
+                                <a href="<?php echo BASE_URL?>/painel_admin/usuarios/editar/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-primary btn-block">Editar</a>
+                                <a data-toggle="modal" data-target="#model_excluir_<?php echo $usuario['cod_usuario'] ?>" class="btn btn-danger btn-block">Excluir</a>
+                            </figcaption>
+                        </figure>
+                    </article>
+                <?php endforeach; ?>
             </section><!--FIM CONTAINER-USUARIO-->
         </article> 
         <!--fim row-->
@@ -33,3 +35,53 @@
     </section>
 </div>
 <!-- /#page-wrapper -->
+<?php
+foreach ($usuarios as $usuario):
+    ?>
+    <!--MODEL-->
+    <div class="modal fade" id="model_excluir_<?php echo $usuario['cod_usuario'] ?>" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <section class="modal-content">
+                <header class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Deseja excluir este Usuário?</h4>
+                </header>
+                <article class="modal-body">
+
+                    <p class="text-justify title-nome">Nome: <?php echo ucwords(strtolower($usuario['nome_usuario']));  ?></p>
+                    <p class="text-justify title-nome">Email: <?php echo $usuario['email_usuario']; ?></p>
+
+                </article>
+                <footer class="modal-footer">
+                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/excluir/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-danger">Excluir</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </footer>
+            </section>
+        </div>
+    </div>
+    <!--FIM MODEL-->
+
+    <!--MODEL-->
+    <div class="modal fade" id="model_recupera_<?php echo $usuario['cod_usuario'] ?>" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <section class="modal-content">
+                <header class="modal-header bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Deseja recupera senha?</h4>
+                </header>
+                <article class="modal-body">
+
+                    <p class="text-justify title-nome">Nome: <?php echo ucwords(strtolower($usuario['nome_usuario'])); ?></p>
+                    <p class="text-justify title-nome">Email: <?php echo $usuario['email_usuario']; ?></p>
+
+                </article>
+                <footer class="modal-footer">
+                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/recupera/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-success">Enviar</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </footer>
+            </section>
+        </div>
+    </div>
+    <!--FIM MODEL-->
+
+<?php endforeach; ?>

@@ -9,33 +9,24 @@
                 </ol>
             </header><!--fim container-breadcrumb-->
             <article class="container-usuario clear">
-                <form method="POST" enctype="multipart/form-data" autocomplete="false">
+                <form method="POST" enctype="multipart/form-data" autocomplete="off">
                     <section class="panel panel-primary">
                         <header class="panel-heading"><strong class="font-bold">DADOS GERAIS</strong></header>
                         <article class="panel-body">
                             <div class="col-md-6">
-                                <div class="form-group
-                                <?php
-                                echo (isset($erro['nome'])) ? "has-error" : "";
-                                ?>" >
-                                    <label  class="control-label" for="cNome">Nome Completo: *</label>
+                                <div class="form-group <?php echo (isset($erro['nome'])) ? "has-error" : "";?>" >
+                                    <label  class="control-label" for="cNome">Nome Completo:  <?php echo (isset($erro['nome'])) ? $erro['nome'] : ""; ?></label>
                                     <input type="text" name="tNome" id="cNome" class="form-control" value="<?php echo (isset($_POST['tNome']) && !empty($_POST['tNome'])) ? $_POST['tNome'] : ""; ?>"/>
                                 </div>
-                                <div class="form-group <?php
-                                echo (isset($erro['email'])) ? "has-error" : "";
-                                ?>">
-                                    <label class="control-label" for="cEmail">E-mail: </label>
-                                    <input type="email" name="nEmail" id="cEmail" class="form-control"/>
+                                <div class="form-group <?php echo (isset($erro['email'])) ? "has-error" : ""; ?>">
+                                    <label class="control-label" for="cEmail">E-mail:  <?php echo (isset($erro['email'])) ? $erro['email'] : ""; ?></label>
+                                    <input type="email" name="nEmail" id="cEmail" class="form-control" value="<?php echo (!isset($erro['email']) && !empty($_POST['nEmail'])) ? $_POST['nEmail'] : ""; ?>"/>
                                 </div>
-                                <div class="form-group<?php
-                                echo (isset($erro['senha'])) ? "has-error" : "";
-                                ?>">
-                                    <label class="control-label" for="cSenha">Senha:</label>
+                                <div class="form-group <?php echo (isset($erro['senha'])) ? "has-error" : "";?>">
+                                    <label class="control-label" for="cSenha">Senha: <?php echo (isset($erro['senha'])) ? $erro['senha'] : ""; ?></label>
                                     <input type="password" name="nSenha" id="cSenha" class="form-control"/>
                                 </div>
-                                <div class="form-group<?php
-                                echo (isset($erro['senha'])) ? "has-error" : "";
-                                ?>">
+                                <div class="form-group">
                                     <label class="control-label" for="cRepetirSenha">Repetir Senha:</label>
                                     <input type="password" name="nRepetirSenha" id="cRepetirSenha" class="form-control"/>
                                 </div>
@@ -54,7 +45,7 @@
                                 <input type="hidden" name="qtd_fotos" value="1">
                                 <p class="text-center" style="margin-top: 10%;
                                    " id="fotos">
-                                    <img src="imagens/user.png" class="img-center" alt="Kananda" id="viewImagem-1"/>
+                                    <img src="<?php echo BASE_URL?>/assets/painel_admin/imagens/user.png" class="img-center" alt="Kananda" id="viewImagem-1"/>
                                     <label class="btn btn-danger" for="cFileImagem">Escolher Imagem</label>
                                     <input type="file" name="tImagem-1" id="cFileImagem" onchange="readURL(this)"/>
                                 </p>

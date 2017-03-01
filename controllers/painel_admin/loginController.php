@@ -23,7 +23,7 @@ class loginController extends controller {
                     $_SESSION['ka_usuario_cod'] = isset($usuario["cod_usuario"]) ? $usuario["cod_usuario"] : FALSE;
                     $_SESSION['ka_usuario_ativo'] = isset($usuario["nome_usuario"]) ? TRUE : FALSE;
                     $_SESSION['ka_usuario_nome'] = isset($usuario["nome_usuario"]) ? $usuario["nome_usuario"] : "";
-                    $_SESSION['ka_usuario_permissao'] = isset($usuario["nivel_usuario"]) ? TRUE : FALSE;
+                    $_SESSION['ka_usuario_permissao'] = ($usuario["nivel_usuario"] == 1) ? TRUE : FALSE;
                     header("Location: /painel_admin/home");
                 } else {
                     $dados['erro'] = "Usuário ainda está INATIVO";

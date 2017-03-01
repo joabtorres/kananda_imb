@@ -34,7 +34,6 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="cSelecionaImovel">Tipo do Imóvel: </label>
-                                    <script> var categoria = null;</script>
                                     <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control" onchange="seleciona_imovel();">
                                         <option value="Casa">Casa</option>
                                         <option value="Terreno">Terreno</option>

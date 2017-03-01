@@ -14,7 +14,7 @@ class imoveisController extends controller {
     public function index() {
         header("location: /home");
     }
-
+    
     public function apartamento_comprar($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $this->filtra_imoveis($page, "Apartamento", "Comprar", "apartamento_comprar");
@@ -61,6 +61,10 @@ class imoveisController extends controller {
     }
 
     public function ponto_comercial_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Ponto Comercial", "Alugar", "ponto_comercial_alugar");
+    }
+    public function buscar($page = array()){
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $this->filtra_imoveis($page, "Ponto Comercial", "Alugar", "ponto_comercial_alugar");
     }

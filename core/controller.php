@@ -1,7 +1,7 @@
 <?php
 
 class controller {
-    public function checkUser(){
+    protected function checkUser(){
         if (isset($_SESSION['ka_usuario_ativo']) && $_SESSION['ka_usuario_ativo']) {
            return true;
         } else {

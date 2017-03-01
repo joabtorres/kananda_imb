@@ -241,20 +241,38 @@ class imoveisController extends controller {
 
             $imovel = array();
 
-            if (isset($_POST['tReferencia']) && !empty($_POST['tReferencia'])) {
-                $imovel['referencia'] = addslashes($_POST['tReferencia']);
-            }
-            if (isset($_POST['tBuscarAvancada'])) {
-                $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
-                if ("Comprar e Alugar" != $_POST['tFinalidade']) {
-                    $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
+            //POR REFERENCIA
+            if (isset($_POST['tBuscaRapida'])) {
+                $imovel['referencia'] = $_POST['tReferencia'];
+            } else if (isset($_POST['tBuscarAvancada'])) {
+                $imovel['imovel'] = $_POST['tSelecionaImovel'];
+                if ($_POST['tFinalidade'] != "Comprar e Alugar") {
+                    $imovel['finalidade'] = $_POST['tFinalidade'];
                 }
-                if ("Todos" != $_POST['tCategoria']) {
-                    $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
+                if ($_POST['tCategoria'] != 'Todos') {
+                    $imovel['categoria'] = $_POST['tCategoria'];
                 }
+                if (!empty($_POST['tSelecionaQntSuites'])) {
+                    $imovel['suite'] = $_POST['tSelecionaQntSuites'];
+                }
+                if (!empty($_POST['tSelecionaQntQuarto'])) {
+                    $imovel['quarto'] = $_POST['tSelecionaQntQuarto'];
+                }
+                if (!empty($_POST['nSelectQntBanheiro'])) {
+                    $imovel['banheiro'] = $_POST['nSelectQntBanheiro'];
+                }
+                if (!empty($_POST['tSelecionaqntGaragem'])) {
+                    $imovel['suite'] = $_POST['tSelecionaqntGaragem'];
+                }
+                if (!empty($_POST['tLargura'])) {
+                    $imovel['largura'] = $_POST['tLargura'];
+                }
+                if (!empty($_POST['tComprimento'])) {
+                    $imovel['comprimento'] = $_POST['tComprimento'];
+                }
+                
             }
-
-
+            //PAGINACAO
             $limite = 6;
             $total_registro = $imoveisModal->quantidade_imoveis($imovel);
             $paginas = $total_registro / $limite;
@@ -262,7 +280,21 @@ class imoveisController extends controller {
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
             $indice = ($pagina_atual - 1) * $limite;
 
+
+            if (file_exists('assets/website/json/imoveis.json')) {
+                $imoveisJSON = json_decode(file_get_contents('assets/website/json/imoveis.json'));
+                foreach ($imoveisJSON as $array) {
+                    foreach ($array as $key => $value) {
+                        if ('imovel_imovel' == $key) {
+                            $dados['nome_imoveis'][] = $value;
+                        }
+                    }
+                }
+                $dados['nome_imoveis'] = array_unique($dados['nome_imoveis']);
+            }
+            
             $dados["paginas"] = $paginas;
+            $dados["nome"] = $paginas;
             $dados["pagina_atual"] = $pagina_atual;
             $dados["imoveis"] = $imoveisModal->listar_imoveis($imovel, $indice, $limite);
             $this->loadTemplate($viewName, $dados);

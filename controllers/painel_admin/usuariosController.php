@@ -39,36 +39,40 @@ class usuariosController extends controller {
                 }
                 //email
                 if (isset($_POST['nEmail']) && !empty($_POST['nEmail'])) {
-                    $usuario['email'] = ucwords(strtolower(addslashes($_POST['nEmail'])));
-                    
+                    $usuario['email'] = strtolower(addslashes($_POST['nEmail']));
+                    if (!$this->verificarEmail($usuario['email'])) {
+                        $dados['erro']['email'] = 'Por favor informe um e-mail valido @';
+                    }
+                    if ($usuarioModal->buscarEmail($usuario['email'])) {
+                        $dados['erro']['email'] = 'Email já cadastrado!';
+                    }
                 } else {
                     $dados['erro']['email'] = 'Por favor informe um e-mail valido';
                 }
                 //senha
-                if (isset($_POST['nSenha']) && !empty($_POST['nSenha']) && isset($_POST['nRepetirSenha']) && empty($_POST['nRepetirSenha'])) {
-                    if ($_POST['nRepetirSenha'] == $_POST['nRepetirSenha']) {
-                        $usuario['senha'] = ucwords(strtolower(addslashes($_POST['nSenha'])));
+                if (isset($_POST['nSenha']) && !empty($_POST['nSenha']) && isset($_POST['nRepetirSenha']) && !empty($_POST['nRepetirSenha'])) {
+                    if ($_POST['nSenha'] == $_POST['nRepetirSenha']) {
+                        $usuario['senha'] = md5(addslashes($_POST['nSenha']));
                     } else {
                         $dados['erro']['senha'] = '<b>Senha</b> e <b>Repetir Senha</b> não estão iguais! ';
                     }
                 } else {
-                    $dados['erro']['senha'] = 'Os campos <b>Senha</b> e <b>Repetir Senha</b> não foram preenchidos! ';
+                    $dados['erro']['senha'] = 'Os campos <b>Senha</b> ou <b>Repetir Senha</b> não foram preenchidos! ';
                 }
 
                 //ativa usuario
                 $usuario["status"] = addslashes($_POST['nStatus']);
                 //Nível de Acesso
-                $usuario['acesso'] = addslashes($_POST['tNivelDeAcesso']);
+                $usuario['nivel'] = addslashes($_POST['tNivelDeAcesso']);
 
                 //imagem
                 if (isset($_FILES['tImagem-1']) && $_FILES['tImagem-1']['error'] == 0) {
                     $usuario['imagem'] = $_FILES['tImagem-1'];
                 }
-                
-                if (isset($dados['erro']) && is_array($dados['erro'])) {
-                    echo '<pre>';
-                    print_r($usuario);
-                    echo '</pre>';
+
+                if (!isset($dados['erro']) && empty($dados['erro']) && count($dados['erro']) == 0) {
+                    $usuarioModal->cadastrar($usuario);
+                    header("Location: /painel_admin/usuarios/cadastrados");
                 }
             }
             $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_cadastrar");
@@ -77,15 +81,76 @@ class usuariosController extends controller {
     }
 
     public function cadastrados() {
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_cadastrados");
-        $this->loadTemplate($viewName, $dados);
+        if ($this->checkUser() && $_SESSION['ka_usuario_permissao']) {
+
+            $dados = array();
+            $usarioModel = new Usuario();
+            $dados['usuarios'] = $usarioModel->listar();
+            $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_cadastrados");
+            $this->loadTemplate($viewName, $dados);
+        }
+    }
+
+    public function editar($cod) {
+        if ($this->checkUser()) {
+            $dados = array();
+            $usuarioModel = new Usuario();
+            if ($cod == $_SESSION['ka_usuario_cod']) {
+                $dados['usuario'] = $usuarioModel->buscarID($cod);
+            } else if ($_SESSION['ka_usuario_permissao'] && !empty($cod)) {
+                $dados['usuario'] = $usuarioModel->buscarID($cod);
+            }
+            if (isset($_POST['nSalvar'])) {
+                $usuario = array();
+                //nome
+                $usuario['cod'] = $_POST['tCod'];
+
+                if (isset($_POST['tNome']) && !empty($_POST['tNome'])) {
+                    $usuario['nome'] = ucwords(strtolower(addslashes($_POST['tNome'])));
+                } else {
+                    $dados['erro']['nome'] = 'Por favor informe o nome do usuário!';
+                }
+                //senha
+                if (isset($_POST['nSenha']) && isset($_POST['nRepetirSenha'])) {
+                    if ($_POST['nSenha'] == $_POST['nRepetirSenha']) {
+                        $usuario['senha'] = md5(addslashes($_POST['nSenha']));
+                    } else {
+                        $dados['erro']['senha'] = '<b>Senha</b> e <b>Repetir Senha</b> não estão iguais! ';
+                    }
+                }
+
+                //ativa usuario
+                $usuario["status"] = addslashes($_POST['nStatus']);
+                //Nível de Acesso
+                $usuario['nivel'] = addslashes($_POST['tNivelDeAcesso']);
+
+                //imagem
+                if (isset($_FILES['tImagem-1']) && $_FILES['tImagem-1']['error'] == 0) {
+                    $usuario['imagem']['nova'] = $_FILES['tImagem-1'];
+                }
+                $usuario['imagem']['atual'] = $_POST['nImagem-1'];
+                if (!isset($dados['erro']) && empty($dados['erro']) && count($dados['erro']) == 0) {
+                    $usuarioModel->salvar($usuario);
+                    header("Location: /painel_admin/usuarios/cadastrados");
+                }
+            }
+            $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_editar");
+            $this->loadTemplate($viewName, $dados);
+        }
     }
 
     public function pesquisar() {
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_pesquisar");
         $this->loadTemplate($viewName, $dados);
+    }
+
+    public function excluir($cod) {
+        
+    }
+
+    public function recupera($cod) {
+        
     }
 
     private function verificarEmail($email) {
