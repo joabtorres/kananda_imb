@@ -54,21 +54,23 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">COMPRAR <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimento">Empreendimentos</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuaria</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">ALUGAR <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimento">Empreendimentos</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuaria</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/mapa">Mapa</a></li>
@@ -121,17 +123,25 @@
                                                     <label for="cSelecionaImovel">Imóvel: </label>
                                                     <script> var categoria = null;</script>
                                                     <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control" onchange="seleciona_imovel();">
-                                                        <option value="Casa">Casa</option>
-                                                        <option value="Terreno">Terreno</option>
-                                                        <option value="Ponto Comercial">Ponto Comercial</option>
-                                                        <option value="Loja Comercial">Loja Comercial</option>
-                                                        <option value="Loteamento">Loteamento</option>
-                                                        <option value="Galpão">Galpão</option>
-                                                        <option value="Apartamento">Apartamento</option>
-                                                        <option value="Kitnet">Kitnet</option>
-                                                        <option value="Chácara">Chácara</option>
-                                                        <option value="Fazenda">Fazenda</option>
-                                                        <option value="Área Portuária">Área Portuária</option>
+                                                        <?php
+                                                        //ESTE PROCEDIMENTO VAI CONSULTA O ARQUIVO JSON PARA LISTA OS IMÓVEIS
+                                                        $nomeImovel = array();
+                                                        $imoveis = array();
+                                                        if (file_exists('assets/website/json/imoveis.json')) {
+                                                            $imoveis = json_decode(file_get_contents('assets/website/json/imoveis.json'));
+                                                            foreach ($imoveis as $indice) {
+                                                                foreach ($indice as $imovel => $campo) {
+                                                                    if ('imovel_imovel' == $imovel) {
+                                                                        $nomeImovel[] = $campo;
+                                                                    }
+                                                                }
+                                                            }
+                                                            $nomeImovel = array_unique($nomeImovel);
+                                                        }
+                                                        foreach ($nomeImovel as $imovel) {
+                                                            echo '<option value="' . $imovel . '">' . $imovel . '</option>';
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4"> 
@@ -277,7 +287,7 @@
                 <section class="col-xs-12">
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Sobre</strong></h3>
-                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo e uma ... <a href="sobre.html">continua lendo &raquo;</a> </p>
+                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo e uma ... <a href="<?php echo BASE_URL.'/sobre'?>">continua lendo &raquo;</a> </p>
                     </article>
                     <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
                         <h3><strong>Contato</strong></h3>

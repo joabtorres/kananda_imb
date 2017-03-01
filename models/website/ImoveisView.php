@@ -129,4 +129,23 @@ class ImoveisView extends model {
         }
     }
 
+    /*
+     * public setVisita($cod_imovel)
+     * Descrição: está função incrementa +1 na visualização do imóvel
+     * @author  Joab Torres Alencar
+     */
+
+    public function setVisita($cod_imovel) {
+        $sql = $this->db->prepare('SELECT quantidade_visita FROM ka_imb_imovel_visita WHERE cod_imovel = :cod ;');
+        $sql->bindValue(':cod', $cod_imovel);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $qtd = intval($sql->fetch()['quantidade_visita'])+1;
+            $sql = $this->db->prepare('UPDATE ka_imb_imovel_visita SET quantidade_visita = :qtd WHERE cod_imovel = :cod ;');
+            $sql->bindValue(':qtd', $qtd);
+            $sql->bindValue(':cod', $cod_imovel);
+            $sql->execute();
+        }
+    }
+
 }

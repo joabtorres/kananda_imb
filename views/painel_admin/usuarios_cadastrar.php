@@ -9,7 +9,7 @@
                 </ol>
             </header><!--fim container-breadcrumb-->
             <article class="container-usuario clear">
-                <form method="POST" enctype="multipart/form-data" autocomplete="off">
+                <form method="POST" enctype="multipart/form-data" autocomplete="false">
                     <section class="panel panel-primary">
                         <header class="panel-heading"><strong class="font-bold">DADOS GERAIS</strong></header>
                         <article class="panel-body">
@@ -21,15 +21,21 @@
                                     <label  class="control-label" for="cNome">Nome Completo: *</label>
                                     <input type="text" name="tNome" id="cNome" class="form-control" value="<?php echo (isset($_POST['tNome']) && !empty($_POST['tNome'])) ? $_POST['tNome'] : ""; ?>"/>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="cEmail">E-mail:</label>
+                                <div class="form-group <?php
+                                echo (isset($erro['email'])) ? "has-error" : "";
+                                ?>">
+                                    <label class="control-label" for="cEmail">E-mail: </label>
                                     <input type="email" name="nEmail" id="cEmail" class="form-control"/>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group<?php
+                                echo (isset($erro['senha'])) ? "has-error" : "";
+                                ?>">
                                     <label class="control-label" for="cSenha">Senha:</label>
                                     <input type="password" name="nSenha" id="cSenha" class="form-control"/>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group<?php
+                                echo (isset($erro['senha'])) ? "has-error" : "";
+                                ?>">
                                     <label class="control-label" for="cRepetirSenha">Repetir Senha:</label>
                                     <input type="password" name="nRepetirSenha" id="cRepetirSenha" class="form-control"/>
                                 </div>

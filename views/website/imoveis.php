@@ -10,7 +10,13 @@
 
 <!-- CHAMADA PARA LISTA DE IMOVEIS-->
 <section class="row">
-    <?php foreach ($imoveis as $imovel) : ?>
+    
+    <?php 
+    if(count($imoveis) < 1){
+        echo '<section class="col-xs-12"><h2>Desculpe, nenhum imóvel foi encontrado com essas caracteristicas.</h2></section>';
+    }
+    
+    foreach ($imoveis as $imovel) : ?>
         <section class="col-md-3">
 
             <article class="thumbnail">

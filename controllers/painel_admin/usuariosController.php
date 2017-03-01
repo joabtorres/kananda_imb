@@ -30,6 +30,7 @@ class usuariosController extends controller {
             $dados = array();
             if (isset($_POST['nSalvar'])) {
                 $usuario = array();
+                $usuarioModal = new Usuario();
                 //nome
                 if (isset($_POST['tNome']) && !empty($_POST['tNome'])) {
                     $usuario['nome'] = ucwords(strtolower(addslashes($_POST['tNome'])));
@@ -39,6 +40,7 @@ class usuariosController extends controller {
                 //email
                 if (isset($_POST['nEmail']) && !empty($_POST['nEmail'])) {
                     $usuario['email'] = ucwords(strtolower(addslashes($_POST['nEmail'])));
+                    
                 } else {
                     $dados['erro']['email'] = 'Por favor informe um e-mail valido';
                 }
@@ -54,17 +56,15 @@ class usuariosController extends controller {
                 }
 
                 //ativa usuario
-                $usuario["status"] =  addslashes($_POST['nStatus']);
+                $usuario["status"] = addslashes($_POST['nStatus']);
                 //Nível de Acesso
                 $usuario['acesso'] = addslashes($_POST['tNivelDeAcesso']);
 
                 //imagem
-                //email
                 if (isset($_FILES['tImagem-1']) && $_FILES['tImagem-1']['error'] == 0) {
                     $usuario['imagem'] = $_FILES['tImagem-1'];
-                }else{
-                    $dados['erro']['imagem'] = "Insira uma imagem com extensão JPG, JPEG ou PNG !";
                 }
+                
                 if (isset($dados['erro']) && is_array($dados['erro'])) {
                     echo '<pre>';
                     print_r($usuario);
@@ -86,6 +86,19 @@ class usuariosController extends controller {
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_pesquisar");
         $this->loadTemplate($viewName, $dados);
+    }
+
+    private function verificarEmail($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            list($usuario, $dominio) = explode("@", $email);
+            if (checkdnsrr($dominio, 'MX')) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 }
