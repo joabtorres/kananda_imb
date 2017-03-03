@@ -9,7 +9,7 @@
             </header>
             <section class="col-md-12">
                 <article class="jumbotron">
-                    <h1>Olá, <?php echo (isset($_SESSION["ka_usuario_nome"]) && !empty($_SESSION["ka_usuario_nome"])) ? ucwords(strtolower($_SESSION["ka_usuario_nome"])) : ""; ?>!</h1>
+                    <h1>Olá, <?php echo (isset($_SESSION["usuario"]['nome']) && !empty($_SESSION["usuario"]['nome'])) ? ucwords(strtolower($_SESSION["usuario"]['nome'])) : ""; ?>!</h1>
                     <p class="text-left">
                         Bem-vindo ao painel adminstrativo da Kanananda Negócios Imobiliários.<br/>
                         Imóveis cadastrados: <?php echo $imoveis_cadastrados; ?> registros encontrados <br/>
@@ -41,7 +41,7 @@
                     </article>
                 </section>
             </article>
-            <?php if ($_SESSION['ka_usuario_permissao']) : ?>
+            <?php if ($_SESSION['usuario']['nivel']) : ?>
                 <article class="col-md-4">
                     <section class="panel panel-primary panel-icon">
                         <header class="panel-heading"><strong class="font-bold"><span class="glyphicon glyphicon-plus-sign float-right"></span> USUÁRIOS</strong> <br/> Cadastrar Novo Usuário</header>

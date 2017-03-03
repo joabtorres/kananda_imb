@@ -26,7 +26,7 @@ class usuariosController extends controller {
      */
 
     public function cadastrar() {
-        if ($this->checkUser() && $_SESSION['ka_usuario_permissao']) {
+        if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
             $dados = array();
             if (isset($_POST['nSalvar'])) {
                 $usuario = array();
@@ -81,7 +81,7 @@ class usuariosController extends controller {
     }
 
     public function cadastrados() {
-        if ($this->checkUser() && $_SESSION['ka_usuario_permissao']) {
+        if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
 
             $dados = array();
             $usarioModel = new Usuario();
@@ -95,9 +95,9 @@ class usuariosController extends controller {
         if ($this->checkUser()) {
             $dados = array();
             $usuarioModel = new Usuario();
-            if ($cod == $_SESSION['ka_usuario_cod']) {
+            if ($cod == $_SESSION['usuario']['cod']) {
                 $dados['usuario'] = $usuarioModel->buscarID($cod);
-            } else if ($_SESSION['ka_usuario_permissao'] && !empty($cod)) {
+            } else if ($_SESSION['usuario']['nivel'] && !empty($cod)) {
                 $dados['usuario'] = $usuarioModel->buscarID($cod);
             }
             if (isset($_POST['nSalvar'])) {
@@ -152,7 +152,13 @@ class usuariosController extends controller {
     public function recupera($cod) {
         
     }
-
+    /*
+     * private  verificarEmail($emial) [verifica dns do email destinatário]
+     * Descrição: Está função verifica o dns do email destinatário e retorna verdade ou falso
+     * @parem String $email - Email informado
+     * @return True ou False
+     * @author Joab Torres Alencar
+     */
     private function verificarEmail($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             list($usuario, $dominio) = explode("@", $email);

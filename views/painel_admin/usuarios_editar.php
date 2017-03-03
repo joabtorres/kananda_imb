@@ -31,7 +31,7 @@
                                     <label class="control-label" for="cRepetirSenha">Repetir Nova Senha:</label>
                                     <input type="password" name="nRepetirSenha" id="cRepetirSenha" class="form-control"/>
                                 </div>
-                                <?php if($_SESSION['ka_usuario_permissao']) : ?>
+                                <?php if($_SESSION['usuario']['nivel']) : ?>
                                 <div class="form-group">
                                     <strong class="font-bold">Deseja ativar este usuário?</strong><br/>
                                     <?php

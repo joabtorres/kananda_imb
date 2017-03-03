@@ -3,7 +3,7 @@
 class core {
 
     public function run() {
-        $url = (isset($_GET['url']) && !empty($_GET['url'])) ? $_GET['url']: "";
+        $url = (isset($_GET['url']) && !empty($_GET['url'])) ? $_GET['url'] : "";
         $params = array();
 
         if (!empty($url) && $url != '/') {
@@ -38,9 +38,16 @@ class core {
             $currentController = 'homeController';
             $currentAction = 'index';
         }
+        require_once('core/controller.php');
 
-        $c = new $currentController();
-        call_user_func_array(array($c, $currentAction), $params);
+        if (class_exists($currentController) && method_exists($currentController, $currentAction)) {
+            $c = new $currentController();
+            call_user_func_array(array($c, $currentAction), $params);
+        } else {
+            $co = new Controller();
+            $viewName= array('diretorio' => '404', 'view'=>'index');
+            $co->loadView($viewName);
+        }
     }
 
 }

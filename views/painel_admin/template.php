@@ -29,10 +29,10 @@
                 </div>
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <?php echo (isset($_SESSION["ka_usuario_nome"]) && !empty($_SESSION["ka_usuario_nome"])) ? ucwords(strtolower($_SESSION["ka_usuario_nome"])) : ""; ?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <?php echo (isset($_SESSION["usuario"]['nome']) && !empty($_SESSION["usuario"]['nome'])) ? ucwords(strtolower($_SESSION["usuario"]['nome'])) : ""; ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="<?php BASE_URL; ?>/painel_admin/usuarios/editar/<?php echo (isset($_SESSION["ka_usuario_cod"]) && !empty($_SESSION["ka_usuario_cod"])) ? $_SESSION["ka_usuario_cod"] : ""; ?>"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
+                                <a href="<?php BASE_URL; ?>/painel_admin/usuarios/editar/<?php echo (isset($_SESSION["ka_usuario_cod"]) && !empty($_SESSION["usuario"]['cod'])) ? $_SESSION["usuario"]['cod'] : ""; ?>"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -66,7 +66,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <?php if($_SESSION['ka_usuario_permissao']) : ?>
+                        <?php if($_SESSION['usuario']['nivel']) : ?>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><span class="glyphicon glyphicon-user"></span> USUÁRIOS <b class="caret"></b></a>
                             <ul id="usuarios" class="collapse">

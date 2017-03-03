@@ -21,8 +21,8 @@ class imoveisController extends controller {
     }
 
     /*
-     * public mais_visitados() [TIPO]
-     * Descrição:
+     * public mais_visitados($page) [lista os imóveis mais visitados no website]
+     * Descrição: Está função além de controle de URL lista em ordem decresente os imóveis mais visitados no website
      * @author Joab Torres Alencar
      */
 
@@ -51,7 +51,7 @@ class imoveisController extends controller {
 
     /*
      * public cadastrar() [CADASTRAR IMOVEL]
-     * Descrição: 
+     * Descrição: Está função é utilizada pra controle de URL referente a efetiva novo cadastro de um imóvel
      * @author Joab Torres Alencar
      */
 
@@ -107,8 +107,9 @@ class imoveisController extends controller {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * public editar($id) [EDITAR IMÓVEL]
+     * Descrição:Está função tem como objetivo controle de URL referente ao MVC do imoveis e controla edição do imóvel solicidaddo
+     * @param $id int = codigo do imóvel para ser editado
      * @author Joab Torres Alencar
      */
 
@@ -183,8 +184,9 @@ class imoveisController extends controller {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * public excluir($id) [excluir um imóvel]
+     * Descrição:Está função tem como objetivo executa ações para exclusão de imóvel
+     * @param $id int - código do imóvel
      * @author Joab Torres Alencar
      */
 
@@ -201,7 +203,7 @@ class imoveisController extends controller {
 
     /*
      * public cadastrados($page) [LISTA IMÓVEIS]
-     * Descrição:Lista todos os imóveis cadastrados sem nenhuma restrinção
+     * Descrição:   Lista todos os imóveis cadastrados sem nenhuma restrinção
      * @param int $page : página atual acessada
      * @author Joab Torres Alencar
      */
@@ -228,8 +230,8 @@ class imoveisController extends controller {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * public pesquisar($page) [Pesquisa imóvel]
+     * Descrição: Está função tem como objetivo fazer o controle nas pesquisas de um ou vários tipos de imóvel
      * @author Joab Torres Alencar
      */
 
@@ -241,9 +243,10 @@ class imoveisController extends controller {
 
             $imovel = array();
 
-            //POR REFERENCIA
+            //BUSCAR RAPIDA
             if (isset($_POST['tBuscaRapida'])) {
                 $imovel['referencia'] = $_POST['tReferencia'];
+                //BUSCAR AVANÇADA
             } else if (isset($_POST['tBuscarAvancada'])) {
                 $imovel['imovel'] = $_POST['tSelecionaImovel'];
                 if ($_POST['tFinalidade'] != "Comprar e Alugar") {
@@ -280,7 +283,7 @@ class imoveisController extends controller {
             $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
             $indice = ($pagina_atual - 1) * $limite;
 
-
+            //consulta no json
             if (file_exists('assets/website/json/imoveis.json')) {
                 $imoveisJSON = json_decode(file_get_contents('assets/website/json/imoveis.json'));
                 foreach ($imoveisJSON as $array) {
@@ -302,8 +305,8 @@ class imoveisController extends controller {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * public ocultos($page) [MOSTRA SOMENTE OS IMÓVEIS OCULTOS]
+     * Descrição:Está função é responsável pelo controle na exibição de somente imóveis ocultos no website
      * @author Joab Torres Alencar
      */
 

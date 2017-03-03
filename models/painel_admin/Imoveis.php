@@ -243,7 +243,7 @@ class Imoveis extends model {
      * @param int $limite_qtd - limite final
      * @param string $ordem - Ordem descrecente dos resultados
      * @return $imoveis - um array dos imóveis
-     * @autor
+     * @author Joab Torres Alencar
      */
 
     public function listar_imoveis($serach_imovel, $limite_inicio, $limite_qtd, $ordem = "ka_imb_imovel.cod_imovel") {
@@ -358,8 +358,12 @@ class Imoveis extends model {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * private criar_imagem($largura, $altura, $imovel[array]) [CRIA IMAGEM]
+     * Descrição: Está função privada tem como objetivo salva imagens referente ao imóvel cadastrado ou alterado
+     * @param $largua int  - Lagura em pixel da imagem
+     * @param $altura int - Altura em pixel da imagem
+     * @param $imovel array - Refente ao dados do imóvel como COD,REFERENCIA, IMOVEL, FINALIDADE e array da imagem
+     * @return  TRue = URL da imagem , FALSE = Null
      * @author Joab Torres Alencar
      */
 
@@ -422,8 +426,10 @@ class Imoveis extends model {
     }
 
     /*
-     * public index() [TIPO]
-     * Descrição:
+     * private sintetizaString($str) [remove caracteres especiais]
+     * Descrição: Está função privada tem como objetivo altera caracteres especiais 
+     * @param $str String = cadeia de caracteres;
+     * @return $str caracter editado.
      * @author Joab Torres Alencar
      */
 
@@ -440,7 +446,11 @@ class Imoveis extends model {
         return $str;
     }
 
-    
+    /*
+     * private saveImoveisJson() [CRIA JSON DOS IMÓVEIS]
+     * Descrição: Cria um arquivo imoveis.json JSON com os imóveis disponíveis para visualização.
+     * @author Joab Torres Alencar
+     */
     private function saveImoveisJson() {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.cod_imovel, ka_imb_imovel.referencia_imovel, ka_imb_imovel.imovel_imovel, ka_imb_imovel.finalidade_imovel, ka_imb_imovel.imagem_imovel, ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel = ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.status_imovel=0";
@@ -452,15 +462,6 @@ class Imoveis extends model {
             unlink("assets/website/json/imoveis.json");
         }
         file_put_contents("assets/website/json/imoveis.json", json_encode($imoveis));
-    }
-
-
-    public function readImoveisJson() {
-        $imoveis = array();
-        if (file_exists("assets/website/json/imoveis.json")) {
-            $imoveis = json_decode(file_get_contents("assets/website/json/imoveis.json"));
-        }
-        return $imoveis;
     }
 
 }

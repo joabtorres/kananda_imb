@@ -3,20 +3,21 @@
     <article class="col-xs-12 bg-azul title-destaque">
         <h2>
             <strong><?php echo ucwords($imovel) ?></strong><br>
-            <small><?php echo ucwords($finalidade) ?></small>
+            <small><?php echo $finalidade ?></small>
         </h2>
     </article><!-- FIM title-destaque-->
 </section>
 
 <!-- CHAMADA PARA LISTA DE IMOVEIS-->
 <section class="row">
-    
-    <?php 
-    if(count($imoveis) < 1){
+
+    <?php
+    if (count($imoveis) < 1) {
         echo '<section class="col-xs-12"><h2>Desculpe, nenhum imóvel foi encontrado com essas caracteristicas.</h2></section>';
     }
-    
-    foreach ($imoveis as $imovel) : ?>
+
+    foreach ($imoveis as $imovel) :
+        ?>
         <section class="col-md-3">
 
             <article class="thumbnail">

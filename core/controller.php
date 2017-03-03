@@ -2,7 +2,7 @@
 
 class controller {
     protected function checkUser(){
-        if (isset($_SESSION['ka_usuario_ativo']) && $_SESSION['ka_usuario_ativo']) {
+        if (isset($_SESSION['usuario']['status']) && $_SESSION['usuario']['status']) {
            return true;
         } else {
             header("Location: /painel_admin/home");

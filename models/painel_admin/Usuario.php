@@ -147,4 +147,28 @@ class Usuario extends model {
         }
     }
 
+    private function gera_senha($tamanho = 8, $numero = true, $maiusculo = true, $caractere_especial = true) {
+        $car_minusculo = 'qwertyuiopasdfghjklçzxcvbnm';
+        $car_numero = '0123456789';
+        $car_maiusculo = "QWERTYUIOPASDFGHJKLÇZXCVBNM";
+        $car_especial = "!@#$%&";
+
+        $retorno="";
+        $caracteres = $car_minusculo;
+
+        if ($numero) {
+            $caracteres = $caracteres . $car_numero;
+        }
+        if ($maiusculo) {
+            $caracteres = $caracteres . $car_maiusculo;
+        }
+        if ($caractere_especial) {
+            $caracteres = $caracteres . $car_especial;
+        }
+        for ($i = 1; $i <= $tamanho; $i++) {
+            $retorno=$retorno.mt_rand(1, strlen($caracteres));
+        }
+        return $retorno;
+    }
+
 }
