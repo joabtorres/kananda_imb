@@ -74,10 +74,7 @@
                                     <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrar"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Usuário</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrados"><span class="glyphicon glyphicon-list"></span> Exibir Usuários Cadastrados</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/pesquisar"><span class="glyphicon glyphicon-search"></span> Pesquisar usuários</a>
+                                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrados"><span class="glyphicon glyphicon-list"></span> Usuários Cadastrados</a>
                                 </li>
                             </ul>
                         </li>

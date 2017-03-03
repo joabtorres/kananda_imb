@@ -80,9 +80,9 @@
                     ?>
                     <div class="col-xs-12">
                         <ul class="pagination">
-                            <?php
+                            <?php 
                             echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/mais_visitados/1'>&laquo;</a></li>";
-                            for ($p = 0; $p <= $paginas; $p++) {
+                            for ($p = 0; $p < ceil($paginas); $p++) {
                                 if ($pagina_atual == ($p + 1)) {
                                     echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/mais_visitados/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                                 } else {

@@ -118,7 +118,6 @@ class usuariosController extends controller {
                         $dados['erro']['senha'] = '<b>Senha</b> e <b>Repetir Senha</b> não estão iguais! ';
                     }
                 }
-
                 //ativa usuario
                 $usuario["status"] = addslashes($_POST['nStatus']);
                 //Nível de Acesso
@@ -137,12 +136,6 @@ class usuariosController extends controller {
             $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_editar");
             $this->loadTemplate($viewName, $dados);
         }
-    }
-
-    public function pesquisar() {
-        $dados = array();
-        $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_pesquisar");
-        $this->loadTemplate($viewName, $dados);
     }
 
     public function excluir($cod) {

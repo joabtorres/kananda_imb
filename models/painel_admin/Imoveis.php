@@ -211,9 +211,9 @@ class Imoveis extends model {
     public function quantidade_imoveis($serach_imovel = array()) {
         $quantidade = 0;
         if (isset($serach_imovel) && !empty($serach_imovel)) {
-            $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE";
+            $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE cod_imovel > 0";
             foreach ($serach_imovel as $indice => $valor) {
-                $sql = $sql . " " . $indice . "_imovel = :" . $indice;
+                $sql = $sql . " AND " . $indice . "_imovel = :" . $indice;
             }
             $sql = $this->db->prepare($sql);
             foreach ($serach_imovel as $indice => $valor) {

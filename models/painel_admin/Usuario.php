@@ -147,7 +147,7 @@ class Usuario extends model {
         }
     }
 
-    private function gera_senha($tamanho = 8, $numero = true, $maiusculo = true, $caractere_especial = true) {
+    public function gera_senha($tamanho = 8, $numero = true, $maiusculo = true, $caractere_especial = true) {
         $car_minusculo = 'qwertyuiopasdfghjklçzxcvbnm';
         $car_numero = '0123456789';
         $car_maiusculo = "QWERTYUIOPASDFGHJKLÇZXCVBNM";
