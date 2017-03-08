@@ -39,6 +39,11 @@ class loginController extends controller {
             }
         }
         $this->loadView($viewName, $dados);
+        if (isset($_POST['nEnviarNovaSenha'])) {
+            $email = addslashes($_POST['nSearchEmail']);
+            $this->recupera($email);
+            echo "<script>$('#modal_recupera_concluido').modal('show');</script>";
+        }
     }
 
     /*
@@ -49,6 +54,40 @@ class loginController extends controller {
     public function sair() {
         $_SESSION['usuario'] = array();
         header("Location: /painel_admin/login");
+    }
+
+    private function recupera($email) {
+        $usuarioModel = new Usuario();
+        $senha = $usuarioModel->nova_senha($email);
+        if ($senha) {
+
+            // envia email ao usuário
+            $assunto = 'Kananda Negócios Imobiliários - Nova Senha';
+            $destinatario = $email;
+            $mensagem = '<!DOCTYPE html>
+			<html lang="pt-br">
+			<head>
+				<meta charset="UTF-8">
+				<title>' . $assunto . '</title>
+			</head>
+			<body>
+				<div style="width: 98%;display: block;margin: 10px auto;padding: 0;font-family: Arial, sans-serif;border : 2px solid #EAE8E8;">
+				<h3 style="background: #405192;color: white;padding: 10px;margin: 0;">Nova Senha! <br/> <small>Kananda Negócios Imobiliários</small></h3>
+					<p style="padding: 10px;line-height: 30px;">
+                                            Você solicitou uma nova senha de acesso ao painel administrativo do website, confira abaixo sua nova senha de acesso: <br/>
+                                            <span style="font-weight:bold">Email: </span>' . $email . ' <br/>
+                                            <span style="font-weight:bold">Nova Senha: </span>' . $senha . ' <br/>
+                                                 <a href="http://www.kananda.imb.br/" style="text-decoration: none; font-weight: bold;">Website</a>
+					</p>
+				</div>
+			</body>
+			</html>';
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: Kananda Négocios Imobiliários <contato@kananda.imb.br>' . "\r\n";
+            $headers .= 'X-Mailer: PHP/' . phpversion();
+            mail($destinatario, $assunto, $mensagem, $headers);
+        }
     }
 
 }

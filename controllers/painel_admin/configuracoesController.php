@@ -19,6 +19,7 @@ class configuracoesController extends controller {
 
     public function slideshow() {
         $dados = array();
+        
         $viewName = array("diretorio" => "painel_admin", "view" => "configuracoes_slideshow");
         $this->loadTemplate($viewName, $dados);
     }

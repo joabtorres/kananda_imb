@@ -60,7 +60,7 @@ $(document).ready(function () {
                 }
             });
         }
-        
+
         $("#btnEndereco").click(function () {
             if ($(this).val() !== "")
                 carregarNoMapa($("#txtEndereco").val());
@@ -99,31 +99,33 @@ function seleciona_imovel() {
 }
 
 function filtra_categoria(imovel, categoria) {
-    var imoveis = ['Casa', 'Terreno', 'Ponto Comercial', 'Loja Comercial', 'Loteamento', 'Galpão', 'Apartamento', 'Kitnet', 'Chácara', 'Fazenda', 'Área Portuária'];
-    var categorias = {
-        0: ['Todos', 'Térrea', 'Sobrado', 'Residencial', 'Condomínio'], //casa
-        1: ['Todos', 'Urbano', 'Rural', 'Residencial', 'Condomínio', 'Loteamento'], //terreno
-        2: ['Todos', 'Térreo', 'Edifício'], //ponto comercial
-        3: ['Todos', 'Edifício', 'Shopping'], //loja Comercial
-        4: ['Lotes'], //Loteamento
-        5: ['Todos', 'Comercial', 'Industrial'], //Galpão
-        6: ['Todos', 'Condomínio', 'Edifício'], //Apartamento
-        7: ['Todos', 'Térreo', 'Residencial', 'Edifício'], //Kitnet
-        8: ['Todos', 'Urbana', 'Rural'], //Chácara
-        9: ['Rural'], //Fazenda
-        10: ['Porto'] //Área Portuária
-    };
-    document.getElementById('cCategoria').innerHTML = "";
-    var categoria_options = null;
-    for (var i = 0; i < categorias[imoveis.indexOf(imovel)].length; i++) {
-        if(categorias[imoveis.indexOf(imovel)][i] === categoria){            
-         categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '" selected="true">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
-        }else{
-         categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+    if (document.getElementById('cCategoria')) {
+        var imoveis = ['Casa', 'Terreno', 'Ponto Comercial', 'Loja Comercial', 'Loteamento', 'Galpão', 'Apartamento', 'Kitnet', 'Chácara', 'Fazenda', 'Área Portuária'];
+        var categorias = {
+            0: ['Todos', 'Térrea', 'Sobrado', 'Residencial', 'Condomínio'], //casa
+            1: ['Todos', 'Urbano', 'Rural', 'Residencial', 'Condomínio', 'Loteamento'], //terreno
+            2: ['Todos', 'Térreo', 'Edifício'], //ponto comercial
+            3: ['Todos', 'Edifício', 'Shopping'], //loja Comercial
+            4: ['Lotes'], //Loteamento
+            5: ['Todos', 'Comercial', 'Industrial'], //Galpão
+            6: ['Todos', 'Condomínio', 'Edifício'], //Apartamento
+            7: ['Todos', 'Térreo', 'Residencial', 'Edifício'], //Kitnet
+            8: ['Todos', 'Urbana', 'Rural'], //Chácara
+            9: ['Rural'], //Fazenda
+            10: ['Porto'] //Área Portuária
+        };
+        document.getElementById('cCategoria').innerHTML = "";
+        var categoria_options = null;
+        for (var i = 0; i < categorias[imoveis.indexOf(imovel)].length; i++) {
+            if (categorias[imoveis.indexOf(imovel)][i] === categoria) {
+                categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '" selected="true">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+            } else {
+                categoria_options += '<option value="' + categorias[imoveis.indexOf(imovel)][i] + '">' + categorias[imoveis.indexOf(imovel)][i] + '</option>';
+            }
+
         }
-      
+        document.getElementById('cCategoria').innerHTML = categoria_options;
     }
-    document.getElementById('cCategoria').innerHTML = categoria_options;
 }
 
 function oculta_busca_avancada() {

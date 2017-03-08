@@ -32,7 +32,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> <?php echo (isset($_SESSION["usuario"]['nome']) && !empty($_SESSION["usuario"]['nome'])) ? ucwords(strtolower($_SESSION["usuario"]['nome'])) : ""; ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="<?php BASE_URL; ?>/painel_admin/usuarios/editar/<?php echo (isset($_SESSION["ka_usuario_cod"]) && !empty($_SESSION["usuario"]['cod'])) ? $_SESSION["usuario"]['cod'] : ""; ?>"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
+                                <a href="<?php BASE_URL; ?>/painel_admin/usuarios/editar/<?php echo $_SESSION['usuario']['cod']; ?>"> <span class="glyphicon glyphicon-user"></span> Alterar</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -43,7 +43,7 @@
                 </ul>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li class="active">
+                        <li>
                             <a href="<?php echo BASE_URL; ?>/painel_admin/home/index"><span class="glyphicon glyphicon-home"></span> Inicial</a>
                         </li>
                         <li>
@@ -66,30 +66,30 @@
                                 </li>
                             </ul>
                         </li>
-                        <?php if($_SESSION['usuario']['nivel']) : ?>
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><span class="glyphicon glyphicon-user"></span> USUÁRIOS <b class="caret"></b></a>
-                            <ul id="usuarios" class="collapse">
-                                <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrar"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Usuário</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrados"><span class="glyphicon glyphicon-list"></span> Usuários Cadastrados</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#configuracoes"><span class=" glyphicon glyphicon-cog"></span> CONFIGURAÇÕES <b class="caret"></b></a>
-                            <ul id="configuracoes" class="collapse">
-                                <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes"><span class=" glyphicon glyphicon-wrench"></span> Configurações Gerais</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes/slideshow"><span class="glyphicon glyphicon-picture"></span> Configurações Slideshow</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if ($_SESSION['usuario']['nivel']) : ?>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#usuarios"><span class="glyphicon glyphicon-user"></span> USUÁRIOS <b class="caret"></b></a>
+                                <ul id="usuarios" class="collapse">
+                                    <li>
+                                        <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrar"><span class="glyphicon glyphicon-plus-sign"></span> Cadastrar Novo Usuário</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/cadastrados"><span class="glyphicon glyphicon-list"></span> Usuários Cadastrados</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#configuracoes"><span class=" glyphicon glyphicon-cog"></span> CONFIGURAÇÕES <b class="caret"></b></a>
+                                <ul id="configuracoes" class="collapse">
+                                    <li>
+                                        <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes"><span class=" glyphicon glyphicon-wrench"></span> Configurações Gerais</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes/slideshow"><span class="glyphicon glyphicon-picture"></span> Configurações Slideshow</a>
+                                    </li>
+                                </ul>
+                            </li>
                         <?php endif; //FIM $_SESSION['KA_USUARIO_PERMISSAO']?>
                     </ul>
                 </div>

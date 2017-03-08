@@ -287,16 +287,16 @@
                 <section class="col-xs-12">
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Sobre</strong></h3>
-                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com empreendedorismo e uma ... <a href="<?php echo BASE_URL.'/sobre'?>">continua lendo &raquo;</a> </p>
+                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com ... <a href="<?php echo BASE_URL.'/sobre'?>">continua lendo &raquo;</a> </p>
                     </article>
                     <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
                         <h3><strong>Contato</strong></h3>
                         <ul class="list-unstyled">
-                            <li>Rua 4ª  (Quarta), nº 361 - Floresta</li>
-                            <li>Cep: 68181-300</li>
-                            <li>Itaituba / PA</li>
-                            <li><strong>Fone:</strong> (093) 3518-0367</li>
-                            <li><strong>E-mail:</strong> contato@kananda.imb.br</li>
+                            <li>Rua 4ª  (Quarta), nº 361 - Floresta - Itaituba / PA</li>   
+                            <li><strong>Fixo:</strong>  (93) 3518-0367</li>
+                            <li><strong>VIVO:</strong> (93) 99242-2027</li>
+                            <li><strong>WhatsApp:</strong> (93) 98124-3015</li>
+                            <li><strong>Email:</strong> contato@kananda.imb.br</li>
                         </ul>
                     </article>
                     <article class="col-md-3 col-lg-3">

@@ -43,7 +43,16 @@ input[type='file']{display: none;}
 .float-left{float: left;}
 .img-responsive{width: 100%;}
 .img-center{display: block; margin:0 auto;}
-
+.alert-success {
+    color: #fff;
+    background-color: #5CB85C;
+    border-color: #5CB85C;
+}
+.alert-danger {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
 /*
         Menu & sidebar-menu
 */
@@ -92,6 +101,9 @@ input[type='file']{display: none;}
 }
 #container-login img{
     margin-top: 20%;
+}
+#container-login a{
+    cursor: pointer;
 }
 /********************
         Páginas

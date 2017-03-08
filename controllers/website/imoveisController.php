@@ -73,10 +73,13 @@ class imoveisController extends controller {
         //BUSCAR RAPIDA
         if (isset($_POST['tBuscaRapida'])) {
             $_SESSION['imovel'] = array();
+            $_SESSION['imovel']['status'] = 0;
             $_SESSION['imovel']['referencia'] = $_POST['tReferencia'];
             //BUSCAR AVANÇADA
         } else if (isset($_POST['tBuscarAvancada'])) {
             $_SESSION['imovel'] = array();
+            
+            $_SESSION['imovel']['status'] = 0;
             $_SESSION['imovel']['imovel'] = $_POST['tSelecionaImovel'];
             if ($_POST['tFinalidade'] != "Comprar e Alugar") {
                 $_SESSION['imovel']['finalidade'] = $_POST['tFinalidade'];
@@ -102,8 +105,11 @@ class imoveisController extends controller {
             if (!empty($_POST['tComprimento'])) {
                 $_SESSION['imovel']['comprimento'] = $_POST['tComprimento'];
             }
+            if ($_POST['tSelecionaBairro'] != 'Todos') {
+                $_SESSION['imovel']['bairro'] = $_POST['tSelecionaBairro'];
+            }
         }
-        $imovel = $_SESSION['imovel'];
+        $imovel= $_SESSION['imovel'];
         //PAGINACAO
         $limite = 16;
         $total_registro = $imoveisModal->quantidade_imoveis($imovel);
@@ -135,7 +141,7 @@ class imoveisController extends controller {
         $imovel['status'] = 0;
         $imovel['imovel'] = $categoria_imovel;
         $imovel['finalidade'] = $categoria_finalidade;
-        $limite = 16;
+        $limite = 12;
         $total_registro = $imoveisModal->quantidade_imoveis($imovel);
         $paginas = $total_registro / $limite;
         $indice = 0;

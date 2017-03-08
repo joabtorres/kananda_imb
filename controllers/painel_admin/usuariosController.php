@@ -82,12 +82,16 @@ class usuariosController extends controller {
 
     public function cadastrados() {
         if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
-
             $dados = array();
             $usarioModel = new Usuario();
             $dados['usuarios'] = $usarioModel->listar();
             $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_cadastrados");
             $this->loadTemplate($viewName, $dados);
+            if (isset($_POST['nNovaSenha'])) {
+                $email = addslashes($_POST['nNovoSenhaEmail']);
+                $this->recupera($email);
+                echo "<script>$('#modal_recupera_concluido').modal('show');</script>";
+            }
         }
     }
 
@@ -130,7 +134,11 @@ class usuariosController extends controller {
                 $usuario['imagem']['atual'] = $_POST['nImagem-1'];
                 if (!isset($dados['erro']) && empty($dados['erro']) && count($dados['erro']) == 0) {
                     $usuarioModel->salvar($usuario);
-                    header("Location: /painel_admin/usuarios/cadastrados");
+                    if ($_SESSION['usuario']['nivel']) {
+                        header("Location: /painel_admin/usuarios/cadastrados");
+                    }else{
+                        header("Location: /painel_admin/home");
+                    }
                 }
             }
             $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_editar");
@@ -139,12 +147,55 @@ class usuariosController extends controller {
     }
 
     public function excluir($cod) {
-        
+        if ($this->checkUser() && $_SESSION['usuario']['nivel'] && !empty($cod)) {
+            if ($cod != $_SESSION['usuario']['cod']) {
+                $usuarioModel = new Usuario();
+                $usuarioModel->excluir(addslashes($cod));
+            }
+            header("Location: /painel_admin/usuarios/cadastrados");
+        } else {
+            header("Location: /painel_admin/home");
+        }
     }
 
-    public function recupera($cod) {
-        
+    private function recupera($email) {
+        if ($this->checkUser() && $_SESSION['usuario']['nivel'] && !empty($email)) {
+            $usuarioModel = new Usuario();
+            $senha = $usuarioModel->nova_senha($email);
+            if ($senha) {
+
+                // envia email ao usuário
+                $assunto = 'Kananda Negócios Imobiliários - Nova Senha';
+                $destinatario = $email;
+                $mensagem = '<!DOCTYPE html>
+			<html lang="pt-br">
+			<head>
+				<meta charset="UTF-8">
+				<title>' . $assunto . '</title>
+			</head>
+			<body>
+				<div style="width: 98%;display: block;margin: 10px auto;padding: 0;font-family: Arial, sans-serif;border : 2px solid #EAE8E8;">
+				<h3 style="background: #405192;color: white;padding: 10px;margin: 0;">Nova Senha! <br/> <small>Kananda Negócios Imobiliários</small></h3>
+					<p style="padding: 10px;line-height: 30px;">
+                                            Você solicitou uma nova senha de acesso ao painel administrativo do website, confira abaixo sua nova senha de acesso: <br/>
+                                            <span style="font-weight:bold">Email: </span>' . $email . ' <br/>
+                                            <span style="font-weight:bold">Nova Senha: </span>' . $senha . ' <br/>
+                                                 <a href="http://www.kananda.imb.br/" style="text-decoration: none; font-weight: bold;">Website</a>
+					</p>
+				</div>
+			</body>
+			</html>';
+                $headers = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $headers .= 'From: Kananda Négocios Imobiliários <contato@kananda.imb.br>' . "\r\n";
+                $headers .= 'X-Mailer: PHP/' . phpversion();
+                mail($destinatario, $assunto, $mensagem, $headers);
+            }
+        } else {
+            header("Location: /painel_admin/home");
+        }
     }
+
     /*
      * private  verificarEmail($emial) [verifica dns do email destinatário]
      * Descrição: Está função verifica o dns do email destinatário e retorna verdade ou falso
@@ -152,6 +203,7 @@ class usuariosController extends controller {
      * @return True ou False
      * @author Joab Torres Alencar
      */
+
     private function verificarEmail($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             list($usuario, $dominio) = explode("@", $email);

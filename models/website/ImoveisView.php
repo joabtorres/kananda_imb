@@ -27,6 +27,9 @@ class ImoveisView extends model {
                     $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice;
                     $serach_imovel[$indice] = "%" . $valor . "%";
                     break;
+                case "bairro":
+                    $sql = $sql . " AND ka_imb_imovel_endereco." . $indice . "_endereco = :" . $indice;
+                    break;
                 default :
                     $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
                     break;
@@ -56,18 +59,17 @@ class ImoveisView extends model {
     public function quantidade_imoveis($serach_imovel = array()) {
         $quantidade = 0;
         if (isset($serach_imovel) && !empty($serach_imovel)) {
-            $sql = "SELECT COUNT(cod_imovel) as qtd FROM ka_imb_imovel WHERE";
+            $sql = " SELECT COUNT(ka_imb_imovel.cod_imovel) as qtd FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel";
             foreach ($serach_imovel as $indice => $valor) {
                 switch ($indice) {
-                    case "finalidade":
-                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice . " ";
+                    case "bairro":
+                        $sql = $sql . " AND ka_imb_imovel_endereco." . $indice . "_endereco = :" . $indice;
                         break;
                     default :
                         $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
                         break;
                 }
             }
-
             $sql = $this->db->prepare($sql);
             foreach ($serach_imovel as $indice => $valor) {
                 $sql->bindValue(":" . $indice, $valor);
@@ -140,7 +142,7 @@ class ImoveisView extends model {
         $sql->bindValue(':cod', $cod_imovel);
         $sql->execute();
         if ($sql->rowCount() > 0) {
-            $qtd = intval($sql->fetch()['quantidade_visita'])+1;
+            $qtd = intval($sql->fetch()['quantidade_visita']) + 1;
             $sql = $this->db->prepare('UPDATE ka_imb_imovel_visita SET quantidade_visita = :qtd WHERE cod_imovel = :cod ;');
             $sql->bindValue(':qtd', $qtd);
             $sql->bindValue(':cod', $cod_imovel);

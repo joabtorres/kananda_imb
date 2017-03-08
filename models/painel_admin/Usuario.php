@@ -84,8 +84,14 @@ class Usuario extends model {
         }
     }
 
-    public function deleta() {
-        
+    public function excluir($cod) {
+        $usuario = $this->buscarID($cod);
+        if ($usuario['imagem_usuario']) {
+            $this->excluir_imagem($usuario['imagem_usuario']);
+        }
+        $sql = $this->db->prepare('DELETE FROM ka_imb_usuario WHERE cod_usuario = :cod');
+        $sql->bindValue(":cod", $cod);
+        $sql->execute();
     }
 
     public function getQuantidade() {
@@ -102,6 +108,20 @@ class Usuario extends model {
             return true;
         } else {
             false;
+        }
+    }
+
+    public function nova_senha($email) {
+        $usuario = $this->buscarEmail($email);
+        if (count($usuario) > 0) {
+            $senha = $this->gera_senha(8, true, true, false);
+            $sql = $this->db->prepare('UPDATE ka_imb_usuario SET senha_usuario = :senha WHERE email_usuario = :email');
+            $sql->bindValue(':senha', md5($senha));
+            $sql->bindValue(':email', $email);
+            $sql->execute();
+            return $senha;
+        } else {
+            return false;
         }
     }
 
@@ -148,12 +168,12 @@ class Usuario extends model {
     }
 
     public function gera_senha($tamanho = 8, $numero = true, $maiusculo = true, $caractere_especial = true) {
-        $car_minusculo = 'qwertyuiopasdfghjklçzxcvbnm';
-        $car_numero = '0123456789';
-        $car_maiusculo = "QWERTYUIOPASDFGHJKLÇZXCVBNM";
-        $car_especial = "!@#$%&";
+        $car_minusculo = 'q w e r t y u i o p a s d f g h j k l z x c v b n m';
+        $car_numero = ' 0 1 2 3 4 5 6 7 8 9';
+        $car_maiusculo = " Q W E R T Y U I O P A S D F G H J K L Z X C V B N M";
+        $car_especial = " ! @ # $ % & Ç ç";
 
-        $retorno="";
+        $retorno = "";
         $caracteres = $car_minusculo;
 
         if ($numero) {
@@ -165,8 +185,9 @@ class Usuario extends model {
         if ($caractere_especial) {
             $caracteres = $caracteres . $car_especial;
         }
+        $caracteres = explode(" ", $caracteres);
         for ($i = 1; $i <= $tamanho; $i++) {
-            $retorno=$retorno.mt_rand(1, strlen($caracteres));
+            $retorno = $retorno . $caracteres[mt_rand(1, count($caracteres) - 1)];
         }
         return $retorno;
     }

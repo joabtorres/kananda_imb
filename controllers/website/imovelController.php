@@ -16,10 +16,14 @@ class imovelController extends controller {
             $dados = array();
             $viewName = array("diretorio" => "website", "view" => "imovel");
             $imovelModel = new ImoveisView();
-            $imovelModel->setVisita($id);
             $dados["imovel"] = $imovelModel->listar_imovel(addslashes($id));
-            $dados["imagens"] = $imovelModel->listar_imagens(addslashes($id));
-            $this->loadTemplate($viewName, $dados);
+            if (is_array($dados['imovel']) && !empty($dados["imovel"])) {
+                $dados["imagens"] = $imovelModel->listar_imagens(addslashes($id));
+                $imovelModel->setVisita($id);
+                $this->loadTemplate($viewName, $dados);
+            } else {
+                header("location: /home");
+            }
         } else {
             header("location: /home");
         }

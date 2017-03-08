@@ -40,7 +40,7 @@
                                         <select name="tSelecionaImovel" id="cSelecionaImovel" class="form-control" onchange="seleciona_imovel();">
                                             <?php
                                             foreach ($nome_imoveis as $nome) :
-                                                echo '<option value="'.$nome.'">'.$nome.'</option>';
+                                                echo '<option value="' . $nome . '">' . $nome . '</option>';
                                             endforeach;
                                             ?>
                                         </select>
@@ -132,7 +132,7 @@
                                     <!-- --------------------------
                                     FIM Largura, Comprimento
                                  ---------------------------- -->
-                                    
+
                                     <div class="form-group col-md-12">
                                         <hr>
                                         <button type="submit" name="tBuscarAvancada" id="cBuscar02" class="btn btn-primary float-right"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>         
@@ -218,7 +218,7 @@
                         <ul class="pagination">
                             <?php
                             echo "<li><a href='" . BASE_URL . "/painel_admin/imoveis/pesquisar/1'>&laquo;</a></li>";
-                            for ($p = 0; $p < ceil($paginas); $p++)  {
+                            for ($p = 0; $p < ceil($paginas); $p++) {
                                 if ($pagina_atual == ($p + 1)) {
                                     echo "<li class='active'><a href='" . BASE_URL . "/painel_admin/imoveis/pesquisar/" . ($p + 1) . "'>" . ($p + 1) . "</a></li>";
                                 } else {
@@ -256,22 +256,21 @@ foreach ($imoveis as $imovel):
     <div class="modal fade" id="model_<?php echo $imovel['cod_imovel'] . '_' . $imovel['referencia_imovel'] ?>" tabindex="-1" role="dialog" >
         <div class="modal-dialog" role="document">
             <section class="modal-content">
-                <header class="modal-header">
+                <header class="modal-header  alert alert-danger">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Deseja excluir este imóvel?</h4>
                 </header>
                 <article class="modal-body">
 
-                    <p class="text-justify title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                    <p class="text-justify title-nome"> <span class="font-bold">Imóvel</span> <br/> <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
                         <br>
                         <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
                     </p>
-
+                    <p class="text-right">
+                        <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/excluir/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-danger">Excluir</a>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </p>
                 </article>
-                <footer class="modal-footer">
-                    <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/excluir/<?php echo $imovel['cod_imovel'] ?>" class="btn btn-danger">Excluir</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </footer>
             </section>
         </div>
     </div>

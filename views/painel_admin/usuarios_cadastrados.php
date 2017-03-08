@@ -39,7 +39,7 @@
                             <p class="text-center"><strong class="font-bold"><?php echo ucwords(strtolower($usuario['nome_usuario'])) ?></strong> <br/> <?php echo ($usuario['nivel_usuario'] == 1) ? "Usuário Administrador" : "Usuário Padrão"; ?></p>
                             <figcaption>
                                 <a data-toggle="modal" data-target="#model_recupera_<?php echo $usuario['cod_usuario'] ?>"  class="btn btn-success btn-block">Recuperar Senha</a>
-                                <a href="<?php echo BASE_URL?>/painel_admin/usuarios/editar/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-primary btn-block">Editar</a>
+                                <a href="<?php echo BASE_URL ?>/painel_admin/usuarios/editar/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-primary btn-block">Editar</a>
                                 <a data-toggle="modal" data-target="#model_excluir_<?php echo $usuario['cod_usuario'] ?>" class="btn btn-danger btn-block">Excluir</a>
                             </figcaption>
                         </figure>
@@ -65,20 +65,19 @@ foreach ($usuarios as $usuario):
     <div class="modal fade" id="model_excluir_<?php echo $usuario['cod_usuario'] ?>" tabindex="-1" role="dialog" >
         <div class="modal-dialog" role="document">
             <section class="modal-content">
-                <header class="modal-header">
+                <header class="modal-header alert alert-danger">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Deseja excluir este Usuário?</h4>
                 </header>
                 <article class="modal-body">
 
-                    <p class="text-justify title-nome">Nome: <?php echo ucwords(strtolower($usuario['nome_usuario']));  ?></p>
-                    <p class="text-justify title-nome">Email: <?php echo $usuario['email_usuario']; ?></p>
-
+                    <p class="text-justify title-nome"><span class="font-bold">Nome:  </span> <?php echo ucwords(strtolower($usuario['nome_usuario'])); ?></p>
+                    <p class="text-justify title-nome"><span class="font-bold">Email:  </span> <?php echo $usuario['email_usuario']; ?></p>
+                    <p class="text-right">
+                        <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/excluir/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-danger">Excluir</a>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </p>
                 </article>
-                <footer class="modal-footer">
-                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/excluir/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-danger">Excluir</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </footer>
             </section>
         </div>
     </div>
@@ -88,23 +87,44 @@ foreach ($usuarios as $usuario):
     <div class="modal fade" id="model_recupera_<?php echo $usuario['cod_usuario'] ?>" tabindex="-1" role="dialog" >
         <div class="modal-dialog" role="document">
             <section class="modal-content">
-                <header class="modal-header bg-success">
+                <header class="modal-header alert alert-success">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Deseja recupera senha?</h4>
                 </header>
                 <article class="modal-body">
 
-                    <p class="text-justify title-nome">Nome: <?php echo ucwords(strtolower($usuario['nome_usuario'])); ?></p>
-                    <p class="text-justify title-nome">Email: <?php echo $usuario['email_usuario']; ?></p>
+                    <p class="text-justify title-nome"><span class="font-bold">Nome: </span><?php echo ucwords(strtolower($usuario['nome_usuario'])); ?></p>
+                    <p class="text-justify title-nome"><span class="font-bold">Email:  </span><?php echo $usuario['email_usuario']; ?></p>
+
+                    <form method="POST" autocomplete="off">
+                        <p class="text-right">
+                            <input type="hidden"  name="nNovoSenhaEmail" value="<?php echo $usuario['email_usuario']; ?>"/>
+                            <button type="submit" name="nNovaSenha" class="btn btn-success">Enviar</button>
+                            <button class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        </p>
+                    </form>
 
                 </article>
-                <footer class="modal-footer">
-                    <a href="<?php echo BASE_URL; ?>/painel_admin/usuarios/recupera/<?php echo $usuario['cod_usuario'] ?>" class="btn btn-success">Enviar</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </footer>
             </section>
         </div>
     </div>
     <!--FIM MODEL-->
 
 <?php endforeach; ?>
+
+<!--MODEL-->
+<div class="modal fade" id="modal_recupera_concluido" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+        <section class="modal-content">
+            <header class="modal-header alert alert-success">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Nova Senha!</h4>
+            </header>
+            <article class="modal-body">
+                <p>Foi enviado uma nova senha para o e-mail informado, dentro de 5 a 10 minutos estará caixa de entrada.</p>
+                <p class="text-right"><button class="btn btn-default" data-dismiss="modal">Fechar</button></p>
+            </article>
+        </section>
+    </div>
+</div>
+<!--FIM MODEL-->

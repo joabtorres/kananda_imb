@@ -171,7 +171,7 @@
 
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <textarea name="tMensagem"  rows="5" class="form-control" placeholder="Mensagem">Olá! Achei esse imóvel (Cod. 101, Tipo do Imóvel: Casa, Finalidade: Venda, Categoria: Térrea) através do site . Por favor, gostaria de mais informações sobre o mesmo. Aguardo contato. Grato.</textarea>
+                                <textarea name="tMensagem"  rows="5" class="form-control" placeholder="Mensagem">Olá! Achei esse imóvel (Cod. <?php echo $imovel['referencia_imovel']; ?>, Tipo do Imóvel: <?php echo $imovel['imovel_imovel']; ?>, Finalidade: <?php echo $imovel['finalidade_imovel']; ?>, Categoria: <?php echo $imovel['categoria_imovel']; ?>) através do site . Por favor, gostaria de mais informações sobre o mesmo. Aguardo contato. Grato.</textarea>
                             </div>
                         </div>
                         <div class="col-sm-12 text-center">

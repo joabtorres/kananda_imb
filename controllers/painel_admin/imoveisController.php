@@ -242,38 +242,44 @@ class imoveisController extends controller {
             $imoveisModal = new Imoveis();
 
             $imovel = array();
-
             //BUSCAR RAPIDA
             if (isset($_POST['tBuscaRapida'])) {
-                $imovel['referencia'] = $_POST['tReferencia'];
+                $_SESSION['imovel_painel'] = array();
+                $_SESSION['imovel_painel']['status'] = 0;
+                $_SESSION['imovel_painel']['referencia'] = $_POST['tReferencia'];
                 //BUSCAR AVANÇADA
             } else if (isset($_POST['tBuscarAvancada'])) {
-                $imovel['imovel'] = $_POST['tSelecionaImovel'];
+                $_SESSION['imovel_painel'] = array();
+
+                $_SESSION['imovel_painel']['status'] = 0;
+                $_SESSION['imovel_painel']['imovel'] = $_POST['tSelecionaImovel'];
                 if ($_POST['tFinalidade'] != "Comprar e Alugar") {
-                    $imovel['finalidade'] = $_POST['tFinalidade'];
+                    $_SESSION['imovel_painel']['finalidade'] = $_POST['tFinalidade'];
                 }
                 if ($_POST['tCategoria'] != 'Todos') {
-                    $imovel['categoria'] = $_POST['tCategoria'];
+                    $_SESSION['imovel_painel']['categoria'] = $_POST['tCategoria'];
                 }
                 if (!empty($_POST['tSelecionaQntSuites'])) {
-                    $imovel['suite'] = $_POST['tSelecionaQntSuites'];
+                    $_SESSION['imovel_painel']['suite'] = $_POST['tSelecionaQntSuites'];
                 }
                 if (!empty($_POST['tSelecionaQntQuarto'])) {
-                    $imovel['quarto'] = $_POST['tSelecionaQntQuarto'];
+                    $_SESSION['imovel_painel']['quarto'] = $_POST['tSelecionaQntQuarto'];
                 }
                 if (!empty($_POST['nSelectQntBanheiro'])) {
-                    $imovel['banheiro'] = $_POST['nSelectQntBanheiro'];
+                    $_SESSION['imovel_painel']['banheiro'] = $_POST['nSelectQntBanheiro'];
                 }
                 if (!empty($_POST['tSelecionaqntGaragem'])) {
-                    $imovel['suite'] = $_POST['tSelecionaqntGaragem'];
+                    $_SESSION['imovel_painel']['suite'] = $_POST['tSelecionaqntGaragem'];
                 }
                 if (!empty($_POST['tLargura'])) {
-                    $imovel['largura'] = $_POST['tLargura'];
+                    $_SESSION['imovel_painel']['largura'] = $_POST['tLargura'];
                 }
                 if (!empty($_POST['tComprimento'])) {
-                    $imovel['comprimento'] = $_POST['tComprimento'];
+                    $_SESSION['imovel_painel']['comprimento'] = $_POST['tComprimento'];
                 }
-                
+            }
+            if(isset($_SESSION['imovel_painel']) && !empty($_SESSION['imovel_painel'])) {
+                $imovel = $_SESSION['imovel_painel'];
             }
             //PAGINACAO
             $limite = 6;
@@ -295,7 +301,7 @@ class imoveisController extends controller {
                 }
                 $dados['nome_imoveis'] = array_unique($dados['nome_imoveis']);
             }
-            
+
             $dados["paginas"] = $paginas;
             $dados["nome"] = $paginas;
             $dados["pagina_atual"] = $pagina_atual;
