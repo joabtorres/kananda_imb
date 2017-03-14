@@ -60,7 +60,7 @@
         <div class="thumbnail">
             <div class="dest-img">
                 <a data-toggle="modal" data-target=".bs-casa-modal">
-                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_casa.jpg" class="img-responsive" alt=""> 
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/casa/kananda_imobiliaria_categoria_casa.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Casa
                     </h4>
                 </a>
@@ -72,7 +72,7 @@
         <div class="thumbnail">
             <div class="dest-img">
                 <a data-toggle="modal" data-target=".bs-terreno-modal" >
-                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_terreno.jpg" class="img-responsive" alt=""> 
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/terreno/kananda_categoria_terreno.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Terrenos
                     </h4>
                 </a>
@@ -83,8 +83,8 @@
     <article class="col-md-3">
         <div class="thumbnail">
             <div class="dest-img">
-                <a data-toggle="modal" data-target=".bs-empreendimento-modal">
-                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_empreendimento.jpg" class="img-responsive" alt=""> 
+                <a href="<?php echo BASE_URL ?>/imoveis/empreendimentos">
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/empreendimento/kananda_categoria_empreendimento.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Empreendimentos
                     </h4>
                 </a>
@@ -96,7 +96,7 @@
         <div class="thumbnail">
             <div class="dest-img">
                 <a data-toggle="modal" data-target=".bs-ponto-comercial-modal">
-                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria_ponto_comercial.jpg" class="img-responsive" alt=""> 
+                    <img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/ponto-comercial/categoria_ponto_comercial.jpg" class="img-responsive" alt=""> 
                     <h4 class="text-center title-nome">Ponto Comercial
                     </h4>
                 </a>
@@ -183,7 +183,7 @@
                 <section class="row">
                     <article class="col-md-offset-2 col-md-4">
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/casa/kananda_casa_compra.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
                                 <div class="caption text-center">
                                     COMPRAR
                                 </div>
@@ -193,7 +193,7 @@
                     <article class="col-md-4">
 
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/casa/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
                                 <div class="caption text-center">
                                     ALUGAR
                                 </div>
@@ -220,7 +220,7 @@
                 <section class="row">
                     <article class="col-md-offset-2 col-md-4">
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/terreno_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/terreno/kananda_terreno_comprar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
                                 <div class="caption text-center">
                                     COMPRAR
                                 </div>
@@ -230,7 +230,7 @@
                     <article class="col-md-4">
 
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/terreno_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/terreno/kananda_terreno_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
                                 <div class="caption text-center">
                                     ALUGAR
                                 </div>
@@ -244,41 +244,6 @@
 </section>
 <!-- fim MODAL terrno-->
 
-<!-- MODAL empreendimentos-->
-<section class="modal fade bs-empreendimento-modal" tabindex="-1" role="dialog">
-    <article class="modal-dialog modal-lg" role="document">
-        <section class="modal-content">
-            <header class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title text-justify" >Empreendimentos</h3>
-            </header>
-            <article class="modal-body">
-                <section class="row">
-                    <article class="col-md-offset-2 col-md-4">
-                        <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
-                                <div class="caption text-center">
-                                    COMPRAR
-                                </div>
-                            </a>
-                        </div>
-                    </article>
-                    <article class="col-md-4">
-
-                        <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
-                                <div class="caption text-center">
-                                    ALUGAR
-                                </div>
-                            </a>
-                        </div>
-                    </article>
-                </section>
-            </article>
-        </section>
-    </article>
-</section>
-<!-- fim MODAL empreendimentos-->
 
 <!-- MODAL ponto comercial-->
 <section class="modal fade bs-ponto-comercial-modal" tabindex="-1" role="dialog">
@@ -292,7 +257,7 @@
                 <section class="row">
                     <article class="col-md-offset-2 col-md-4">
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_venda.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/ponto_comercial_comprar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/ponto-comercial/kananda_ponto_comercial_comprar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para comprar"/>
                                 <div class="caption text-center">
                                     COMPRAR
                                 </div>
@@ -302,7 +267,7 @@
                     <article class="col-md-4">
 
                         <div class="thumbnail">
-                            <a href="<?php echo BASE_URL ?>/imoveis/casa_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/kananda_casa_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
+                            <a href="<?php echo BASE_URL ?>/imoveis/ponto_comercial_alugar"><img src="<?php echo BASE_URL ?>/assets/website/imagens/categoria/ponto-comercial/ponto_comercial_alugar.jpg" alt="KANANDA NEGÓCIOS IMOBILIÁRIOS - IMOBILIARIA - ITAITUBA " title="Kananda Negócios imobiliários - imobiliária - Casa para alugar"/>
                                 <div class="caption text-center">
                                     ALUGAR
                                 </div>

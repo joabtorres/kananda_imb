@@ -65,6 +65,11 @@ class imoveisController extends controller {
         $this->filtra_imoveis($page, "Ponto Comercial", "Alugar", "ponto_comercial_alugar");
     }
 
+    public function empreendimentos($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Casa", null, "empreendimento");
+    }
+
     public function buscar($page = array()) {
         $dados = array();
         $viewName = array("diretorio" => "website", "view" => "imoveis");
@@ -78,7 +83,7 @@ class imoveisController extends controller {
             //BUSCAR AVANÇADA
         } else if (isset($_POST['tBuscarAvancada'])) {
             $_SESSION['imovel'] = array();
-            
+
             $_SESSION['imovel']['status'] = 0;
             $_SESSION['imovel']['imovel'] = $_POST['tSelecionaImovel'];
             if ($_POST['tFinalidade'] != "Comprar e Alugar") {
@@ -109,7 +114,9 @@ class imoveisController extends controller {
                 $_SESSION['imovel']['bairro'] = $_POST['tSelecionaBairro'];
             }
         }
-        $imovel= $_SESSION['imovel'];
+        if (isset($_SESSION['imovel']) && !empty($_SESSION['imovel']) && is_array($_SESSION['imovel'])) {
+            $imovel = $_SESSION['imovel'];
+        }
         //PAGINACAO
         $limite = 16;
         $total_registro = $imoveisModal->quantidade_imoveis($imovel);

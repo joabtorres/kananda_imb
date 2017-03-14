@@ -56,7 +56,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimento">Empreendimentos</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimentos">Empreendimentos</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuaria</a></li>
@@ -67,7 +67,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimento">Empreendimentos</a></li>
+                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimentos">Empreendimentos</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuaria</a></li>
@@ -100,7 +100,7 @@
                                     <div class="row"> <!-- buscar rápida -->
                                         <div class="col-md-12">
                                             <h4 class="font-bold">Busca Rápida</h4>
-                                            <form  action="<?php echo BASE_URL?>/imoveis/buscar" method='post' role="form">
+                                            <form  action="<?php echo BASE_URL ?>/imoveis/buscar" method='post' role="form">
                                                 <div class="col-md-12">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="cReferencia" name="tReferencia" placeholder="Código do Imóvel" onkeypress="oculta_busca_avancada();" onblur="oculta_busca_avancada();">
@@ -117,7 +117,7 @@
                                     <div class="row" ><!-- buscar avançada -->
                                         <div class="col-md-12">
                                             <p class="bg-danger btn-lg ocultar aviso-de-busca">Aviso: <small>Caso deseje fazer uma busca avançada remova o 'código do imóvel' informado a acima.</small></p>
-                                            <form action="<?php echo BASE_URL?>/imoveis/buscar" method='post' role="form" class="form" id="buscar_avancada">                
+                                            <form action="<?php echo BASE_URL ?>/imoveis/buscar" method='post' role="form" class="form" id="buscar_avancada">                
                                                 <h4 class="font-bold">Busca Avançada</h4>
                                                 <div class="form-group col-md-4">
                                                     <label for="cSelecionaImovel">Imóvel: </label>
@@ -287,7 +287,7 @@
                 <section class="col-xs-12">
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Sobre</strong></h3>
-                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com ... <a href="<?php echo BASE_URL.'/sobre'?>">continua lendo &raquo;</a> </p>
+                        <p class="text-justify">A empresa Gusmão Empreendimentos, com o objetivo inovador, iniciou suas atividades no ano de 2008 na cidade de Itaituba. Os irmãos Queila Gusmão e Alex Gusmão, com ... <a href="<?php echo BASE_URL . '/sobre' ?>">continua lendo &raquo;</a> </p>
                     </article>
                     <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
                         <h3><strong>Contato</strong></h3>
@@ -318,7 +318,8 @@
             </footer><!-- FIM Rodapé do site[PARTE ESTÁTICA]-->
         </div>
         <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="<?php echo BASE_URL; ?>/assets/painel_admin/js/jquery.js"></script>
         <!-- CHAMANDO JS DO BOOTSTRAP -->
         <script src="<?php echo BASE_URL; ?>/assets/website/js/bootstrap.min.js"></script>
         <!-- CHAMANDO JS DO GoogleMaps -->

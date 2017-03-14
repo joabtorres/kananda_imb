@@ -119,6 +119,7 @@ input[type='file']{display: none;}
     -moz-border-radius: 5px;
 }
 .viewFotos img, .viewFotosDestaque img{
+    max-width: 100%;
     display: block;
     max-height: 170px;
     margin: 10px auto;
@@ -154,7 +155,7 @@ input[type='file']{display: none;}
 .thumbnail .caption a:hover{color: #005F7D; text-decoration:none;}
 .thumbnail .caption .btn{color: white; text-decoration:none; font-weight:normal;}
 .thumbnail .caption .btn:hover{color: #FFF; text-decoration:none;}
-.thumbnail .dest-img .title-nome{font-weight:bold; min-height: 70px}
+.thumbnail .dest-img .title-nome{font-weight:bold;}
 .thumbnail .dest-img .title-endereco{font-weight: normal;}
 .ic-qua, .ic-ba, .ic-gar, .ic-larg, .ic-comp, .ic-are{width: 18px;height: 16px; display:inline-block;}
 .ic-larg{background: url(../imagens/icones.png) -3px -3px no-repeat;}
