@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Configuracoes - [TIPO]
+ * Configuracoes - [Conexão com tabela do banco de dados]
  * 
- * Descricao: 
+ * Descricao: Está classe é responsável por toda conexão com banco de dados referente banner's, logo, e-mail de atendimento, salvando suas alterações
  * 
  * @author Joab Torres Alencar
  * 
- * @copyright (c) 07/03/2017, Joab Torres Alencar -  Analista de Sistemas 
+ * @copyright (c) 14/03/2017, Joab Torres Alencar -  Analista de Sistemas 
  */
 class Configuracoes extends model {
     /*
@@ -62,6 +62,13 @@ class Configuracoes extends model {
         }
     }
 
+    /*
+     * public listar_slide() ['lista os banner's]
+     * Descrição: Está função retorna a lista dos banner's registrados
+     * @return array or null
+     * @author joab Torres Alencar
+     */
+
     public function lista_slide() {
         $sql = $this->db->query('SELECT * FROM ka_imb_banner ;');
         if ($sql->rowCount() > 0) {
@@ -70,6 +77,14 @@ class Configuracoes extends model {
             return null;
         }
     }
+
+    /*
+     * private salvar_imagem($file_imagem) [SALVA O BANNER DO SITE]
+     * Descrição: Está função é responsável para cria uma cópia do arquivo temporário $_FILES e armazena ela em uploads/slideshow
+     * @params array $file_imagem = Valor armazenado da variavel global $_FILES
+     * @return String caminho a url da imagem ou null
+     * @author Joab Torres Alencar
+     */
 
     private function salva_imagem($file_imagem) {
         $imagem = array();
@@ -114,3 +129,5 @@ class Configuracoes extends model {
     }
 
 }
+
+?>

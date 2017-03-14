@@ -4,32 +4,20 @@
     <article class="col-xs-12 container-slide">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2" ></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3" ></li>
-                <li data-target="#carousel-example-generic" data-slide-to="4" ></li>
 
+            <ol class="carousel-indicators">
+                <?php for ($i = 0; $i < count($banners); $i++) : ?>
+                    <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i ?>" <?php echo ($i == 0) ? "class='active'" : "" ?>></li>
+                <?php endfor; ?>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_01.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
-                </div>
-                <div class="item">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_02.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
-                </div>
-                <div class="item">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_03.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
-                </div>
-                <div class="item">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_04.jpg" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
-                </div>
-                <div class="item">
-                    <img src="<?php echo BASE_URL; ?>/uploads/slideshow/slide_05.jpg" class="img-responsive"alt="Kananda Negócios Imobiliários - website">
-                </div>
+                <?php for ($i = 0; $i < count($banners); $i++) : ?>
+                    <div class="item <?php echo ($i == 0) ? "active" : "" ?>">
+                        <img src="<?php echo BASE_URL . '/' . $banners[$i]['imagem_banner']; ?>" class="img-responsive" alt="Kananda Negócios Imobiliários - website">
+                    </div>
+                <?php endfor; ?>
             </div>
 
 
