@@ -71,8 +71,9 @@ class Imoveis extends model {
             $sql->bindValue(":cod", $imovel['cod']);
             $sql->bindValue(":quantidade", 0);
             $sql->execute();
-            return true;
+
             $this->saveImoveisJson();
+            return true;
         } else {
             return false;
         }
@@ -176,7 +177,6 @@ class Imoveis extends model {
                 $sql->bindValue(":imagem", $imagem);
                 $sql->execute();
             }
-
             $this->saveImoveisJson();
             return true;
         } else {
@@ -451,17 +451,18 @@ class Imoveis extends model {
      * Descrição: Cria um arquivo imoveis.json JSON com os imóveis disponíveis para visualização.
      * @author Joab Torres Alencar
      */
+
     private function saveImoveisJson() {
         $imoveis = array();
         $sql = "SELECT ka_imb_imovel.cod_imovel, ka_imb_imovel.referencia_imovel, ka_imb_imovel.imovel_imovel, ka_imb_imovel.finalidade_imovel, ka_imb_imovel.imagem_imovel, ka_imb_imovel_endereco.latitude_endereco, ka_imb_imovel_endereco.longitude_endereco FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel = ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.status_imovel=0";
         $sql = $this->db->query($sql);
         if ($sql->rowCount() > 0) {
             $imoveis = $sql->fetchAll();
+            if (file_exists("assets/website/json/imoveis.json")) {
+                unlink("assets/website/json/imoveis.json");
+            }
+            file_put_contents("assets/website/json/imoveis.json", json_encode($imoveis));
         }
-        if (file_exists("assets/website/json/imoveis.json")) {
-            unlink("assets/website/json/imoveis.json");
-        }
-        file_put_contents("assets/website/json/imoveis.json", json_encode($imoveis));
     }
 
 }

@@ -15,7 +15,7 @@ class ImoveisView extends model {
      * @param int $limite_qtd - limite final
      * @param string $ordem - Ordem descrecente dos resultados
      * @return $imoveis - um array dos imóveis
-     * @autor
+     * @author Joab Torres Alencar
      */
 
     public function listar_imoveis($serach_imovel, $limite_inicio, $limite_qtd, $ordem = "ka_imb_imovel.cod_imovel") {
@@ -23,6 +23,20 @@ class ImoveisView extends model {
         $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel AND ka_imb_imovel_endereco.cod_imovel=ka_imb_imovel_visita.cod_imovel";
         foreach ($serach_imovel as $indice => $valor) {
             switch ($indice) {
+                case "imovel":
+                    if (count($serach_imovel[$indice]) > 1) {
+                        $sql = $sql . " AND (";
+                        for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
+                            if ($i > 0) {
+                                $sql = $sql . " OR ";
+                            }
+                            $sql = $sql . "ka_imb_imovel." . $indice . "_imovel = :" . $indice . ($i + 1);
+                        }
+                        $sql = $sql . ") ";
+                    } else {
+                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+                    }
+                    break;
                 case "finalidade":
                     $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice;
                     $serach_imovel[$indice] = "%" . $valor . "%";
@@ -38,7 +52,20 @@ class ImoveisView extends model {
         $sql = $sql . " ORDER BY " . $ordem . " DESC LIMIT " . $limite_inicio . " , " . $limite_qtd;
         $sql = $this->db->prepare($sql);
         foreach ($serach_imovel as $indice => $valor) {
-            $sql->bindValue(":" . $indice, $valor);
+            switch ($indice) {
+                case "imovel":
+                    if (count($serach_imovel[$indice]) > 1) {
+                        for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
+                            $sql->bindValue(":" . $indice . ($i + 1), $serach_imovel[$indice][$i]);
+                        }
+                    } else {
+                        $sql->bindValue(":" . $indice, $valor);
+                    }
+                    break;
+                default :
+                    $sql->bindValue(":" . $indice, $valor);
+                    break;
+            }
         }
         $sql->execute();
 
@@ -62,6 +89,24 @@ class ImoveisView extends model {
             $sql = " SELECT COUNT(ka_imb_imovel.cod_imovel) as qtd FROM ka_imb_imovel, ka_imb_imovel_endereco WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel";
             foreach ($serach_imovel as $indice => $valor) {
                 switch ($indice) {
+                    case "imovel":
+                        if (count($serach_imovel[$indice]) > 1) {
+                            $sql = $sql . " AND (";
+                            for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
+                                if ($i > 0) {
+                                    $sql = $sql . " OR ";
+                                }
+                                $sql = $sql . "ka_imb_imovel." . $indice . "_imovel = :" . $indice . ($i + 1);
+                            }
+                            $sql = $sql . ") ";
+                        } else {
+                            $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
+                        }
+                        break;
+                    case "finalidade":
+                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice;
+                        $serach_imovel[$indice] = "%" . $valor . "%";
+                        break;
                     case "bairro":
                         $sql = $sql . " AND ka_imb_imovel_endereco." . $indice . "_endereco = :" . $indice;
                         break;
@@ -72,7 +117,20 @@ class ImoveisView extends model {
             }
             $sql = $this->db->prepare($sql);
             foreach ($serach_imovel as $indice => $valor) {
-                $sql->bindValue(":" . $indice, $valor);
+                switch ($indice) {
+                    case "imovel":
+                        if (count($serach_imovel[$indice]) > 1) {
+                            for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
+                                $sql->bindValue(":" . $indice . ($i + 1), $serach_imovel[$indice][$i]);
+                            }
+                        } else {
+                            $sql->bindValue(":" . $indice, $valor);
+                        }
+                        break;
+                    default :
+                        $sql->bindValue(":" . $indice, $valor);
+                        break;
+                }
             }
             $sql->execute();
             if ($sql->rowCount() > 0) {

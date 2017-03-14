@@ -67,7 +67,9 @@ class imoveisController extends controller {
 
     public function empreendimentos($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Casa", null, "empreendimento");
+        $imovel = array('Casa', 'Terreno');
+        ;
+        $this->filtra_imoveis($page, $imovel, null, "empreendimentos");
     }
 
     public function buscar($page = array()) {
@@ -154,8 +156,8 @@ class imoveisController extends controller {
         $indice = 0;
         $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $indice = ($pagina_atual - 1) * $limite;
-        $dados['imovel'] = $imovel['imovel'];
-        $dados['finalidade'] = $imovel['finalidade'];
+        $dados['imovel'] = (count($imovel['imovel']) > 1) ? "Empreendimentos" : $imovel['imovel'];
+        $dados['finalidade'] = (count($imovel['imovel']) > 1) ? "Comprar e Alugar" : $imovel['finalidade'];
         $dados["paginas"] = $paginas;
         $dados["pagina_atual"] = $pagina_atual;
         $dados['metodo_imovel'] = $metodo;
