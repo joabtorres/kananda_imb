@@ -23,7 +23,7 @@
                                         <div class="form-group col-md-4 container-foto" id="foto-1"> 
                                             <figure class="viewFotos"> 
                                                 <p class="font-bold">Imagem - <?php echo ($i + 1); ?></p>
-                                                <img src="<?php echo BASE_URL . '/' . $banners[$i]['imagem_banner']; ?>" alt="Banner Kananda" id="viewImagem-<?php echo ($i + 1); ?>">
+                                                <img src="<?php echo BASE_URL . '/' . $banners[$i]['imagem_banner']; ?>" alt="Banner Kananda" id="viewImagem-<?php echo ($i + 1); ?>" class="img-responsive">
                                                 <figcaption>
                                                     <label for="cImagem-<?php echo ($i + 1); ?>" class="btn btn-primary btn-block ">Escolher arquivo</label> 
                                                     <input id="cImagem-<?php echo ($i + 1); ?>" class="ocultar" name="tImagem-<?php echo ($i + 1); ?>" onchange="readURL(this);" type="file"> 

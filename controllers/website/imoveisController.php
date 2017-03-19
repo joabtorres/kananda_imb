@@ -68,7 +68,6 @@ class imoveisController extends controller {
     public function empreendimentos($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $imovel = array('Casa', 'Terreno');
-        ;
         $this->filtra_imoveis($page, $imovel, null, "empreendimentos");
     }
 

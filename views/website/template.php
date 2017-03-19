@@ -292,7 +292,7 @@
                     <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
                         <h3><strong>Contato</strong></h3>
                         <ul class="list-unstyled">
-                            <li>Rua 4ª  (Quarta), nº 361 - Floresta - Itaituba / PA</li>   
+                            <li>Rua 4ª  (Quarta), nº 361 - Floresta - Itaituba - PA</li>   
                             <li><strong>Fixo:</strong>  (93) 3518-0367</li>
                             <li><strong>VIVO:</strong> (93) 99242-2027</li>
                             <li><strong>WhatsApp:</strong> (93) 98124-3015</li>

@@ -15,6 +15,7 @@ input[type='file']{display: none;}
 /*
         CLASSES GLOBAIS
 */
+.modal-header{border-radius: 0;}
 .ocultar{display: none;}
 .jumbotron{background-color:#337ab7; color: white;}
 .btn-dark{color: white; background-color: #222222; border: 1px solid #000;}
@@ -119,7 +120,6 @@ input[type='file']{display: none;}
     -moz-border-radius: 5px;
 }
 .viewFotos img, .viewFotosDestaque img{
-    max-width: 100%;
     display: block;
     max-height: 170px;
     margin: 10px auto;
@@ -135,7 +135,7 @@ input[type='file']{display: none;}
 .container-usuario .thumbnail p{
     color:white;
 }
-.container-usuario img, .container-configuracao img{margin: 0.625em auto;max-height: 150px;}
+.container-usuario img, .container-configuracao img{margin: 0.625em auto;max-height: 170px;}
 
 .container-usuario .thumbnail figcaption{
     background-color: white;

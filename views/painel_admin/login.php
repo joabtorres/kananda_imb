@@ -73,7 +73,7 @@
                         <h4 class="modal-title">NOVA SENHA!</h4>
                     </header>
                     <article class="modal-body">
-                        <p>Foi enviado uma nova senha para o e-mail informado, dentro de 5 a 10 minutos estará caixa de entrada.</p>
+                        <p><?php echo $msg?></p>
                         <p class="form-group text-right">
                             <button class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </p>

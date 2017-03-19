@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="iCidade">Cidade:</label>
-                                    <input type="text" name="nCidade" id="iCidade" class="form-control" placeholder="Exemplo: Itaituba">
+                                    <input type="text" name="nCidade" id="iCidade" class="form-control" placeholder="Exemplo: Itaituba" value="Itaituba">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="iComplemento">Complemento:</label>

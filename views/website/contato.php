@@ -22,7 +22,7 @@
         <!--//<img src="<?php echo BASE_URL; ?>/assets/website/imagens/banner_contato.jpg"  class="img-center img-rounded img-responsive" title="Kananda Negócios Imobiliários - Contato "  alt="Kananda Negócios Imobiliários - Contato ">-->
         <div class="col-xs-12">
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <h3><strong>Meios de Contato: </strong></h3>
+                <h3><strong class="font-bold">Contato: </strong></h3>
                 <p><b>Fixo:</b> (93) 3518-0367</p>
                 <p><b>VIVO:</b> (93) 99242-2027</p>
                 <p><b>WhatsApp:</b> (93) 98124-3015</p>
@@ -42,14 +42,14 @@
                     <div class="col-xs-12">
                         <div class="input-group">
                             <span class="input-group-addon " id="iNome"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" placeholder="Nome Completo" aria-describedby="iNome">
+                            <input type="text" class="form-control"  name="nNome" placeholder="Nome Completo" aria-describedby="iNome">
                         </div>
                     </div>
 
                     <div class="col-xs-12">
                         <div class="input-group">
-                            <span class="input-group-addon " id="iNome"><span class="glyphicon glyphicon-phone"></span></span>
-                            <input type="text" class="form-control" placeholder="(99) 9999-9999" aria-describedby="iNome">
+                            <span class="input-group-addon " id="nTelefone"><span class="glyphicon glyphicon-phone"></span></span>
+                            <input type="text" class="form-control" name="nTelefone" placeholder="(99) 9999-9999" aria-describedby="nTelefone">
                         </div>
                     </div>
 
@@ -57,23 +57,16 @@
                     <div class="col-xs-12">
                         <div class="input-group">
                             <span class="input-group-addon " id="iEmail"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input type="text" class="form-control" placeholder="email@provedor.com" aria-describedby="iEmail">
+                            <input type="email" class="form-control" name="nEmail" placeholder="email@provedor.com" aria-describedby="iEmail">
                         </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="input-group">
-                            <span class="input-group-addon " id="iAssunto"><span class="glyphicon glyphicon-pencil"></span></span>
-                            <input type="text" class="form-control" placeholder="Assunto" aria-describedby="iAssunto">
-                        </div>
-                    </div>
-
+                    </div>  
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <textarea name=""  rows="5" class="form-control" placeholder="Mensagem"></textarea>
+                            <textarea name="nMensagem"  rows="5" class="form-control" placeholder="Mensagem"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <input type="submit" class="btn btn-lg btn-default" value="Enviar Mensagem">
+                        <input type="submit" class="btn btn-lg btn-default" value="Enviar Mensagem" name="nEnviar">
                     </div>
                 </form><!-- FIM FORMULÁRIO PARA CONTATO -->
             </div>

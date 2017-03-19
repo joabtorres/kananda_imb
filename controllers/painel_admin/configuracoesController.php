@@ -18,7 +18,7 @@ class configuracoesController extends controller {
     }
 
     public function slideshow() {
-        if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
+        if ($this->checkUserPattern() && $_SESSION['usuario']['nivel']) {
             $dados = array();
             $confModal = new Configuracoes();
             $dados['banners'] = $confModal->lista_slide();

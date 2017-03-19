@@ -26,7 +26,7 @@ class usuariosController extends controller {
      */
 
     public function cadastrar() {
-        if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
+        if ($this->checkUserPattern() && $_SESSION['usuario']['nivel']) {
             $dados = array();
             if (isset($_POST['nSalvar'])) {
                 $usuario = array();
@@ -52,7 +52,7 @@ class usuariosController extends controller {
                 //senha
                 if (isset($_POST['nSenha']) && !empty($_POST['nSenha']) && isset($_POST['nRepetirSenha']) && !empty($_POST['nRepetirSenha'])) {
                     if ($_POST['nSenha'] == $_POST['nRepetirSenha']) {
-                        $usuario['senha'] = md5(addslashes($_POST['nSenha']));
+                        $usuario['senha'] = md5(md5(addslashes($_POST['nSenha'])));
                     } else {
                         $dados['erro']['senha'] = '<b>Senha</b> e <b>Repetir Senha</b> não estão iguais! ';
                     }
@@ -81,7 +81,7 @@ class usuariosController extends controller {
     }
 
     public function cadastrados() {
-        if ($this->checkUser() && $_SESSION['usuario']['nivel']) {
+        if ($this->checkUserPattern() && $_SESSION['usuario']['nivel']) {
             $dados = array();
             $usarioModel = new Usuario();
             $dados['usuarios'] = $usarioModel->listar();
@@ -96,7 +96,7 @@ class usuariosController extends controller {
     }
 
     public function editar($cod) {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $usuarioModel = new Usuario();
             if ($cod == $_SESSION['usuario']['cod']) {
@@ -117,7 +117,7 @@ class usuariosController extends controller {
                 //senha
                 if (isset($_POST['nSenha']) && isset($_POST['nRepetirSenha'])) {
                     if ($_POST['nSenha'] == $_POST['nRepetirSenha']) {
-                        $usuario['senha'] = md5(addslashes($_POST['nSenha']));
+                        $usuario['senha'] = md5(md5(addslashes($_POST['nSenha'])));
                     } else {
                         $dados['erro']['senha'] = '<b>Senha</b> e <b>Repetir Senha</b> não estão iguais! ';
                     }
@@ -133,7 +133,7 @@ class usuariosController extends controller {
                 }
                 $usuario['imagem']['atual'] = $_POST['nImagem-1'];
                 if (!isset($dados['erro']) && empty($dados['erro']) && count($dados['erro']) == 0) {
-                    $usuarioModel->salvar($usuario);
+                    $usuarioModel->alterar($usuario);
                     if ($_SESSION['usuario']['nivel']) {
                         header("Location: /painel_admin/usuarios/cadastrados");
                     }else{
@@ -147,7 +147,7 @@ class usuariosController extends controller {
     }
 
     public function excluir($cod) {
-        if ($this->checkUser() && $_SESSION['usuario']['nivel'] && !empty($cod)) {
+        if ($this->checkUserPattern() && $_SESSION['usuario']['nivel'] && !empty($cod)) {
             if ($cod != $_SESSION['usuario']['cod']) {
                 $usuarioModel = new Usuario();
                 $usuarioModel->excluir(addslashes($cod));
@@ -159,7 +159,7 @@ class usuariosController extends controller {
     }
 
     private function recupera($email) {
-        if ($this->checkUser() && $_SESSION['usuario']['nivel'] && !empty($email)) {
+        if ($this->checkUserPattern() && $_SESSION['usuario']['nivel'] && !empty($email)) {
             $usuarioModel = new Usuario();
             $senha = $usuarioModel->nova_senha($email);
             if ($senha) {

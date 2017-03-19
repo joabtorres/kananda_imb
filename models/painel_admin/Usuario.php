@@ -35,7 +35,7 @@ class Usuario extends model {
         $sql->execute();
     }
 
-    public function salvar($usuario) {
+    public function alterar($usuario) {
         $sql = $this->db->prepare('UPDATE ka_imb_usuario SET nome_usuario = :nome, senha_usuario = :senha, status_usuario = :status, nivel_usuario = :nivel, imagem_usuario = :imagem WHERE cod_usuario = :cod');
         $sql->bindValue(':nome', $usuario['nome']);
         $sql->bindValue(':senha', $usuario['senha']);
@@ -116,7 +116,7 @@ class Usuario extends model {
         if (count($usuario) > 0) {
             $senha = $this->gera_senha(8, true, true, false);
             $sql = $this->db->prepare('UPDATE ka_imb_usuario SET senha_usuario = :senha WHERE email_usuario = :email');
-            $sql->bindValue(':senha', md5($senha));
+            $sql->bindValue(':senha', md5(md5($senha)));
             $sql->bindValue(':email', $email);
             $sql->execute();
             return $senha;

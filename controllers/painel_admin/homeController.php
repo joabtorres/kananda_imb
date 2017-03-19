@@ -17,7 +17,7 @@ class homeController extends controller {
      */
 
     public function index() {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $imovelModel = new Imoveis();
             $dados['imoveis_cadastrados'] = $imovelModel->quantidade_imoveis();

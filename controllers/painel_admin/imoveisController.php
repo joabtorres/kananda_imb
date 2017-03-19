@@ -27,7 +27,7 @@ class imoveisController extends controller {
      */
 
     public function mais_visitados($page = array()) {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_mais_visitados");
             $imoveisModal = new Imoveis();
@@ -56,7 +56,7 @@ class imoveisController extends controller {
      */
 
     public function cadastrar() {
-        $this->checkUser();
+        $this->checkUserPattern();
         $dados = array();
         $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_cadastrar");
         if (isset($_POST['nReferencia']) && !empty($_POST['nReferencia'])) {
@@ -114,7 +114,7 @@ class imoveisController extends controller {
      */
 
     public function editar($id = array()) {
-        $this->checkUser();
+        $this->checkUserPattern();
         $imoveisModal = new Imoveis();
         if (isset($id) && !empty($id) && $imoveisModal->listar_imovel($id)) {
             $dados = array();
@@ -173,7 +173,7 @@ class imoveisController extends controller {
                         $imovel["imagens"][$i] = $_POST['nImagem-' . ($i + 1)];
                     }
                 }
-                if ($imoveisModal->salvar($imovel)) {
+                if ($imoveisModal->alterar($imovel)) {
                     header("Location: /painel_admin/imoveis/cadastrados");
                 }
             }
@@ -191,7 +191,7 @@ class imoveisController extends controller {
      */
 
     public function excluir($id) {
-        $this->checkUser();
+        $this->checkUserPattern();
         if (!empty($id)) {
             $imoveisModel = new Imoveis();
             $imoveisModel->excluir(addslashes($id));
@@ -209,7 +209,7 @@ class imoveisController extends controller {
      */
 
     public function cadastrados($page = array()) {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_cadastrados");
             $imoveisModal = new Imoveis();
@@ -236,7 +236,7 @@ class imoveisController extends controller {
      */
 
     public function pesquisar($page = array()) {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_pesquisar");
             $imoveisModal = new Imoveis();
@@ -317,7 +317,7 @@ class imoveisController extends controller {
      */
 
     public function ocultos($page = array()) {
-        if ($this->checkUser()) {
+        if ($this->checkUserPattern()) {
             $dados = array();
             $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_ocultos");
             $imoveisModal = new Imoveis();

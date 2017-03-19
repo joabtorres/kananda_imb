@@ -53,7 +53,7 @@
                     </p>
                     <p class="text-right">
                         <!-- Your like button code -->
-                        <div class="fb-like" data-href="<?php echo BASE_URL . '/imovel/index/' . $imovel['cod_imovel'] ?>"  data-layout="standard" data-action="recommend" data-size="small" data-show-faces="true" data-share="true"></div>
+                    <div class="fb-like" data-href="<?php echo BASE_URL . '/imovel/index/' . $imovel['cod_imovel'] ?>"  data-layout="standard" data-action="recommend" data-size="small" data-show-faces="true" data-share="true"></div>
                     </p>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Especificações</strong></div>
@@ -138,46 +138,52 @@
                 </div> <!-- localização do imóvel -->
                 <!-- contato -->
                 <div role="tabpanel" class="tab-pane" id="contataImovel">
-                    <h3 class="text-center"><strong>Formulário de Contato</strong></h3>
-                    <!-- FORMULÁRIO PARA CONTATO -->
-                    <form method="POST" class="form-contato">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon " id="iNome"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" class="form-control" placeholder="Nome Completo" aria-describedby="iNome">
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3><strong class="font-bold">Contato: </strong></h3>
+                            <p><b>Fixo:</b> (93) 3518-0367</p>
+                            <p><b>VIVO:</b> (93) 99242-2027</p>
+                            <p><b>WhatsApp:</b> (93) 98124-3015</p>
+                            <p><b>Email:</b> Contato@kananda.imb.br</p>
+                            <h3><strong class="font-bold">Endereço: </strong></h3>
+                            <p>Rua 4ª (Quarta), nº 361 - Floresta - Itaituba - PA</p>
                         </div>
+                        <div class="col-md-8">
+                            <h3 class="text-center"><strong>Formulário de Contato</strong></h3>
+                            <!-- FORMULÁRIO PARA CONTATO -->
+                            <form method="POST" class="form-contato">
+                                <div class="col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon " id="iNome"><span class="glyphicon glyphicon-user"></span></span>
+                                        <input type="text" class="form-control"  name="nNome" placeholder="Nome Completo" aria-describedby="iNome">
+                                    </div>
+                                </div>
 
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon " id="iTelefone"><span class="glyphicon glyphicon-phone"></span></span>
-                                <input type="text" class="form-control" placeholder="(99) 9999-9999" aria-describedby="iTelefone">
-                            </div>
-                        </div>
+                                <div class="col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon " id="nTelefone"><span class="glyphicon glyphicon-phone"></span></span>
+                                        <input type="text" class="form-control" name="nTelefone" placeholder="(99) 9999-9999" aria-describedby="nTelefone">
+                                    </div>
+                                </div>
 
 
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon " id="iEmail"><span class="glyphicon glyphicon-envelope"></span></span>
-                                <input type="text" class="form-control" placeholder="email@provedor.com" aria-describedby="iEmail">
-                            </div>
+                                <div class="col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon " id="iEmail"><span class="glyphicon glyphicon-envelope"></span></span>
+                                        <input type="email" class="form-control" name="nEmail" placeholder="email@provedor.com" aria-describedby="iEmail">
+                                    </div>
+                                </div>  
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <textarea name="nMensagem"  rows="5" class="form-control" placeholder="Mensagem">Olá! Achei esse imóvel (Cod. <?php echo $imovel['referencia_imovel']; ?>, Tipo do Imóvel: <?php echo $imovel['imovel_imovel']; ?>, Finalidade: <?php echo $imovel['finalidade_imovel']; ?>, Categoria: <?php echo $imovel['categoria_imovel']; ?>) através do site . Por favor, gostaria de mais informações sobre o mesmo. Aguardo contato. Grato.</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <input type="submit" class="btn btn-lg btn-default" value="Enviar Mensagem" name="nEnviar">
+                                </div>
+                            </form><!-- FIM FORMULÁRIO PARA CONTATO -->
                         </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon " id="iAssunto"><span class="glyphicon glyphicon-pencil"></span></span>
-                                <input type="text" class="form-control" placeholder="Assunto" aria-describedby="iAssunto">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <textarea name="tMensagem"  rows="5" class="form-control" placeholder="Mensagem">Olá! Achei esse imóvel (Cod. <?php echo $imovel['referencia_imovel']; ?>, Tipo do Imóvel: <?php echo $imovel['imovel_imovel']; ?>, Finalidade: <?php echo $imovel['finalidade_imovel']; ?>, Categoria: <?php echo $imovel['categoria_imovel']; ?>) através do site . Por favor, gostaria de mais informações sobre o mesmo. Aguardo contato. Grato.</textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 text-center">
-                            <input type="submit" class="btn btn-lg btn-default" value="Enviar Mensagem">
-                        </div>
-                    </form><!-- FIM FORMULÁRIO PARA CONTATO -->
+                    </div>
                     <div class="clear"></div>
                 </div>  <!-- contato -->
             </div>
