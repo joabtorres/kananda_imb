@@ -9,7 +9,7 @@
         <!-- Bootstrap -->
         <link href="<?php echo BASE_URL; ?>/assets/painel_admin/css/bootstrap.min.css" rel="stylesheet">
         <!-- Estilo -->
-        <link href="<?php echo BASE_URL; ?>/assets/painel_admin/css/estilo.css" rel="stylesheet">
+        <link href="<?php echo BASE_URL; ?>/assets/painel_admin/css/estilo.min.css" rel="stylesheet">
         <script> var categoria = null;</script>
     </head>
     <body>

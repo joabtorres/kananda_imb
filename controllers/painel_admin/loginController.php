@@ -23,8 +23,8 @@ class loginController extends controller {
             $usuario = array("email" => addslashes(strtolower($_POST['tEmail'])), "senha" => md5(md5(addslashes($_POST['tSenha']))));
             $usuarioModal = new Usuario();
             if ($usuarioModal->logar($usuario)) {
-                if ($usuarioModal->getUsuario()["status_usuario"] == 1) {
-                    $usuario = $usuarioModal->getUsuario();
+                $usuario = $usuarioModal->getUsuario();
+                if ($usuario["status_usuario"] == 1) {
                     $_SESSION['msg'] = array();
                     //criando sessão do usuario com seus privilegios
                     $_SESSION['usuario'] = array();
@@ -62,13 +62,15 @@ class loginController extends controller {
      */
 
     public function sair() {
-        $_SESSION['usuario'] = array();
-        header("Location: /painel_admin/login");
+        if ($this->checkUserPattern()) {
+            $_SESSION['usuario'] = array();
+            header("Location: /painel_admin/login");
+        }
     }
 
     /*
      * private recupera($email) [GERA UMA NOVA SENHA]
-     * Descrição: Está função tem como objetivo gera uma nova senha para o e-mail solicitado, desde de que este mesmo esteja cadastrado.
+     * Descrição: Está função tem como objetivo gera uma nova senha para o e-mail solicitado, desde que este mesmo esteja cadastrado.
      * @param String $email
      * @author Joab Torres Alencar
      */

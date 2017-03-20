@@ -3,7 +3,7 @@
 /**
  * Usuario - [TIPO]
  * 
- * Descricao: 
+ * Descricao: Esta classe é responsável para fazer consultas, insersão, edição e remoção de usuários ao sistema
  * 
  * @author Joab Torres Alencar
  * 
@@ -11,12 +11,28 @@
  */
 class Usuario extends model {
 
-    private $usuarios;
     private $usuario;
     private $quantidade;
 
     public function getUsuario() {
         return $this->usuario;
+    }
+
+    public function getQuantidade() {
+        return $this->quantidade;
+    }
+
+    public function logar($usuario) {
+        $sql = $this->db->prepare("SELECT * FROM ka_imb_usuario WHERE email_usuario = :email AND senha_usuario = :senha;");
+        $sql->bindValue(":email", $usuario['email']);
+        $sql->bindValue(":senha", $usuario['senha']);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $this->usuario = $sql->fetch();
+            return true;
+        } else {
+            false;
+        }
     }
 
     public function cadastrar($usuario) {
@@ -115,23 +131,6 @@ class Usuario extends model {
         $sql = $this->db->prepare('DELETE FROM ka_imb_usuario WHERE cod_usuario = :cod');
         $sql->bindValue(":cod", $cod);
         $sql->execute();
-    }
-
-    public function getQuantidade() {
-        return $this->quantidade;
-    }
-
-    public function logar($usuario) {
-        $sql = $this->db->prepare("SELECT * FROM ka_imb_usuario WHERE email_usuario = :email AND senha_usuario = :senha;");
-        $sql->bindValue(":email", $usuario['email']);
-        $sql->bindValue(":senha", $usuario['senha']);
-        $sql->execute();
-        if ($sql->rowCount() > 0) {
-            $this->usuario = $sql->fetch();
-            return true;
-        } else {
-            false;
-        }
     }
 
     public function nova_senha($email) {

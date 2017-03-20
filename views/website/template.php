@@ -16,7 +16,7 @@
 
         <link href="<?php echo BASE_URL ?>/assets/website/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<?php echo BASE_URL ?>/assets/website/css/fotorama.css" rel="stylesheet"/>
-        <link href="<?php echo BASE_URL ?>/assets/website/css/estilo.css" rel="stylesheet"/>
+        <link href="<?php echo BASE_URL ?>/assets/website/css/estilo.min.css" rel="stylesheet"/>
     </head>
     <body>
         <?php if (isset($viewData['imovel']['cod_imovel'])) : ?>
