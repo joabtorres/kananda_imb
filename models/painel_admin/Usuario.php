@@ -62,6 +62,29 @@ class Usuario extends model {
         }
     }
 
+    public function listaPorID($cod) {
+        $sql = $this->db->prepare('SELECT * FROM ka_imb_usuario WHERE cod_usuario = :cod');
+        $sql->bindValue(':cod', $cod);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        } else {
+            return false;
+        }
+    }
+
+    public function listaPorEmail($email) {
+        $email = "%" . $email . "%";
+        $sql = $this->db->prepare('SELECT * FROM ka_imb_usuario WHERE email_usuario LIKE :email');
+        $sql->bindValue(':email', $email);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        } else {
+            return false;
+        }
+    }
+
     public function buscarEmail($email) {
         $sql = $this->db->prepare('SELECT email_usuario FROM ka_imb_usuario WHERE email_usuario = :email');
         $sql->bindValue(':email', $email);

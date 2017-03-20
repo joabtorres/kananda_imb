@@ -25,8 +25,6 @@ class homeController extends controller {
             $dados['imoveis_ocultos'] = $imovelModel->quantidade_imoveis($imovel);
             $viewName = array("diretorio" => "painel_admin", "view" => "home");
             $this->loadTemplate($viewName, $dados);
-        } else {
-            header("Location:  /painel_admin/login");
         }
     }
 

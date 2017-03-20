@@ -84,9 +84,21 @@ class usuariosController extends controller {
         if ($this->checkUserPattern() && $_SESSION['usuario']['nivel']) {
             $dados = array();
             $usarioModel = new Usuario();
-            $dados['usuarios'] = $usarioModel->listar();
+            //Buscar usuario
+            if (isset($_POST['nEnviar']) && !empty($_POST['nEnviar'])) {
+                if ($_POST['tFinalidade'] == 'cod') {
+                    $dados['usuarios'] = ($usarioModel->listaPorID(addslashes($_POST['tCampo']))) ? $usarioModel->listaPorID(addslashes($_POST['tCampo'])) : $dados['usuarios'] = $usarioModel->listar();
+                } else {
+                    $dados['usuarios'] = ($usarioModel->listaPorEmail(addslashes($_POST['tCampo']))) ? $usarioModel->listaPorEmail(addslashes($_POST['tCampo'])) : $dados['usuarios'] = $usarioModel->listar();
+                }
+                $_POST = array();
+            } else {
+                $dados['usuarios'] = $usarioModel->listar();
+            }
+
             $viewName = array("diretorio" => "painel_admin", "view" => "usuarios_cadastrados");
             $this->loadTemplate($viewName, $dados);
+            //Gera nova senha
             if (isset($_POST['nNovaSenha'])) {
                 $email = addslashes($_POST['nNovoSenhaEmail']);
                 $this->recupera($email);
@@ -136,7 +148,7 @@ class usuariosController extends controller {
                     $usuarioModel->alterar($usuario);
                     if ($_SESSION['usuario']['nivel']) {
                         header("Location: /painel_admin/usuarios/cadastrados");
-                    }else{
+                    } else {
                         header("Location: /painel_admin/home");
                     }
                 }
