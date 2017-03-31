@@ -17,11 +17,12 @@ class Imoveis extends model {
 
     public function cadastrar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (cod_imovel, referencia_imovel, status_imovel, destaque_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:cod, :referencia, :status, :destaque, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
+        $sql = $this->db->prepare("INSERT INTO ka_imb_imovel (cod_imovel, referencia_imovel, status_imovel, destaque_imovel, empreendimento_imovel, imovel_imovel, finalidade_imovel, categoria_imovel, quarto_imovel, banheiro_imovel, suite_imovel, garagem_imovel, largura_imovel, comprimento_imovel, area_total_imovel, area_construida_imovel, imagem_imovel, data_imovel)  VALUES (:cod, :referencia, :status, :destaque, :empreendimento, :imovel, :finalidade, :categoria, :quarto, :banheiro, :suite, :garagem, :largura, :comprimento, :area_total, :area_construida, :imagem, :data)");
         $sql->bindValue(":cod", $imovel['cod']);
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
         $sql->bindValue(":destaque", $imovel['destaque']);
+        $sql->bindValue(":empreendimento", $imovel['empreendimento']);
         $sql->bindValue(":imovel", $imovel['imovel']);
         $sql->bindValue(":finalidade", $imovel['finalidade']);
         $sql->bindValue(":categoria", $imovel['categoria']);
@@ -81,10 +82,11 @@ class Imoveis extends model {
 
     public function alterar($imovel) {
         //SALVANDO IMOVEL
-        $sql = $this->db->prepare("UPDATE ka_imb_imovel SET referencia_imovel = :referencia, status_imovel = :status, destaque_imovel = :destaque, imovel_imovel = :imovel, finalidade_imovel = :finalidade, categoria_imovel = :categoria, quarto_imovel = :quarto, banheiro_imovel = :banheiro, suite_imovel = :suite, garagem_imovel = :garagem, largura_imovel = :largura, comprimento_imovel =:comprimento, area_total_imovel = :area_total, area_construida_imovel =:area_construida, imagem_imovel = :imagem, data_imovel = :data WHERE cod_imovel = :cod");
+        $sql = $this->db->prepare("UPDATE ka_imb_imovel SET referencia_imovel = :referencia, status_imovel = :status, destaque_imovel = :destaque, empreendimento_imovel=:empreendimento, imovel_imovel = :imovel, finalidade_imovel = :finalidade, categoria_imovel = :categoria, quarto_imovel = :quarto, banheiro_imovel = :banheiro, suite_imovel = :suite, garagem_imovel = :garagem, largura_imovel = :largura, comprimento_imovel =:comprimento, area_total_imovel = :area_total, area_construida_imovel =:area_construida, imagem_imovel = :imagem, data_imovel = :data WHERE cod_imovel = :cod");
         $sql->bindValue(":referencia", $imovel['referencia']);
         $sql->bindValue(":status", $imovel['status']);
         $sql->bindValue(":destaque", $imovel['destaque']);
+        $sql->bindValue(":empreendimento", $imovel['empreendimento']);
         $sql->bindValue(":imovel", $imovel['imovel']);
         $sql->bindValue(":finalidade", $imovel['finalidade']);
         $sql->bindValue(":categoria", $imovel['categoria']);

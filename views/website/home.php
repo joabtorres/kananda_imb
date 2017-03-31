@@ -1,7 +1,7 @@
 <!-- Corpo do site [PARTE DINAMICA]-->
 <section class="row">
     <!-- CHAMADA PARA O SLIDE SHOW -->
-    <article class="col-xs-12 container-slide">
+    <article class="col-xs-12 container-slide hidden-xs">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
 

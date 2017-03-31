@@ -67,6 +67,7 @@ class imoveisController extends controller {
                 $imovel['referencia'] = addslashes($_POST['nReferencia']);
                 $imovel['status'] = addslashes($_POST['tOcuta']);
                 $imovel['destaque'] = addslashes($_POST['tDestaque']);
+                $imovel['empreendimento'] = addslashes($_POST['tEmpreendimento']);
                 $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
                 $imovel['categoria'] = addslashes($_POST['tCategoria']);
                 $imovel['finalidade'] = addslashes($_POST['tFinalidade']);
@@ -116,10 +117,10 @@ class imoveisController extends controller {
 
     public function editar($id = array()) {
         if ($this->checkUserPattern()) {
+            $imoveisModal = new Imoveis();
             if (isset($id) && !empty($id) && $imoveisModal->listar_imovel($id)) {
                 $dados = array();
                 $viewName = array("diretorio" => "painel_admin", "view" => "imoveis_editar");
-                $imoveisModal = new Imoveis();
                 $dados["imoveis"] = $imoveisModal->listar_imovel(addslashes($id));
                 $dados["imagens"] = $imoveisModal->listar_imagens(addslashes($id));
 
@@ -130,6 +131,7 @@ class imoveisController extends controller {
                     $imovel['referencia'] = addslashes($_POST['nReferencia']);
                     $imovel['status'] = addslashes($_POST['tOcuta']);
                     $imovel['destaque'] = addslashes($_POST['tDestaque']);
+                    $imovel['empreendimento'] = addslashes($_POST['tEmpreendimento']);
                     $imovel['imovel'] = addslashes($_POST['tSelecionaImovel']);
                     $imovel['categoria'] = addslashes($_POST['tCategoria']);
                     $imovel['finalidade'] = addslashes($_POST['tFinalidade']);

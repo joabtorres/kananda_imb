@@ -4,7 +4,7 @@
             <header class="col-md-12" id="container-breadcrumb">
                 <h1 class="page-header">Configurações Slideshow</h1>
                 <ol class="breadcrumb">
-                    <li><ahref="<?php echo BASE_URL; ?>/painel_admin/home"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/painel_admin/home"><span class="glyphicon glyphicon-home"></span> Inicial</a></li>
                     <li class="active"><span class="glyphicon glyphicon-picture"></span> Configurações Slideshow</li>
                 </ol>
             </header><!--fim container-breadcrumb-->

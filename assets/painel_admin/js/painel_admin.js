@@ -173,7 +173,7 @@ if (document.getElementById("fotos")) {
             p.setAttribute("class", "font-bold");
             p.appendChild(document.createTextNode("Imagem - " + qtd));
             img = document.createElement("img");
-            img.setAttribute("src", "/uploads/imovel_demonstrativo.jpg");
+            img.setAttribute("src", "/uploads/adiciona_foto.jpg");
             img.setAttribute("id", "viewImagem-" + qtd);
             img.setAttribute("alt", "Kananda Imobiliária");
             figcaption = document.createElement("figcaption");
@@ -201,7 +201,7 @@ if (document.getElementById("fotos")) {
             container.insertBefore(div, container.firstElementChild);
         } else {
             var imagem = document.getElementById("fotos");
-            imagem.innerHTML = imagem.innerHTML + '<div class="form-group col-md-4 container-foto" id="foto-1"> <figure class="viewFotos" > <p class="font-bold">Imagem - 1</p><img src="/uploads/imovel_demonstrativo.jpg" alt="Imóvel Kananda" id="viewImagem-1"/> <figcaption> <label for="cImagem-1" class="btn btn-primary btn-block ">Escolher arquivo</label> <input type="file" id="cImagem-1" class="ocultar" name="tImagem-1" onchange="readURL(this);"/> <span class="btn btn-danger btn-block" onclick="remover_foto(this);">Remover</span> </figcaption> </figure> </div>';
+            imagem.innerHTML = imagem.innerHTML + '<div class="form-group col-md-4 container-foto" id="foto-1"> <figure class="viewFotos" > <p class="font-bold">Imagem - 1</p><img src="/uploads/adiciona_foto.jpg" alt="Imóvel Kananda" id="viewImagem-1"/> <figcaption> <label for="cImagem-1" class="btn btn-primary btn-block ">Escolher arquivo</label> <input type="file" id="cImagem-1" class="ocultar" name="tImagem-1" onchange="readURL(this);"/> <span class="btn btn-danger btn-block" onclick="remover_foto(this);">Remover</span> </figcaption> </figure> </div>';
         }
         qtd++;
         qtdImagem();

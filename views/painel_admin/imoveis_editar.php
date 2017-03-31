@@ -16,7 +16,7 @@
                         </header>
                         <article class="panel-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-3">
                                     <label for="iReferencia">Referência:</label>
 
                                     <input type="hidden" name="nCod" class="form-control" value="<?php echo!empty($imoveis['cod_imovel']) ? $imoveis['cod_imovel'] : "" ?>"/>
@@ -45,6 +45,20 @@
                                             echo '<label><input type="radio" name="tDestaque" value="' . $i . '" checked="true"/> ' . $status . ' </label>';
                                         } else {
                                             echo '<label><input type="radio" name="tDestaque" value="' . $i . '" /> ' . $status . ' </label>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Empreendimento?</p>
+
+                                    <?php
+                                    for ($i = 1; $i >= 0; $i--) {
+                                        $status = ($i == 1) ? "Sim" : "Não";
+                                        if ($i == $imoveis['empreendimento_imovel']) {
+                                            echo '<label><input type="radio" name="tEmpreendimento" value="' . $i . '" checked="true"/> ' . $status . ' </label>';
+                                        } else {
+                                            echo '<label><input type="radio" name="tEmpreendimento" value="' . $i . '" /> ' . $status . ' </label>';
                                         }
                                     }
                                     ?>

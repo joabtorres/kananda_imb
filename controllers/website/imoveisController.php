@@ -15,34 +15,13 @@ class imoveisController extends controller {
         header("location: /home");
     }
 
-    public function apartamento_comprar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Apartamento", "Comprar", "apartamento_comprar");
-    }
-
-    public function apartamento_alugar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Apartamento", "Alugar", "apartamento_alugar");
-    }
-
-    public function area_portuaria_comprar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Área Portuária", "Comprar", "area_portuaria_comprar");
-    }
-
-    public function area_portuaria_alugar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Área Portuária", "Alugar", "area_portuaria_alugar");
-    }
+    /*
+     * IMÓVEIS PARA comprar
+     */
 
     public function casa_comprar($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $this->filtra_imoveis($page, "Casa", "Comprar", "casa_comprar");
-    }
-
-    public function casa_Alugar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Casa", "Alugar", "casa_Alugar");
     }
 
     public function terreno_comprar($page = array()) {
@@ -50,14 +29,68 @@ class imoveisController extends controller {
         $this->filtra_imoveis($page, "Terreno", "Comprar", "terreno_comprar");
     }
 
-    public function terreno_alugar($page = array()) {
-        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $this->filtra_imoveis($page, "Terreno", "Alugar", "terreno_alugar");
-    }
-
     public function ponto_comercial_comprar($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $this->filtra_imoveis($page, "Ponto Comercial", "Comprar", "ponto_comercial_comprar");
+    }
+
+    public function loja_comercial_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Loja Comercial", "Comprar", "loja_comercial_comprar");
+    }
+
+    public function loteamento_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Loteamento", "Comprar", "loteamento_comprar");
+    }
+
+    public function galpao_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Galpão", "Comprar", "galpao_comprar");
+    }
+
+    public function apartamento_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Apartamento", "Comprar", "apartamento_comprar");
+    }
+
+    public function kitnet_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Kitnet", "Comprar", "kitnet_comprar");
+    }
+
+    public function chacara_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Chácara", "Comprar", "chacara_comprar");
+    }
+
+    public function fazenda_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Fazenda", "Comprar", "fazenda_comprar");
+    }
+
+    public function area_portuaria_comprar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Área Portuária", "Comprar", "area_portuaria_comprar");
+    }
+
+    public function empreendimentos($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, null, null, "empreendimentos");
+    }
+
+    /*
+     * IMÓVEIS PARA ALUGAR
+     */
+
+    public function casa_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Casa", "Alugar", "casa_alugar");
+    }
+
+    public function terreno_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Terreno", "Alugar", "terreno_alugar");
     }
 
     public function ponto_comercial_alugar($page = array()) {
@@ -65,10 +98,44 @@ class imoveisController extends controller {
         $this->filtra_imoveis($page, "Ponto Comercial", "Alugar", "ponto_comercial_alugar");
     }
 
-    public function empreendimentos($page = array()) {
+    public function loja_comercial_alugar($page = array()) {
         $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
-        $imovel = array('Casa', 'Terreno');
-        $this->filtra_imoveis($page, $imovel, null, "empreendimentos");
+        $this->filtra_imoveis($page, "Loja Comercial", "Alugar", "loja_comercial_alugar");
+    }
+
+    public function loteamento_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Loteamento", "Alugar", "loteamento_alugar");
+    }
+
+    public function galpao_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Galpão", "Alugar", "galpao_alugar");
+    }
+
+    public function apartamento_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Apartamento", "Alugar", "apartamento_alugar");
+    }
+
+    public function kitnet_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Kitnet", "Alugar", "kitnet_alugar");
+    }
+
+    public function chacara_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Chácara", "Alugar", "chacara_alugar");
+    }
+
+    public function fazenda_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Fazenda", "Alugar", "fazenda_alugar");
+    }
+
+    public function area_portuaria_alugar($page = array()) {
+        $page = (isset($page) && !empty($page)) ? addslashes($page) : 1;
+        $this->filtra_imoveis($page, "Área Portuária", "Alugar", "area_portuaria_alugar");
     }
 
     public function buscar($page = array()) {
@@ -147,16 +214,24 @@ class imoveisController extends controller {
 
         $imovel = array();
         $imovel['status'] = 0;
-        $imovel['imovel'] = $categoria_imovel;
-        $imovel['finalidade'] = $categoria_finalidade;
+        if (!empty($categoria_imovel)) {
+            $imovel['imovel'] = $categoria_imovel;
+        }
+        if (!empty($categoria_finalidade)) {
+            $imovel['finalidade'] = $categoria_finalidade;
+        }
+        if ($metodo == 'empreendimentos') {
+            $imovel['empreendimento'] = 1;
+        }
+
         $limite = 12;
         $total_registro = $imoveisModal->quantidade_imoveis($imovel);
         $paginas = $total_registro / $limite;
         $indice = 0;
         $pagina_atual = (isset($page) && !empty($page)) ? addslashes($page) : 1;
         $indice = ($pagina_atual - 1) * $limite;
-        $dados['imovel'] = (count($imovel['imovel']) > 1) ? "Empreendimentos" : $imovel['imovel'];
-        $dados['finalidade'] = (count($imovel['imovel']) > 1) ? "Comprar e Alugar" : $imovel['finalidade'];
+        $dados['imovel'] = ($metodo == 'empreendimentos') ? "Empreendimentos" : $imovel['imovel'];
+        $dados['finalidade'] = ($categoria_finalidade == null) ? "Comprar e Alugar" : $imovel['finalidade'];
         $dados["paginas"] = $paginas;
         $dados["pagina_atual"] = $pagina_atual;
         $dados['metodo_imovel'] = $metodo;

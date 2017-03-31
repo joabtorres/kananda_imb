@@ -9,9 +9,12 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 <section class="row">
-    <article class="col-xs-12 bg-azul title-destaque">
+    <!--<article class="col-xs-12 bg-azul title-destaque">
         <h2><strong>Contato</strong><br><small>
                 Utilize um dos nossos meios de contatos para nos encontrar.</small></h2>
+    </article> -->
+    <article class="col-xs-12 bg-azul title-destaque" style="padding: 0;">
+        <img src="<?php echo BASE_URL ?>/assets/website/imagens/banner_contato.jpg" class="img-responsive"/>
     </article>
 </section>
 
@@ -24,7 +27,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <h3><strong class="font-bold">Contato: </strong></h3>
                 <p><b>Fixo:</b> (93) 3518-0367</p>
-                <p><b>VIVO:</b> (93) 99242-2027</p>
+                <p><b>Vivo:</b> (93) 99242-2027</p>
                 <p><b>WhatsApp:</b> (93) 98124-3015</p>
                 <p><b>Email:</b> Contato@kananda.imb.br</p>
             </div>

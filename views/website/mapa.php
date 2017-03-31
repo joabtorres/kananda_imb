@@ -1,11 +1,15 @@
 
 <!-- Corpo do site [PARTE DINAMICA]-->
 <section class="row">
-    <!-- CHAMADA PARA O SLIDE SHOW -->
+    <!-- CHAMADA PARA O SLIDE SHOW 
     <article class="col-xs-12 bg-azul title-destaque">
         <h2><strong>MAPA</strong><br><small>
                 Localidade dos imóveis</small></h2>
-    </article><!-- FIM CHAMADA PARA O SLIDE SHOW -->
+    </article>FIM CHAMADA PARA O SLIDE SHOW -->
+    <article class="col-xs-12 bg-azul title-destaque" style="padding: 0;">
+        <img src="<?php echo BASE_URL ?>/assets/website/imagens/banner_mapa.jpg" class="img-responsive"/>
+    </article>
+
 </section> <!-- FIM ROW-->
 
 <section class="row">

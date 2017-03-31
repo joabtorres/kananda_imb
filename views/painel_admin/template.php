@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand font-bold" href="<?php echo BASE_URL; ?>/home">Kananda Negócios Imobiliários</a>
+                    <a class="navbar-brand font-bold" href="<?php echo BASE_URL; ?>/painel_admin/home">Kananda Negócios Imobiliários</a>
                 </div>
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
@@ -82,9 +82,9 @@
                             <li>
                                 <a href="javascript:;" data-toggle="collapse" data-target="#configuracoes"><span class=" glyphicon glyphicon-cog"></span> CONFIGURAÇÕES <b class="caret"></b></a>
                                 <ul id="configuracoes" class="collapse">
-                                    <li>
-                                        <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes"><span class=" glyphicon glyphicon-wrench"></span> Configurações Gerais</a>
-                                    </li>
+                                    <!--<li>
+                                        <a href="/painel_admin/configuracoes"><span class=" glyphicon glyphicon-wrench"></span> Configurações Gerais</a>
+                                    </li> -->
                                     <li>
                                         <a href="<?php echo BASE_URL; ?>/painel_admin/configuracoes/slideshow"><span class="glyphicon glyphicon-picture"></span> Configurações Slideshow</a>
                                     </li>

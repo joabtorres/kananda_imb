@@ -1,10 +1,13 @@
 <!-- Corpo do site [PARTE DINAMICA]-->
 <section class="row">
-    <!-- CHAMADA PARA O SLIDE SHOW -->
+    <!-- CHAMADA PARA O SLIDE SHOW 
     <article class="col-xs-12 bg-azul title-destaque">
         <h2><strong>Serviços</strong><br><small>
                 Confira nossa lista de serviços.</small></h2>
-    </article><!-- FIM CHAMADA PARA O SLIDE SHOW -->
+    </article> FIM CHAMADA PARA O SLIDE SHOW -->
+    <article class="col-xs-12 bg-azul title-destaque" style="padding: 0;">
+        <img src="<?php echo BASE_URL ?>/assets/website/imagens/banner_servicos.jpg" class="img-responsive"/>
+    </article>
 </section>
 
 <!-- CHAMADA PARA LISTA DE SERVIÇOS-->
@@ -41,7 +44,7 @@
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
-            
+
             <!-- SERVIÇO -->
             <article class="col-xs-12 item-blue">
                 <div class="row">
@@ -56,7 +59,7 @@
                     </div>
                 </div>	
             </article><!-- FIM SERVIÇO -->
-            
+
             <article class="col-xs-12 item-white">
                 <div class="row">
                     <div class="visible-xs-block visible-sm-block">

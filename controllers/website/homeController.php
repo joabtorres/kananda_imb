@@ -15,6 +15,7 @@ class homeController extends controller {
      * Descrição: Está função carrega o conteúdo dinamico da página home do website
      * @author Joab Torres Alencar
      */
+
     public function index() {
         $dados = array();
         $viewName = array("diretorio" => "website", "view" => "home");

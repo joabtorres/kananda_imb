@@ -10,10 +10,10 @@
             <meta property="og:url"           content="<?php echo BASE_URL . '/imovel/index/' . $viewData['imovel']['cod_imovel'] ?>" />
             <meta property="og:type"          content="website" />
             <meta property="og:title"         content="Kananda Negócios Imobiliários - <?php echo $viewData['imovel']['imovel_imovel'] . ' - ' . $viewData['imovel']['finalidade_imovel'] . ' - ' . $viewData['imovel']['categoria_imovel']; ?>" />
-            <meta property="og:description"   content="Você já visitou o nosso website? Não? Então visite agora mesmo e confira este imóvel, quem sabe seja aquele em que você procura." />
+            <meta property="og:description"   content="Você já visitou o nosso site? Não? Então, visite agora mesmo e confira este e outros imóveis disponíveis. Encontre o imóvel sob medida para sua necessidade." />
             <meta property="og:image"         content="<?php echo BASE_URL . '/' . $viewData['imovel']['imagem_imovel']; ?>" />
         <?php endif; ?>
-
+        <link rel="icon" type="image/png" href="<?php echo BASE_URL ?>/assets/website/imagens/icone-kananda.png" />
         <link href="<?php echo BASE_URL ?>/assets/website/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<?php echo BASE_URL ?>/assets/website/css/fotorama.css" rel="stylesheet"/>
         <link href="<?php echo BASE_URL ?>/assets/website/css/estilo.min.css" rel="stylesheet"/>
@@ -58,8 +58,14 @@
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimentos">Empreendimentos</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_comprar">Loja Comercial</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_comprar">Loteamento</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_comprar">Galpão</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuaria</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_comprar">Kitnet</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_comprar">Chácara</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_comprar">Fazenda</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuária</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -67,10 +73,15 @@
                                     <ul class="dropdown-menu">
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimentos">Empreendimentos</a></li>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_alugar">Loja Comercial</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_alugar">Loteamento</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_alugar">Galpão</a></li>
                                         <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuaria</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_alugar">Kitnet</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_alugar">Chácara</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_alugar">Fazenda</a></li>
+                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuária</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/mapa">Mapa</a></li>
@@ -294,15 +305,14 @@
                         <ul class="list-unstyled">
                             <li>Rua 4ª  (Quarta), nº 361 - Floresta - Itaituba - PA</li>   
                             <li><strong>Fixo:</strong>  (93) 3518-0367</li>
-                            <li><strong>VIVO:</strong> (93) 99242-2027</li>
+                            <li><strong>Vivo:</strong> (93) 99242-2027</li>
                             <li><strong>WhatsApp:</strong> (93) 98124-3015</li>
-                            <li><strong>Email:</strong> contato@kananda.imb.br</li>
+                            <li><strong >Email:</strong> contato@kananda.imb.br</li>
                         </ul>
                     </article>
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Horário de atendimento</strong></h3>
                         <ul class="list-unstyled">
-                            <li>Horário de antendimento:</li>
                             <li><br/></li>
                             <li><strong>Segunda a Sexta</strong></li>
                             <li>09:00h as 13:00h | 15:00h as 18:00h</li>
@@ -311,7 +321,7 @@
                     <div class="col-xs-12">
                         <hr>
                         <p class="text-center">
-                            &copy; 2008-2017 - Kananda.imb.br | Todos os direitos reservados <br/>
+                            &copy; 2011-2017 - kananda.imb.br | todos os direitos reservados <br/>
                             É proibida a reprodução total ou parcial de qualquer conteúdo deste site.</p>
                     </div>
                 </section>
@@ -331,7 +341,5 @@
         <!-- CHAMANDO JS DO WEBSITE -->
         <script src="<?php echo BASE_URL; ?>/assets/website/js/fotorama.js"></script>
         <script src="<?php echo BASE_URL; ?>/assets/website/js/website.js"></script>
-        <!--temporário-->
-        <script src="<?php echo BASE_URL; ?>/assets/website/js/holder.min.js"></script>
     </body>
 </html>

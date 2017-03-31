@@ -16,7 +16,7 @@
                         </header>
                         <article class="panel-body">
                             <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-3">
                                     <label for="iReferencia">Referência:</label>
                                     <input type="text" name="nReferencia" id="iReferencia" class="form-control"/>
                                 </div>
@@ -29,6 +29,11 @@
                                     <p class="font-bold">Destaca imóvel?</p>
                                     <label><input type="radio" name="tDestaque" value="1"/> Sim </label>
                                     <label><input type="radio" name="tDestaque" value="0" checked="true"/> Não</label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <p class="font-bold">Empreendimento?</p>
+                                    <label><input type="radio" name="tEmpreendimento" value="1"/> Sim </label>
+                                    <label><input type="radio" name="tEmpreendimento" value="0" checked="true"/> Não</label>
                                 </div>
                             </div><!--fim row-->
                             <div class="row">
