@@ -23,20 +23,6 @@ class ImoveisView extends model {
         $sql = "SELECT ka_imb_imovel.*,ka_imb_imovel_endereco.bairro_endereco,ka_imb_imovel_endereco.cidade_endereco,ka_imb_imovel_visita.quantidade_visita  FROM ka_imb_imovel, ka_imb_imovel_endereco, ka_imb_imovel_visita WHERE ka_imb_imovel.cod_imovel=ka_imb_imovel_endereco.cod_imovel AND ka_imb_imovel.cod_imovel=ka_imb_imovel_visita.cod_imovel AND ka_imb_imovel_endereco.cod_imovel=ka_imb_imovel_visita.cod_imovel";
         foreach ($serach_imovel as $indice => $valor) {
             switch ($indice) {
-                case "imovel":
-                    if (count($serach_imovel[$indice]) > 1) {
-                        $sql = $sql . " AND (";
-                        for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
-                            if ($i > 0) {
-                                $sql = $sql . " OR ";
-                            }
-                            $sql = $sql . "ka_imb_imovel." . $indice . "_imovel = :" . $indice . ($i + 1);
-                        }
-                        $sql = $sql . ") ";
-                    } else {
-                        $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel = :" . $indice;
-                    }
-                    break;
                 case "finalidade":
                     $sql = $sql . " AND ka_imb_imovel." . $indice . "_imovel LIKE :" . $indice;
                     $serach_imovel[$indice] = "%" . $valor . "%";
@@ -52,20 +38,7 @@ class ImoveisView extends model {
         $sql = $sql . " ORDER BY " . $ordem . " DESC LIMIT " . $limite_inicio . " , " . $limite_qtd;
         $sql = $this->db->prepare($sql);
         foreach ($serach_imovel as $indice => $valor) {
-            switch ($indice) {
-                case "imovel":
-                    if (count($serach_imovel[$indice]) > 1) {
-                        for ($i = 0; $i < count($serach_imovel[$indice]); $i++) {
-                            $sql->bindValue(":" . $indice . ($i + 1), $serach_imovel[$indice][$i]);
-                        }
-                    } else {
-                        $sql->bindValue(":" . $indice, $valor);
-                    }
-                    break;
-                default :
-                    $sql->bindValue(":" . $indice, $valor);
-                    break;
-            }
+            $sql->bindValue(":" . $indice, $valor);
         }
         $sql->execute();
 
@@ -205,6 +178,15 @@ class ImoveisView extends model {
             $sql->bindValue(':qtd', $qtd);
             $sql->bindValue(':cod', $cod_imovel);
             $sql->execute();
+        }
+    }
+
+    public function menu() {
+        $imoveis = array();
+        $sql = "SELECT DISTINCT (imovel_imovel), finalidade_imovel FROM ka_imb_imovel WHERE status_imovel=0";
+        $sql = $this->db->query($sql);
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
         }
     }
 

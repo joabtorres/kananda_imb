@@ -132,7 +132,7 @@
                                     <input type="text" name="tComprimento" id="cComprimento" class="form-control" value="<?php echo (isset($imoveis['comprimento_imovel'])) ? $imoveis['comprimento_imovel'] : ""; ?>"/>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="cAreaTotal">Área Total: </label>
+                                    <label for="cAreaTotal">Área do Terreno: </label>
                                     <input type="text" name="tAreaTotal" id="cAreaTotal" class="form-control" value="<?php echo (isset($imoveis['area_total_imovel'])) ? $imoveis['area_total_imovel'] : ""; ?>"/>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -159,7 +159,7 @@
                                     <label for="cSelecionaBairro">Bairro: </label>
                                     <select name="nSelecionaBairro" id="cSelecionaBairro" class="itemPesquisa form-control">
                                         <?php
-                                        $bairro = array('Bela vista', 'Boa Esperança', 'Bom Jardim', 'Bom Remédio', 'Centro', 'Floresta', 'Jardim Aeroporto', 'Jardim América', 'Jardim Das Araras', 'Jardim Tapajós', 'Liberdade', 'Maria Madalena', 'Nova Itaituba', 'Novo Paraíso', 'Perpétuo Socorro', 'Piracanã', 'Residencial Vale Do Piracanã', 'Residencial Viva Itaituba', 'Residencial Wirland Freire', 'Santo Antõnio', 'São Francisco', 'São Tome', 'São José', 'Vale do Tapajós', 'Valmirlândia', ' Vitória-Régie', 'Zona Rural');
+                                        $bairro = array('Bela vista', 'Boa Esperança', 'Bom Jardim', 'Bom Remédio', 'Centro', 'Floresta', 'Jardim Aeroporto', 'Jardim América', 'Jardim Das Araras', 'Jardim Tapajós', 'Liberdade', 'Maria Madalena', 'Nova Itaituba', 'Novo Paraíso', 'Perpétuo Socorro', 'Piracanã', 'Residencial Vale Do Piracanã', 'Residencial Viva Itaituba', 'Residencial Wirland Freire', 'Santo Antônio', 'São Francisco', 'São Tome', 'São José', 'Vale do Tapajós', 'Valmirlândia', ' Vitória-Régie', 'Zona Rural');
                                         foreach ($bairro as $valor) {
                                             if ($valor === $imoveis['bairro_endereco']) {
                                                 echo '<option value = "' . $valor . '" selected="true">' . $valor . '</option>';

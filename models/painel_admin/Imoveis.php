@@ -467,4 +467,13 @@ class Imoveis extends model {
         }
     }
 
+    public function menu() {
+        $imoveis = array();
+        $sql = "SELECT DISTINCT (imovel_imovel), finalidade_imovel FROM ka_imb_imovel WHERE status_imovel=0";
+        $sql = $this->db->query($sql);
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        }
+    }
+
 }

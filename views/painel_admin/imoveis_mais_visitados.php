@@ -17,7 +17,7 @@
                             <header class="dest-img">
                                 <a href="<?php echo BASE_URL; ?>/imovel/index/<?php echo $imovel['cod_imovel'] ?>">
                                     <img src="<?php echo BASE_URL . "/" . $imovel['imagem_imovel']; ?>" class="img-responsive" alt="Imóvel Kananda">
-                                    <p class="text-center title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                                    <p class="text-center title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cód " . $imovel['referencia_imovel'] ?>
                                         <br>
                                         <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
                                     </p>
@@ -26,40 +26,46 @@
                             <footer class="caption">
                                 <ul class="list-unstyled">
                                     <?php
-                                    $quantide_descricao = 1;
-                                    if ($imovel["suite_imovel"] != 0 && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
-                                        echo '<li><span class="ic-qua"></span> Suites:' . $imovel['suite_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["quarto_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
+                        $quantide_descricao = 1;
+                        if ($imovel["suite_imovel"] != 0 && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
+                            echo '<li><span class="ic-qua"></span> Suites:' . $imovel['suite_imovel'] . '</li>';
+                        }
+                        if ($imovel["quarto_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
 
-                                        echo '<li><span class="ic-qua"></span> Quartos: ' . $imovel['quarto_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["banheiro_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
+                            echo '<li><span class="ic-qua"></span> Quartos: ' . $imovel['quarto_imovel'] . '</li>';
+                        }
+                        if ($imovel["banheiro_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
 
-                                        echo '<li><span class="ic-ba"></span> Banheiros: ' . $imovel['banheiro_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["garagem_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
+                            echo '<li><span class="ic-ba"></span> Banheiros: ' . $imovel['banheiro_imovel'] . '</li>';
+                        }
+                        if ($imovel["garagem_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
 
-                                        echo '<li><span class="ic-gar"></span> Vagas: ' . $imovel['garagem_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
+                            echo '<li><span class="ic-gar"></span> Vagas: ' . $imovel['garagem_imovel'] . '</li>';
+                        }
+                        if ($imovel["area_construida_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
 
-                                        echo '<li><span class="ic-are"></span> Área Total: ' . $imovel['area_total_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["largura_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
-                                        echo '<li><span class="ic-larg"></span> Largura: ' . $imovel['largura_imovel'] . '</li>';
-                                    }
-                                    if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) {
-                                        ++$quantide_descricao;
-                                        echo '<li><span class="ic-comp"></span> Comprimeito: ' . $imovel['comprimento_imovel'] . '</li>';
-                                    }
-                                    ?>
+                            echo '<li><span class="ic-are"></span> Área Construida: ' . $imovel['area_construida_imovel'] . '</li>';
+                        }
+                        if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
+
+                            echo '<li><span class="ic-are"></span> Área do Terreno: ' . $imovel['area_total_imovel'] . '</li>';
+                        }
+                        if ($imovel["largura_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
+                            echo '<li><span class="ic-larg"></span> Largura: ' . $imovel['largura_imovel'] . '</li>';
+                        }
+                        if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
+                            echo '<li><span class="ic-comp"></span> Comprimento: ' . $imovel['comprimento_imovel'] . '</li>';
+                        }                   
+                                               
+                        ?>
                                     
                                     <li><hr></li>
                                     <li class="text-center bg-danger"> <span class=" glyphicon glyphicon-eye-open"></span> <?php echo $imovel['quantidade_visita'] ?> visualizações</li>
@@ -126,7 +132,7 @@ foreach ($imoveis as $imovel):
                 </header>
                 <article class="modal-body">
 
-                    <p class="text-justify title-nome"> <span class="font-bold">Imóvel</span> <br/> <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                    <p class="text-justify title-nome"> <span class="font-bold">Imóvel</span> <br/> <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cód " . $imovel['referencia_imovel'] ?>
                         <br>
                         <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
                     </p>

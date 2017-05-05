@@ -54,7 +54,7 @@ if (document.getElementById("view-mapa-imoveis")) {
                         });
 
                         var myOptions = {
-                            content: "<img src='" + ponto.imagem_imovel + "' class='img-responsive'/><p class='text-center font-bold'>" + ponto.imovel_imovel + " - " + ponto.finalidade_imovel + " - Cod "+ponto.referencia_imovel+"</p> <a style='display: block; witdh: 100%;' href='/imovel/index/"+ponto.cod_imovel+"' class='btn btn-success'> <span class=' glyphicon glyphicon-search'></span> Consulta imóvel</a>",
+                            content: "<img src='" + ponto.imagem_imovel + "' class='img-responsive'/><p class='text-center font-bold'>" + ponto.imovel_imovel + " - " + ponto.finalidade_imovel + " - Cod " + ponto.referencia_imovel + "</p> <a style='display: block; witdh: 100%;' href='/imovel/index/" + ponto.cod_imovel + "' class='btn btn-success'> <span class=' glyphicon glyphicon-search'></span> Consulta imóvel</a>",
                             pixelOffset: new google.maps.Size(-150, 0)
                         };
 
@@ -94,8 +94,6 @@ if (document.getElementById("view-mapa-imoveis")) {
     }
 
 }
-
-
 /*
  * Carregar categoria de acordo com o tipo do imóvel selecionado
  */

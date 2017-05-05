@@ -27,7 +27,7 @@
             </article>
             <article class="col-md-4">
                 <section class="panel panel-success panel-icon">
-                    <header class="panel-heading"><strong class="font-bold"><span class="glyphicon glyphicon-list float-right"></span> IMÓVEIS</strong> <br/> Exibir Imóvel Cadastrados </header>
+                    <header class="panel-heading"><strong class="font-bold"><span class="glyphicon glyphicon-list float-right"></span> IMÓVEIS</strong> <br/> Exibir Imóveis Cadastrados </header>
                     <article class="panel-body">
                         <a href="<?php echo BASE_URL; ?>/painel_admin/imoveis/cadastrados">Ver detalhes <span class="badge float-right">&raquo;</span></a>
                     </article>

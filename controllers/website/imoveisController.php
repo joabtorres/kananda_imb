@@ -170,7 +170,7 @@ class imoveisController extends controller {
                 $_SESSION['imovel']['banheiro'] = $_POST['nSelectQntBanheiro'];
             }
             if (!empty($_POST['tSelecionaqntGaragem'])) {
-                $_SESSION['imovel']['suite'] = $_POST['tSelecionaqntGaragem'];
+                $_SESSION['imovel']['garagem'] = $_POST['tSelecionaqntGaragem'];
             }
             if (!empty($_POST['tLargura'])) {
                 $_SESSION['imovel']['largura'] = $_POST['tLargura'];

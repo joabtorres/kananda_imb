@@ -93,7 +93,7 @@
                                     <input type="text" name="tComprimento" id="cComprimento" class="form-control"/>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="cAreaTotal">Área Total: </label>
+                                    <label for="cAreaTotal">Área do Terreno: </label>
                                     <input type="text" name="tAreaTotal" id="cAreaTotal" class="form-control"/>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -138,7 +138,7 @@
                                         <option value="Residencial Vale Do Piracanã">Residencial Vale Do Piracanã</option>
                                         <option value="Residencial Viva Itaituba">Residencial Viva Itaituba</option>
                                         <option value="Residencial Wirland Freire">Residencial Wirland Freire</option>
-                                        <option value="Santo Antõnio">Santo Antõnio</option>
+                                        <option value="Santo Antônio">Santo Antônio</option>
                                         <option value="São Francisco">São Francisco</option>
                                         <option value="São Tome">São Tome</option>
                                         <option value="SÃO JOSÉ">São José</option>
@@ -200,7 +200,7 @@
                         <header class="panel-heading"><strong class="font-bold">FOTOS DO IMÓVEL</strong></header>
                         <article class="panel-body">
                             <div class="row">
-                                <div class="form-group col-md-12 container-foto"> <figure class="viewFotosDestaque" > <p class="font-bold text-center">DESTAQUE</p><img src="../../assets/painel_admin/imagens/apartamento.jpg" alt="Imóvel Kananda" id="viewImagem-100"/> <figcaption> <label for="cImagem-100" class="btn btn-primary btn-block ">Escolher arquivo</label> <input type="file" id="cImagem-100" class="ocultar" name="tImagem-100" onchange="readURL(this);"/>  </figcaption> </figure> </div>
+                                <div class="form-group col-md-12 container-foto"> <figure class="viewFotosDestaque" > <p class="font-bold text-center">DESTAQUE</p><img src="<?php echo BASE_URL?>/uploads/adiciona_foto.jpg" alt="Imóvel Kananda" id="viewImagem-100"/> <figcaption> <label for="cImagem-100" class="btn btn-primary btn-block ">Escolher arquivo</label> <input type="file" id="cImagem-100" class="ocultar" name="tImagem-100" onchange="readURL(this);"/>  </figcaption> </figure> </div>
 
                                 <div class="col-md-12 form-group">
                                     <input type="hidden" name="tQnt_fotos" value="1" id="iQnt_fotos">

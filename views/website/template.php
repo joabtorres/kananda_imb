@@ -54,34 +54,121 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">COMPRAR <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
+                                        <?php if ($this->checkImovel("Casa", "Alugar")): ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_comprar">Casa</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Terreno", "Alugar")):
+                                            ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_comprar">Terreno</a></li>
+                                            <?php
+                                        endif;
+                                        ?>
                                         <li><a  href="<?php echo BASE_URL; ?>/imoveis/empreendimentos">Empreendimentos</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_comprar">Loja Comercial</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_comprar">Loteamento</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_comprar">Galpão</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_comprar">Kitnet</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_comprar">Chácara</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_comprar">Fazenda</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuária</a></li>
+                                        <?php
+                                        if ($this->checkImovel("Ponto Comercial", "Alugar")):
+                                            ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_comprar">Ponto Comercial</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Loja Comercial", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_comprar">Loja Comercial</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Loteamento", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_comprar">Loteamento</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Galpão", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_comprar">Galpão</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Apartamento", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_comprar">Apartamento</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Kitnet", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_comprar">Kitnet</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Chácara", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_comprar">Chácara</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Fazenda", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_comprar">Fazenda</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Área Portuária", "Alugar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_comprar">Área Portuária</a></li>
+                                        <?php endif; ?>
+
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">ALUGAR <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
-                                        <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_alugar">Loja Comercial</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_alugar">Loteamento</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_alugar">Galpão</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_alugar">Kitnet</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_alugar">Chácara</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_alugar">Fazenda</a></li>
-                                        <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuária</a></li>
+                                        <?php if ($this->checkImovel("Casa", "Comprar")): ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/casa_alugar">Casa</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Terreno", "Comprar")):
+                                            ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/terreno_alugar">Terreno</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Ponto Comercial", "Comprar")):
+                                            ?>
+                                            <li><a  href="<?php echo BASE_URL; ?>/imoveis/ponto_comercial_alugar">Ponto Comercial</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Loja Comercial", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/loja_comercial_alugar">Loja Comercial</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Loteamento", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/loteamento_alugar">Loteamento</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Galpão", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/galpao_alugar">Galpão</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Apartamento", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/apartamento_alugar">Apartamento</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Kitnet", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/kitnet_alugar">Kitnet</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Chácara", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/chacara_alugar">Chácara</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Fazenda", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/fazenda_alugar">Fazenda</a></li>
+                                            <?php
+                                        endif;
+                                        if ($this->checkImovel("Área Portuária", "Comprar")):
+                                            ?>
+                                            <li><a href="<?php echo BASE_URL; ?>/imoveis/area_portuaria_alugar">Área Portuária</a></li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
                                 <li><a href="/mapa">Mapa</a></li>
@@ -197,8 +284,8 @@
                                                 </div>
 
                                                 <div class="form-group col-md-3 a"> <!-- INCLUIR A CLASSE "a", que força o tipo block-->
-                                                    <label for="cSelecionaQntSuites">Banheiro (s): </label>
-                                                    <select name="tSelecionaQntSuites" id="cSelecionaQntSuites" class="form-control">
+                                                    <label for="cSelectQntBanheiro">Banheiro (s): </label>
+                                                    <select name="nSelectQntBanheiro" id="cSelectQntBanheiro" class="form-control">
                                                         <option value="0" selected>Todos</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -303,7 +390,7 @@
                     <article class="col-md-offset-2 col-md-offset-2 col-md-4 col-lg-4">
                         <h3><strong>Contato</strong></h3>
                         <ul class="list-unstyled">
-                            <li>Rua 4ª  (Quarta), nº 361 - Floresta - Itaituba - PA</li>   
+                            <li>Rua 4ª  (Quarta), nº 361, Floresta - Itaituba - PA</li>   
                             <li><strong>Fixo:</strong>  (93) 3518-0367</li>
                             <li><strong>Vivo:</strong> (93) 99242-2027</li>
                             <li><strong>WhatsApp:</strong> (93) 98124-3015</li>
@@ -313,9 +400,8 @@
                     <article class="col-md-3 col-lg-3">
                         <h3><strong>Horário de atendimento</strong></h3>
                         <ul class="list-unstyled">
-                            <li><br/></li>
-                            <li><strong>Segunda a Sexta</strong></li>
-                            <li>09:00h as 13:00h | 15:00h as 18:00h</li>
+                            <li><strong>Segunda à Sexta</strong></li>
+                            <li>09:00h as 13:00h - 15:00h as 18:00h</li>
                         </ul>
                     </article>
                     <div class="col-xs-12">

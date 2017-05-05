@@ -3,7 +3,7 @@
     <!-- CHAMADA title-destaque -->
     <article class="col-xs-12 bg-azul title-destaque">
         <h2><strong><?php echo ucwords($imovel['imovel_imovel']) . ' - ' . $imovel['finalidade_imovel'] ?> </strong><br><small>
-                COD <?php echo $imovel['referencia_imovel']; ?> </small></h2>
+                CÓD <?php echo $imovel['referencia_imovel']; ?> </small></h2>
     </article><!-- FIM CHAMADA title-destaque -->
 
     <!-- CHAMADA SLIDE DO IMÓVEL-->
@@ -59,20 +59,7 @@
                         <div class="panel-heading"><strong>Especificações</strong></div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <?php if (isset($imovel['imovel_imovel'])) : ?>
-                                    <li><span class="font-bold">Tipo do Imóvel: </span> <?php echo $imovel['imovel_imovel'] ?></li>
                                     <?php
-                                endif;
-                                if (isset($imovel['finalidade_imovel'])) :
-                                    ?>
-                                    <li><span class="font-bold">Finalidade: </span> <?php echo $imovel['finalidade_imovel'] ?></li>
-                                    <?php
-                                endif;
-                                if (isset($imovel['categoria_imovel'])) :
-                                    ?>
-                                    <li><span class="font-bold">Categoria: </span> <?php echo $imovel['categoria_imovel'] ?></li>
-                                    <?php
-                                endif;
                                 if (isset($imovel['suite_imovel']) && $imovel['suite_imovel'] != 0) :
                                     ?>
                                     <li><span class="font-bold">Suite(s): </span> <?php echo $imovel['suite_imovel'] ?></li>
@@ -85,7 +72,7 @@
                                 endif;
                                 if (isset($imovel['banheiro_imovel']) && $imovel['banheiro_imovel'] != 0) :
                                     ?>
-                                    <li><span class="font-bold">Banheiro(s): </span> <?php echo $imovel['quarto_imovel'] ?></li>
+                                    <li><span class="font-bold">Banheiro(s): </span> <?php echo $imovel['banheiro_imovel'] ?></li>
                                     <?php
                                 endif;
                                 if (isset($imovel['garagem_imovel']) && $imovel['garagem_imovel'] != 0) :
@@ -110,10 +97,10 @@
                                 endif;
                                 if (isset($imovel['area_total_imovel']) && $imovel['area_total_imovel'] != 0) :
                                     ?>
-                                    <li><span class="font-bold">Área Total: </span> <?php echo $imovel['area_total_imovel'] ?></li>
+                                    <li><span class="font-bold">Área do Terreno: </span> <?php echo $imovel['area_total_imovel'] ?></li>
                                     <?php
                                 endif;
-                                if (isset($imovel['comprimento_imovel']) && $imovel['comprimento_imovel'] != 0) :
+                                if (isset($imovel['logradouro_endereco']) && $imovel['logradouro_endereco'] != '') :
                                     ?>
                                     <li style="text-transform: capitalize;"><span class="font-bold" style="text-transform: capitalize;">Endereço: </span> <?php echo $imovel['logradouro_endereco'] ?>, nº <?php echo $imovel['numero_endereco'] ?>, <?php echo $imovel['bairro_endereco'] ?> - <?php echo $imovel['complemento_endereco'] ?> -<?php echo $imovel['cidade_endereco'] ?> - PA</li>
                                 <?php endif; ?>

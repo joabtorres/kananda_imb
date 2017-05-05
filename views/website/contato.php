@@ -29,7 +29,7 @@
                 <p><b>Fixo:</b> (93) 3518-0367</p>
                 <p><b>Vivo:</b> (93) 99242-2027</p>
                 <p><b>WhatsApp:</b> (93) 98124-3015</p>
-                <p><b>Email:</b> Contato@kananda.imb.br</p>
+                <p><b>Email:</b> contato@kananda.imb.br</p>
             </div>
             <!--FACEPILE;-->
             <div class="col-sm-12 col-md-6 col-lg-6"><div class="fb-page" data-href="https://www.facebook.com/kanandaimb" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/kanandaimb" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/kanandaimb">Kananda Negócios Imobiliários</a></blockquote></div></div>
@@ -78,7 +78,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="caption">
                     <h3><strong>Endereço: </strong></h3>
-                    <p>Rua Quarta (4ª), nº 361, bairro Floresta, Itaituba – PA, CEP: 68.181-300.</p>
+                    <p>Rua Quarta (4ª), nº 361, Floresta, Itaituba – PA, CEP: 68.181-300.</p>
                 </div>
                 <div id="mapa_contato"></div>
                 <script type="text/javascript">

@@ -1,9 +1,3 @@
-<section class="row">
-    <article class="col-xs-12 bg-azul title-destaque">
-        <h2><strong>Sobre</strong><br><small>
-                Quem nós somos.</small></h2>
-    </article>
-</section>
 
 <!-- CHAMADA PARA O SOBRE-->
 <section class="row">

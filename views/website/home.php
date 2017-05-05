@@ -40,7 +40,6 @@
     <article class="col-xs-12"> 
         <h2 class="font-bold text-center title">IMÓVEIS</h2>
         <div class="subl-title"></div>
-        <br/>
     </article>
 
     <!-- DESTAQUE IMOVEL -->
@@ -105,8 +104,8 @@
             <article class="thumbnail">
                 <header class="dest-img">
                     <a href="<?php echo BASE_URL; ?>/imovel/index/<?php echo $imovel['cod_imovel'] ?>">
-                        <img src="<?php echo BASE_URL . "/" . $imovel['imagem_imovel']; ?>" class="img-responsive" alt="Kananda Imobiliaria <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>" title="Kananda Negócios Imobiliários - <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>">
-                        <p class="text-center title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cod " . $imovel['referencia_imovel'] ?>
+                        <img src="<?php echo BASE_URL . "/" . $imovel['imagem_imovel']; ?>" class="img-responsive" alt="Kananda Imobiliaria <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cód " . $imovel['referencia_imovel'] ?>" title="Kananda Negócios Imobiliários - <?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cód " . $imovel['referencia_imovel'] ?>">
+                        <p class="text-center title-nome"><?php echo $imovel['imovel_imovel'] . " - " . $imovel['finalidade_imovel'] . " - Cód " . $imovel['referencia_imovel'] ?>
                             <br>
                             <span class="title-endereco"> <?php echo $imovel['bairro_endereco'] . ", " . ucwords(strtolower($imovel['cidade_endereco'])) . " - PA" ?></span>
                         </p>
@@ -135,10 +134,15 @@
 
                             echo '<li><span class="ic-gar"></span> Vagas: ' . $imovel['garagem_imovel'] . '</li>';
                         }
+                        if ($imovel["area_construida_imovel"] && $quantide_descricao <= 3) {
+                            ++$quantide_descricao;
+
+                            echo '<li><span class="ic-are"></span> Área Construida: ' . $imovel['area_construida_imovel'] . '</li>';
+                        }
                         if ($imovel["area_total_imovel"] && $quantide_descricao <= 3) {
                             ++$quantide_descricao;
 
-                            echo '<li><span class="ic-are"></span> Área Total: ' . $imovel['area_total_imovel'] . '</li>';
+                            echo '<li><span class="ic-are"></span> Área do Terreno: ' . $imovel['area_total_imovel'] . '</li>';
                         }
                         if ($imovel["largura_imovel"] && $quantide_descricao <= 3) {
                             ++$quantide_descricao;
@@ -146,8 +150,9 @@
                         }
                         if ($imovel["comprimento_imovel"] && $quantide_descricao <= 3) {
                             ++$quantide_descricao;
-                            echo '<li><span class="ic-comp"></span> Comprimeito: ' . $imovel['comprimento_imovel'] . '</li>';
-                        }
+                            echo '<li><span class="ic-comp"></span> Comprimento: ' . $imovel['comprimento_imovel'] . '</li>';
+                        }                   
+                                               
                         ?>
                         <li><hr></li>
                         <li><a href="<?php echo BASE_URL; ?>/imovel/index/<?php echo $imovel['cod_imovel'] ?>">Consulta imóvel<span class="ic-mais float-right">+</span></a></li>
@@ -164,7 +169,7 @@
     <article class="modal-dialog modal-lg" role="document">
         <section class="modal-content">
             <header class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                 <h3 class="modal-title text-justify" >Casa</h3>
             </header>
             <article class="modal-body">

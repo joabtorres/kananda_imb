@@ -40,6 +40,28 @@ class controller {
         }
     }
 
+    /*
+     * Está função verifica se existe um imóvel registrado com sua finalidade OPOSTA
+     * @param String $imovel : Nome do imóvel
+     * @param String $finaldiade : finaidade oposta do imóvel
+     * @access protected 
+     * @return bollean TRUE OR FALSE
+     * @author Joab Torres Alencar <joabtorres1508@gmail.com>
+     */
+
+    protected function checkImovel($imovel, $finalidade) {
+        if (!isset($_SESSION['checkimovel'])) {
+            $imovelModel = new ImoveisView();
+            $_SESSION['checkimovel'] = $imovelModel->menu();
+        }
+        foreach ($_SESSION['checkimovel'] as $temp) {
+            if ($temp['imovel_imovel'] == $imovel && $temp['finalidade_imovel'] != $finalidade) {
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
     public function loadView($viewName, $viewData = array()) {
         extract($viewData);
         include 'views/' . $viewName['diretorio'] . '/' . $viewName['view'] . '.php';

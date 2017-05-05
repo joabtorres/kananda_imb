@@ -100,6 +100,7 @@ class imoveisController extends controller {
                     }
                 }
                 if ($imoveisModal->cadastrar($imovel)) {
+                    $_SESSION['checkimovel'] = $imoveisModal->menu();
                     header("Location: /painel_admin/imoveis/cadastrados");
                 }
             }
@@ -177,6 +178,7 @@ class imoveisController extends controller {
                         }
                     }
                     if ($imoveisModal->alterar($imovel)) {
+                        $_SESSION['checkimovel'] = $imoveisModal->menu();
                         header("Location: /painel_admin/imoveis/cadastrados");
                     }
                 }
@@ -199,6 +201,7 @@ class imoveisController extends controller {
         if (!empty($id)) {
             $imoveisModel = new Imoveis();
             $imoveisModel->excluir(addslashes($id));
+            $_SESSION['checkimovel'] = $imoveisModel->menu();
             header("Location: /painel_admin/imoveis/cadastrados");
         } else {
             header("Location: /painel_admin/imoveis/cadastrados");
